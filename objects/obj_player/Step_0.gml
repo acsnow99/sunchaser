@@ -40,12 +40,51 @@ if moving {
 		image_xscale = -1;
 	}
 	
+	/*for (i = 0; i < 4; i++;) {
+		
+		var mve_state = moving;
+		var _d = directions[i];
+		
+		if (_d == 0) {
+			var _d_upper = _d + 45;
+			var _d_lower = _d + 360 - 45;
+		}
+		else {
+			var _d_upper = _d + 45;
+			var _d_lower = _d - 45;
+		}
+		
+		
+	}*/
+	
+	//true/1 for running, false/0 for idle
+	var mve_state = moving;
+	
+	if (x > xprevious) {
+		spr_current = dir_sprites[0, mve_state]; 
+		dir_last = 0;
+	}
+	else if (x < xprevious) {
+		spr_current = dir_sprites[2, mve_state]; 
+		dir_last = 2;
+	}
+		
+	if (y > yprevious) {
+		spr_current = dir_sprites[3, mve_state]; 
+		dir_last = 3;
+	}
+	else if (y < yprevious) {
+		spr_current = dir_sprites[1, mve_state]; 
+		dir_last = 1;
+	}
+	
+}
+else {
+	spr_current = dir_sprites[dir_last, 0]; 
 }
 
 
 if (keyboard_check(mve_attack)) {
-
-	start_animat(sq_atk_basic);
-
+	start_animat(sq_player_atk_basic_lr);
 }
 

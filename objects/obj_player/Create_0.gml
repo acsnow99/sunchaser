@@ -4,6 +4,7 @@
 
 mve_spd_default = 4;
 mve_spd = mve_spd_default;
+dir_last = 0;
 
 mve_inputs[0] = ord("D");
 mve_inputs[1] = ord("W");
@@ -13,12 +14,23 @@ directions[0] = 0;
 directions[1] = 90;
 directions[2] = 180;
 directions[3] = 270;
-current_direction = 0;
+dir_sprites[0, 0] = spr_player_idle_lr;
+dir_sprites[1, 0] = spr_player_idle_up;
+dir_sprites[2, 0] = spr_player_idle_lr;
+dir_sprites[3, 0] = spr_player_idle_dwn;
+dir_sprites[0, 1] = spr_player_run_lr;
+dir_sprites[1, 1] = spr_player_run_up;
+dir_sprites[2, 1] = spr_player_run_lr;
+dir_sprites[3, 1] = spr_player_run_dwn;
+
 moving = false;
 
+//button to activate normal attack
 mve_attack = ord("E");
 
 enabled = true;
+
+spr_current = spr_player_idle_lr;
 
 enable = function () {
 	enabled = true;
