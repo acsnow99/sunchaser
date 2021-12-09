@@ -22,6 +22,10 @@ dir_sprites[0, 1] = spr_player_run_lr;
 dir_sprites[1, 1] = spr_player_run_up;
 dir_sprites[2, 1] = spr_player_run_lr;
 dir_sprites[3, 1] = spr_player_run_dwn;
+dir_sq[0] = sq_player_atk_basic_lr;
+dir_sq[1] = sq_player_atk_basic_up;
+dir_sq[2] = sq_player_atk_basic_lr;
+dir_sq[3] = sq_player_atk_basic_dwn;
 
 moving = false;
 

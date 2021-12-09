@@ -85,6 +85,6 @@ else {
 
 
 if (keyboard_check(mve_attack)) {
-	start_animat(sq_player_atk_basic_lr);
+	start_animat(dir_sq[dir_last]);
 }
 
