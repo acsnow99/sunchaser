@@ -1,16 +1,13 @@
 {
   "spriteId": {
-    "name": "spr_hb_player_atk_basic",
-    "path": "sprites/spr_hb_player_atk_basic/spr_hb_player_atk_basic.yy",
+    "name": "spr_player_idle_lr",
+    "path": "sprites/spr_player_idle_lr/spr_player_idle_lr.yy",
   },
   "solid": false,
-  "visible": false,
+  "visible": true,
   "spriteMaskId": null,
   "persistent": false,
-  "parentObjectId": {
-    "name": "obj_hb_player_atk_parent",
-    "path": "objects/obj_hb_player_atk_parent/obj_hb_player_atk_parent.yy",
-  },
+  "parentObjectId": null,
   "physicsObject": false,
   "physicsSensor": false,
   "physicsShape": 1,
@@ -25,6 +22,7 @@
   "physicsShapePoints": [],
   "eventList": [
     {"isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
+    {"isDnD":false,"eventNum":0,"eventType":3,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
     {"isDnD":false,"eventNum":0,"eventType":8,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
   ],
   "properties": [],
@@ -34,7 +32,7 @@
     "path": "folders/Objects.yy",
   },
   "resourceVersion": "1.0",
-  "name": "obj_hb_player_atk_basic",
+  "name": "obj_enemy_parent",
   "tags": [],
   "resourceType": "GMObject",
 }

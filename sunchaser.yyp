@@ -1,10 +1,12 @@
 {
   "resources": [
-    {"id":{"name":"sq_player_atk_basic_up","path":"sequences/sq_player_atk_basic_up/sq_player_atk_basic_up.yy",},"order":1,},
+    {"id":{"name":"obj_hb_player_atk_parent","path":"objects/obj_hb_player_atk_parent/obj_hb_player_atk_parent.yy",},"order":5,},
     {"id":{"name":"spr_player_idle_up","path":"sprites/spr_player_idle_up/spr_player_idle_up.yy",},"order":2,},
     {"id":{"name":"spr_player_atk_basic_dwn","path":"sprites/spr_player_atk_basic_dwn/spr_player_atk_basic_dwn.yy",},"order":8,},
     {"id":{"name":"obj_player","path":"objects/obj_player/obj_player.yy",},"order":0,},
+    {"id":{"name":"obj_enemy_parent","path":"objects/obj_enemy_parent/obj_enemy_parent.yy",},"order":4,},
     {"id":{"name":"spr_player_atk_basic_lr","path":"sprites/spr_player_atk_basic_lr/spr_player_atk_basic_lr.yy",},"order":1,},
+    {"id":{"name":"sq_player_atk_basic_up","path":"sequences/sq_player_atk_basic_up/sq_player_atk_basic_up.yy",},"order":3,},
     {"id":{"name":"spr_player_atk_basic_up","path":"sprites/spr_player_atk_basic_up/spr_player_atk_basic_up.yy",},"order":7,},
     {"id":{"name":"sq_player_atk_basic_lr","path":"sequences/sq_player_atk_basic_lr/sq_player_atk_basic_lr.yy",},"order":0,},
     {"id":{"name":"spr_player_idle_dwn","path":"sprites/spr_player_idle_dwn/spr_player_idle_dwn.yy",},"order":3,},

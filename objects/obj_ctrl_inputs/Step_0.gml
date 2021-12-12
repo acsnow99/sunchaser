@@ -6,3 +6,9 @@ if (keyboard_check(vk_escape)) {
 
 }
 
+if (keyboard_check(ord("R"))) {
+	
+	game_restart();
+
+}
+

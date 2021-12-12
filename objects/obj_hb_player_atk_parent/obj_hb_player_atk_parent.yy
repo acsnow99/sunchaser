@@ -7,10 +7,7 @@
   "visible": false,
   "spriteMaskId": null,
   "persistent": false,
-  "parentObjectId": {
-    "name": "obj_hb_player_atk_parent",
-    "path": "objects/obj_hb_player_atk_parent/obj_hb_player_atk_parent.yy",
-  },
+  "parentObjectId": null,
   "physicsObject": false,
   "physicsSensor": false,
   "physicsShape": 1,
@@ -34,7 +31,7 @@
     "path": "folders/Objects.yy",
   },
   "resourceVersion": "1.0",
-  "name": "obj_hb_player_atk_basic",
+  "name": "obj_hb_player_atk_parent",
   "tags": [],
   "resourceType": "GMObject",
 }
