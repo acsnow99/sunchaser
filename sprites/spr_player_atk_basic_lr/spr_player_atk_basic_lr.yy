@@ -38,7 +38,7 @@
     "spriteId": {"name":"spr_player_atk_basic_lr","path":"sprites/spr_player_atk_basic_lr/spr_player_atk_basic_lr.yy",},
     "timeUnits": 1,
     "playback": 1,
-    "playbackSpeed": 6.0,
+    "playbackSpeed": 7.0,
     "playbackSpeedType": 0,
     "autoRecord": true,
     "volume": 1.0,

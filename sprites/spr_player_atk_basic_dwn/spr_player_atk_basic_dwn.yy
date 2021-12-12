@@ -38,7 +38,7 @@
     "spriteId": {"name":"spr_player_atk_basic_dwn","path":"sprites/spr_player_atk_basic_dwn/spr_player_atk_basic_dwn.yy",},
     "timeUnits": 1,
     "playback": 1,
-    "playbackSpeed": 6.0,
+    "playbackSpeed": 7.0,
     "playbackSpeedType": 0,
     "autoRecord": true,
     "volume": 1.0,
