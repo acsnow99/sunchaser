@@ -2,7 +2,7 @@
 
 #region movement
 
-mve_spd_default = 4;
+mve_spd_default = 400;
 mve_spd = mve_spd_default;
 dir_last = 0;
 
@@ -30,7 +30,7 @@ dir_sq[3] = sq_player_atk_basic_dwn;
 moving = false;
 
 //button to activate normal attack
-mve_attack = ord("E");
+mve_attack = vk_space;
 
 enabled = true;
 
@@ -44,7 +44,6 @@ enable = function () {
 
 disable = function () {
 	enabled = false;
-	alarm[0] = 1;
 	mve_spd = 0;
 }
 

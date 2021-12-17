@@ -27,18 +27,20 @@ moving = (point_distance(0, 0, xinput, yinput) > 0);
 
 if moving {
 	
+	var spd_exct = mve_spd * global.dt_steady;
 	var dir_exct = point_direction(0, 0, xinput, yinput);
 	//value of variable 'moving' may change in the process of this script
 	//if the player can't move in the desired direction, moving will change to false
-	mve_simple(mve_spd, dir_exct);
+	mve_simple(spd_exct, dir_exct);
 	
-	//check what direction the player is going to set the direction of the sprites
+	/*check what direction the player is going to set the direction of the sprites
+	(now below in the "sprite change" region
 	if ((dir_exct >= 0 && dir_exct < 90) || dir_exct >= 270 ) {
 		image_xscale = 1;
 	}
 	else if (dir_exct >= 90 && dir_exct < 270) {
 		image_xscale = -1;
-	}
+	}*/
 	
 	/*for (i = 0; i < 4; i++;) {
 		
@@ -60,23 +62,9 @@ if moving {
 	//true/1 for running, false/0 for idle
 	var mve_state = moving;
 	
-	if (x > xprevious) {
-		spr_current = dir_sprites[0, mve_state]; 
-		dir_last = 0;
-	}
-	else if (x < xprevious) {
-		spr_current = dir_sprites[2, mve_state]; 
-		dir_last = 2;
-	}
-		
-	if (y > yprevious) {
-		spr_current = dir_sprites[3, mve_state]; 
-		dir_last = 3;
-	}
-	else if (y < yprevious) {
-		spr_current = dir_sprites[1, mve_state]; 
-		dir_last = 1;
-	}
+	#region sprite change
+	determine_sprite(mve_state);
+	#endregion
 	
 }
 else {

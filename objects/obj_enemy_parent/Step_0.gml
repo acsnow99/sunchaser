@@ -5,7 +5,7 @@ if (instance_exists(obj_hb_player_atk_parent)) {
 	var _close_atk = obj_hb_player_atk_parent[0];
 	var _this_atk;
 	
-	for (var i = 0; i < instance_count(obj_hb_player_atk_parent); i++) {
+	for (var i = 0; i < instance_number(obj_hb_player_atk_parent); i++) {
 		
 		_this_atk = obj_hb_player_atk_parent[i];
 		

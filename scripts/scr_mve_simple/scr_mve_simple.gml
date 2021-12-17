@@ -24,13 +24,19 @@ function mve_simple(_spd, _dir){
 	var sety = false;
 
 
-	//old collision code: "not place_meeting(xtarg, ytarg, obj_wall_parent)"
+	if !place_meeting(xtarg, y, obj_obstacle_parent) {
+		
+		x = xtarg;
+		setx = true;
 	
-	x = xtarg;
-	setx = true;
+	}
 	
-	y = ytarg;
-	sety = true;
+	if !place_meeting(x, ytarg, obj_obstacle_parent) {
+		
+		y = ytarg;
+		sety = true;
+		
+	}
 
 
 	if (!setx || !sety) {

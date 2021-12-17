@@ -1,0 +1,12 @@
+
+___________________________________________
+############################################################################################
+ERROR in
+action number 1
+of  Step Event0
+for object obj_enemy_parent:
+
+camera_set_proj_mat() - wrong number of arguments
+ at gml_Object_obj_enemy_parent_Step_0 (line 8) -        for (var i = 0; i < instance_count(obj_hb_player_atk_parent); i++) {
+############################################################################################
+gml_Object_obj_enemy_parent_Step_0 (line 8)
