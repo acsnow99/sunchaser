@@ -73,6 +73,16 @@ else {
 
 
 if (keyboard_check(mve_attack)) {
-	start_animat(dir_sq[dir_last]);
+	
+	start_animat(dir_atk_sq[dir_last, combo]);
+	
+	//combo sytem
+	if (combo < combo_max) {
+		combo += 1;
+	}
+	else {
+		combo = 0;
+	}
+	
 }
 

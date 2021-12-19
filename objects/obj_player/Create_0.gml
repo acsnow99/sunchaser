@@ -22,15 +22,23 @@ dir_sprites[0, 1] = spr_player_run_lr;
 dir_sprites[1, 1] = spr_player_run_up;
 dir_sprites[2, 1] = spr_player_run_lr;
 dir_sprites[3, 1] = spr_player_run_dwn;
-dir_sq[0] = sq_player_atk_basic_lr;
-dir_sq[1] = sq_player_atk_basic_up;
-dir_sq[2] = sq_player_atk_basic_lr;
-dir_sq[3] = sq_player_atk_basic_dwn;
+//second value of this matrix should never exceed var combo_max below
+dir_atk_sq[0, 0] = sq_player_atk_basic_lr;
+dir_atk_sq[1, 0] = sq_player_atk_basic_up;
+dir_atk_sq[2, 0] = sq_player_atk_basic_lr;
+dir_atk_sq[3, 0] = sq_player_atk_basic_dwn;
+dir_atk_sq[0, 1] = sq_player_atk_basic_lr;
+dir_atk_sq[1, 1] = sq_player_atk_basic_up;
+dir_atk_sq[2, 1] = sq_player_atk_basic_lr;
+dir_atk_sq[3, 1] = sq_player_atk_basic_dwn;
 
 moving = false;
 
 //button to activate normal attack
 mve_attack = vk_space;
+
+combo = 0;
+combo_max = 1
 
 enabled = true;
 
@@ -74,6 +82,8 @@ chk_animat = function () {
 		active_animat = -1;
 		active_sequence = -1;
 		sequence_layer = -1;
+		
+		combo = 0;
 		
 		enable();
 	}
