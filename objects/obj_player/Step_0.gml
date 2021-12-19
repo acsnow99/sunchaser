@@ -86,3 +86,7 @@ if (keyboard_check(mve_attack)) {
 	
 }
 
+if (keyboard_check(ord("E"))) {
+	start_animat(sq_player_atk_sp_lr);
+}
+
