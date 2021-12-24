@@ -51,6 +51,7 @@ moving = false;
 mve_state = 0;
 
 alarmvar_mve = 500000;
+atk_length_sp = 0.75;
 
 //button to activate normal attack
 mve_attack = vk_space;
@@ -70,6 +71,7 @@ movement_input_normal = function (dir, xinput, yinput) {
 	if (keyboard_check(mve_attack)) {
 	
 		start_atk_basic();
+		exit;
 	
 	}
 	
@@ -77,6 +79,7 @@ movement_input_normal = function (dir, xinput, yinput) {
 	if (keyboard_check(atk_input_sp)) {
 		
 		start_atk_sp();
+		exit;
 		
 	}
 	
@@ -152,13 +155,38 @@ movement_input_atk_sp = function() {
 	
 	alarmvar_mve -= global.dt_steady;
 	
-	scr_mve_simple(spd_exct, 0);
+	//scr_mve_simple(spd_exct, dir);
 	
-	if (!moving) {
+	
+	#region movement(script doesn't work for some reason)
+	
+	var xtarg = x + lengthdir_x(spd_exct, 0);
+	var ytarg = y + lengthdir_y(spd_exct, 0);
+	var setx = false;
+	var sety = false;
+
+
+	if !place_meeting(xtarg, y, obj_obstacle_parent) {
 		
-		stop_atk_sp();
+		x = xtarg;
+		setx = true;
+	
+	}
+	
+	if !place_meeting(x, ytarg, obj_obstacle_parent) {
+		
+		y = ytarg;
+		sety = true;
 		
 	}
+
+
+	if (!setx || !sety) {
+		moving = false;
+	}
+	
+	#endregion
+	
 
 	if (alarmvar_mve <= 0) {
 		
@@ -191,7 +219,7 @@ start_atk_sp = function () {
 	spr_current = dir_sprites[dir_last, mve_state];
 	mve_spd = atk_special_mve_spd;
 	
-	alarmvar_mve = 2;
+	alarmvar_mve = atk_length_sp;
 	
 }
 
