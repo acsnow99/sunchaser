@@ -34,6 +34,7 @@
     {"id":{"name":"spr_player_run_up","path":"sprites/spr_player_run_up/spr_player_run_up.yy",},"order":5,},
     {"id":{"name":"spr_player_atk_basic_dwn","path":"sprites/spr_player_atk_basic_dwn/spr_player_atk_basic_dwn.yy",},"order":10,},
     {"id":{"name":"spr_player_idle_lr","path":"sprites/spr_player_idle_lr/spr_player_idle_lr.yy",},"order":0,},
+    {"id":{"name":"obj_hb_player_atk_special","path":"objects/obj_hb_player_atk_special/obj_hb_player_atk_special.yy",},"order":10,},
     {"id":{"name":"spr_walker_run_lr","path":"sprites/spr_walker_run_lr/spr_walker_run_lr.yy",},"order":16,},
     {"id":{"name":"spr_hb_player_atk_basic","path":"sprites/spr_hb_player_atk_basic/spr_hb_player_atk_basic.yy",},"order":9,},
     {"id":{"name":"rm_level","path":"rooms/rm_level/rm_level.yy",},"order":0,},

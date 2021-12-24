@@ -2,6 +2,6 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_attack_movement(){
 
-	obj_player.x += 660 * obj_player.image_xscale;
+	obj_player.x += 660;
 
 }
