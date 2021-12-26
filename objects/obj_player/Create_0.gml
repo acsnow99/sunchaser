@@ -4,7 +4,7 @@
 
 mve_spd_default = 400;
 mve_spd = mve_spd_default;
-atk_special_mve_spd_default = 1600;
+atk_special_mve_spd_default = 2000;
 atk_special_mve_spd = atk_special_mve_spd_default;
 atk_special_dist_max_default = 700;
 atk_special_dist_max = atk_special_dist_max_default;
@@ -15,12 +15,23 @@ mve_inputs[1] = ord("W");
 mve_inputs[2] = ord("A");
 mve_inputs[3] = ord("S");
 
+//button to activate special attack
 atk_input_sp = 	ord("E");
+//button to activate normal attack
+atk_input_basic = vk_space;
 
 directions[0] = 0;
 directions[1] = 90;
 directions[2] = 180;
 directions[3] = 270;
+//the first value indicates direction
+//0 is 0, 1 is 90, 2 is 180, 3 is 270
+//the second value indicates movement state
+//index 0 for second value means idle
+//index 1 for second value means moving normally
+//index 2 for second value means attacking normally
+//index 3 for second value means prepping for a special atk
+//index 4 for second value means using a special atk
 dir_sprites[0, 0] = spr_player_idle_lr;
 dir_sprites[1, 0] = spr_player_idle_up;
 dir_sprites[2, 0] = spr_player_idle_lr;
@@ -37,6 +48,12 @@ dir_sprites[0, 3] = spr_player_run_lr;
 dir_sprites[1, 3] = spr_player_run_up;
 dir_sprites[2, 3] = spr_player_run_lr;
 dir_sprites[3, 3] = spr_player_run_dwn;
+dir_sprites[0, 4] = spr_player_run_lr;
+dir_sprites[1, 4] = spr_player_run_up;
+dir_sprites[2, 4] = spr_player_run_lr;
+dir_sprites[3, 4] = spr_player_run_dwn;
+
+//sequences for the atks(****REMOVE SOON TO REPLACE WITH REGULAR SPRITES ABOVE****)
 //second value of this matrix should never exceed var combo_max below
 dir_atk_sq[0, 0] = sq_player_atk_basic_lr;
 dir_atk_sq[1, 0] = sq_player_atk_basic_up;
@@ -51,10 +68,9 @@ moving = false;
 mve_state = 0;
 
 alarmvar_mve = 500000;
+alarmvar_wait = 500000;
 atk_length_sp = 0.75;
-
-//button to activate normal attack
-mve_attack = vk_space;
+wait_length_atk_sp = 0.5; 
 
 combo = 0;
 combo_max = 1;
@@ -68,7 +84,7 @@ current_atk_hb = -1;
 
 movement_input_normal = function (dir, xinput, yinput) {
 	
-	if (keyboard_check(mve_attack)) {
+	if (keyboard_check(atk_input_basic)) {
 	
 		start_atk_basic();
 		exit;
@@ -109,32 +125,6 @@ movement_input_normal = function (dir, xinput, yinput) {
 		//if the player can't move in the desired direction, moving will change to false
 		mve_simple(spd_exct, dir_exct);
 	
-		/*check what direction the player is going to set the direction of the sprites
-		(now below in the "sprite change" region
-		if ((dir_exct >= 0 && dir_exct < 90) || dir_exct >= 270 ) {
-			image_xscale = 1;
-		}
-		else if (dir_exct >= 90 && dir_exct < 270) {
-			image_xscale = -1;
-		}*/
-	
-		/*for (i = 0; i < 4; i++;) {
-		
-			var mve_state = moving;
-			var _d = directions[i];
-		
-			if (_d == 0) {
-				var _d_upper = _d + 45;
-				var _d_lower = _d + 360 - 45;
-			}
-			else {
-				var _d_upper = _d + 45;
-				var _d_lower = _d - 45;
-			}
-		
-		
-		}*/
-	
 		//true/1 for running, false/0 for idle
 		mve_state = moving;
 	
@@ -151,51 +141,86 @@ movement_input_normal = function (dir, xinput, yinput) {
 
 movement_input_atk_sp = function() {
 	
-	var spd_exct = mve_spd * global.dt_steady;
-	
-	alarmvar_mve -= global.dt_steady;
-	
-	//scr_mve_simple(spd_exct, dir);
+	alarmvar_wait -= global.dt_steady;
 	
 	
-	#region movement(script doesn't work for some reason)
+	if (alarmvar_wait <= 0) {
 	
-	var xtarg = x + lengthdir_x(spd_exct, 0);
-	var ytarg = y + lengthdir_y(spd_exct, 0);
-	var setx = false;
-	var sety = false;
-
-
-	if !place_meeting(xtarg, y, obj_obstacle_parent) {
+		var spd_exct = mve_spd * global.dt_steady;
 		
-		x = xtarg;
-		setx = true;
+		alarmvar_mve -= global.dt_steady;
+		
+		//scr_mve_simple(spd_exct, dir);
+	
+	
+		#region movement(script doesn't work for some reason)
+	
+		var xtarg = x + lengthdir_x(spd_exct, 0);
+		var ytarg = y + lengthdir_y(spd_exct, 0);
+		var setx = false;
+		var sety = false;
+
+
+		if !place_meeting(xtarg, y, obj_obstacle_parent) {
+		
+			x = xtarg;
+			setx = true;
+	
+		}
+	
+		if !place_meeting(x, ytarg, obj_obstacle_parent) {
+		
+			y = ytarg;
+			sety = true;
+		
+		}
+
+
+		if (!setx || !sety) {
+			moving = false;
+		}
+		else {
+			moving = true;
+		}
+	
+		#endregion
+	
+		if (!moving) {
+		
+			stop_atk_sp();
+		
+		}
+
+		if (alarmvar_mve <= 0) {
+		
+			stop_atk_sp();
+		
+		}
+	
+	
+		spr_current = dir_sprites[dir_last, 4]; 
 	
 	}
-	
-	if !place_meeting(x, ytarg, obj_obstacle_parent) {
+	else {
 		
-		y = ytarg;
-		sety = true;
-		
-	}
-
-
-	if (!setx || !sety) {
-		moving = false;
-	}
+		//set direction of coming special atk based on input(can be changed up till the release of the atk
+		for (var i = 0; i < 4; i++;) {
 	
-	#endregion
-	
-
-	if (alarmvar_mve <= 0) {
+			if (keyboard_check(mve_inputs[i])) {
 		
-		stop_atk_sp();
+				dir_last = directions[i];
+		
+			}
+	
+		}
+		
+		spr_current = dir_sprites[dir_last, 3]; 
 		
 	}
 	
 }
 
+//called in movement_input_normal if player is hitting atk button
 start_atk_basic = function () {
 	
 	start_animat(dir_atk_sq[dir_last, combo]);
@@ -210,6 +235,7 @@ start_atk_basic = function () {
 
 }
 
+//called in movement_input_normal if player is hitting special atk button
 start_atk_sp = function () {
 	
 	mve_state = 3;
@@ -220,6 +246,7 @@ start_atk_sp = function () {
 	mve_spd = atk_special_mve_spd;
 	
 	alarmvar_mve = atk_length_sp;
+	alarmvar_wait = wait_length_atk_sp;
 	
 }
 
@@ -232,6 +259,7 @@ stop_atk_sp = function () {
 	mve_spd = mve_spd_default;
 	
 	alarmvar_mve = 50000;
+	alarmvar_wait = 50000;
 	
 }
 
