@@ -2,8 +2,6 @@
 
 //check if an animation is active to possibly terminate it
 chk_animat();
-//check if the player is in a movement that prohibits use of all inputs
-if (!enabled) exit;
 
 
 //movement of all types, organized by a simple integer(0, 1, 2, 3, 4) (idle, running, attacking, special attack, receiving damage)
@@ -22,9 +20,7 @@ switch (mve_state) {
 		movement_input_atk_sp();
 		break;
 	
-	
-	
-	
+
 	
 	
 }

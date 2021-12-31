@@ -4,10 +4,8 @@
 
 mve_spd_default = 400;
 mve_spd = mve_spd_default;
-atk_special_mve_spd_default = 2000;
+atk_special_mve_spd_default = 2500;
 atk_special_mve_spd = atk_special_mve_spd_default;
-atk_special_dist_max_default = 700;
-atk_special_dist_max = atk_special_dist_max_default;
 dir_last = 0;
 
 mve_inputs[0] = ord("D");
@@ -30,8 +28,8 @@ directions[3] = 270;
 //index 0 for second value means idle
 //index 1 for second value means moving normally
 //index 2 for second value means attacking normally
-//index 3 for second value means prepping for a special atk
-//index 4 for second value means using a special atk
+//index 3 for second value means using a special atk
+//index 4 for second value means prepping for a special atk
 dir_sprites[0, 0] = spr_player_idle_lr;
 dir_sprites[1, 0] = spr_player_idle_up;
 dir_sprites[2, 0] = spr_player_idle_lr;
@@ -82,6 +80,8 @@ spr_current = spr_player_idle_lr;
 current_atk_hb = -1;
 
 
+#region movement input functions, movement, and step checks(called in step event or from each other)
+
 movement_input_normal = function (dir, xinput, yinput) {
 	
 	if (keyboard_check(atk_input_basic)) {
@@ -99,7 +99,13 @@ movement_input_normal = function (dir, xinput, yinput) {
 		
 	}
 	
-
+	if (place_meeting(x, y, obj_enemy_parent)) {
+		
+		health -= 1;
+		exit;
+		
+	}
+	
 	
 	for (var i = 0; i < 4; i++;) {
 	
@@ -126,7 +132,7 @@ movement_input_normal = function (dir, xinput, yinput) {
 		mve_simple(spd_exct, dir_exct);
 	
 		//true/1 for running, false/0 for idle
-		mve_state = moving;
+		mve_state = 1;
 	
 		//sprite change
 		determine_sprite(mve_state);
@@ -198,7 +204,7 @@ movement_input_atk_sp = function() {
 		}
 	
 	
-		spr_current = dir_sprites[dir_last, 4]; 
+		spr_current = dir_sprites[dir_last, 3]; 
 	
 	}
 	else {
@@ -208,13 +214,13 @@ movement_input_atk_sp = function() {
 	
 			if (keyboard_check(mve_inputs[i])) {
 		
-				dir_last = directions[i];
+				dir_last = i;
 		
 			}
 	
 		}
 		
-		spr_current = dir_sprites[dir_last, 3]; 
+		spr_current = dir_sprites[dir_last, 4]; 
 		
 	}
 	
@@ -222,8 +228,10 @@ movement_input_atk_sp = function() {
 
 //called in movement_input_normal if player is hitting atk button
 start_atk_basic = function () {
-	
+
 	start_animat(dir_atk_sq[dir_last, combo]);
+	
+	mve_state = 2;
 	
 	//combo sytem
 	if (combo < combo_max) {
@@ -263,6 +271,8 @@ stop_atk_sp = function () {
 	
 }
 
+#endregion
+
 
 enable = function () {
 	enabled = true;
@@ -284,7 +294,11 @@ active_animat = -1;
 sequence_layer = -1;
 active_sequence = -1;
 
+//NOTE: before starting an animation using this function, 
+// use stop_anim to stop the current attack
 start_animat = function (_sequence) {
+	if (active_sequence != -1) return;
+	
 	active_animat = _sequence;
 	sequence_layer = layer_create(depth);
 	active_sequence = layer_sequence_create(sequence_layer, x, y, _sequence);
@@ -308,6 +322,27 @@ chk_animat = function () {
 		
 		enable();
 	}
+	
+	mve_state = 0;
+	
+}
+
+
+stop_anim = function() {
+	
+	if (active_sequence == -1) return;
+	
+	layer_sequence_destroy(active_sequence);
+	layer_destroy(sequence_layer);
+		
+	active_animat = -1;
+	active_sequence = -1;
+	sequence_layer = -1;
+		
+	combo = 0;
+		
+	enable();
+	
 }
 
 #endregion
