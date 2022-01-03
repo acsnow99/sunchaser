@@ -101,8 +101,7 @@ movement_input_normal = function (dir, xinput, yinput) {
 	
 	if (place_meeting(x, y, obj_enemy_parent)) {
 		
-		health -= 1;
-		exit;
+		health -= 10;
 		
 	}
 	

@@ -1,3 +1,3 @@
 
-health = 5;
-global.health_max = 5;
+global.health_max = 100;
+health = global.health_max;
