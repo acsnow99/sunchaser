@@ -30,6 +30,7 @@ directions[3] = 270;
 //index 2 for second value means attacking normally
 //index 3 for second value means using a special atk
 //index 4 for second value means prepping for a special atk
+//index 5 for second value means recoil from incoming damage
 dir_sprites[0, 0] = spr_player_idle_lr;
 dir_sprites[1, 0] = spr_player_idle_up;
 dir_sprites[2, 0] = spr_player_idle_lr;
@@ -50,6 +51,10 @@ dir_sprites[0, 4] = spr_player_run_lr;
 dir_sprites[1, 4] = spr_player_run_up;
 dir_sprites[2, 4] = spr_player_run_lr;
 dir_sprites[3, 4] = spr_player_run_dwn;
+dir_sprites[0, 5] = spr_player_run_lr;
+dir_sprites[1, 5] = spr_player_run_up;
+dir_sprites[2, 5] = spr_player_run_lr;
+dir_sprites[3, 5] = spr_player_run_dwn;
 
 //sequences for the atks(****REMOVE SOON TO REPLACE WITH REGULAR SPRITES ABOVE****)
 //second value of this matrix should never exceed var combo_max below
@@ -67,8 +72,21 @@ mve_state = 0;
 
 alarmvar_mve = 500000;
 alarmvar_wait = 500000;
+alarmvar_inv = 0;
+alarmvar_recoil_recv = 0;
+alarmvar_ghost_frame = 0;
+//default invincibility frames
+alarmvar_inv_default = 0.25;
+alarmvar_recoil_recv_default = 0.075;
+alarmvar_ghost_frame_default = 0.1;
+mve_spd_recoil_recv = mve_spd_default * 3;
 atk_length_sp = 0.75;
 wait_length_atk_sp = 0.5; 
+
+
+enem_closest = -1;
+enem_closest_x = 0;
+enem_closest_y = 0;
 
 combo = 0;
 combo_max = 1;
@@ -98,10 +116,22 @@ movement_input_normal = function (dir, xinput, yinput) {
 		exit;
 		
 	}
-	
-	if (place_meeting(x, y, obj_enemy_parent)) {
+
+
+	alarmvar_inv -= global.dt_steady;
+
+	if (place_meeting(x, y, obj_enemy_parent) && alarmvar_inv <= 0) {
 		
 		health -= 10;
+		
+		alarmvar_recoil_recv = alarmvar_recoil_recv_default;
+		alarmvar_inv = alarmvar_inv_default;
+		
+		//finds the values of the nearest enemy
+		attacker_id(x, y);
+		
+		mve_state = 5;
+		exit;
 		
 	}
 	
@@ -265,12 +295,45 @@ stop_atk_sp = function () {
 	
 	mve_spd = mve_spd_default;
 	
-	alarmvar_mve = 50000;
-	alarmvar_wait = 50000;
+	alarmvar_mve = global.dt_steady + 50000;
+	alarmvar_wait = global.dt_steady + 50000;
+	
+}
+
+movement_input_recoil_receiving = function() {
+	
+	alarmvar_inv -= global.dt_steady;
+	alarmvar_recoil_recv -= global.dt_steady;
+	
+	
+	if (alarmvar_recoil_recv > 0) {
+		
+		var spd_exct = mve_spd_recoil_recv * global.dt_steady;
+		var dir_exct = point_direction(enem_closest_x, enem_closest_y, x, y + 32);
+		//value of variable 'moving' may change in the process of this script
+		//if the player can't move in the desired direction, moving will change to false
+		mve_simple(spd_exct, dir_exct);
+		
+	}
+	else {
+		
+		mve_state = 0;
+		
+	}
 	
 }
 
 #endregion
+
+
+//updates enem_closest values
+attacker_id = function(_x, _y) {
+	
+	enem_closest = instance_nearest(_x, _y, obj_enemy_parent);
+	enem_closest_x = enem_closest.x;
+	enem_closest_y = enem_closest.y + 32;
+	
+}
 
 
 enable = function () {
