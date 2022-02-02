@@ -8,6 +8,7 @@
     {"id":{"name":"spr_walker_run_up","path":"sprites/spr_walker_run_up/spr_walker_run_up.yy",},"order":17,},
     {"id":{"name":"obj_player","path":"objects/obj_player/obj_player.yy",},"order":0,},
     {"id":{"name":"spr_walker_idle_lr","path":"sprites/spr_walker_idle_lr/spr_walker_idle_lr.yy",},"order":12,},
+    {"id":{"name":"obj_ctrl_other","path":"objects/obj_ctrl_other/obj_ctrl_other.yy",},"order":11,},
     {"id":{"name":"spr_walker_idle_dwn","path":"sprites/spr_walker_idle_dwn/spr_walker_idle_dwn.yy",},"order":14,},
     {"id":{"name":"obj_enemy_parent","path":"objects/obj_enemy_parent/obj_enemy_parent.yy",},"order":4,},
     {"id":{"name":"spr_player_atk_basic_up","path":"sprites/spr_player_atk_basic_up/spr_player_atk_basic_up.yy",},"order":11,},

@@ -31,17 +31,36 @@ if (health_current <= 0) {
 }
 
 
+player_hit = place_meeting(x, y, obj_player);
+
 
 #region random movement
 
 var opt = irandom_range(0, 4);
+if (player_hit) {
+	
+	opt = 0;
+
+}
+
 
 if (moving) {
 	
 	var spd = mve_speed * global.dt_steady;
-	mve_simple(spd, mve_dir);
 	
-	alarmvar_opt = 0;
+	if (!player_hit) {
+	
+		mve_simple(spd, mve_dir);
+	
+		alarmvar_opt = 0;
+		
+	}
+	else {
+		
+		alarmvar_mve = 0;
+		moving = false;
+		
+	}
 	
 }
 else if (alarmvar_opt <= 0) {
