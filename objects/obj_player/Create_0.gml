@@ -91,6 +91,8 @@ enem_closest_y = 0;
 combo = 0;
 combo_max = 1;
 
+energy_used = false;
+
 
 enabled = true;
 
@@ -183,12 +185,21 @@ movement_input_atk_sp = function() {
 	
 		var spd_exct = mve_spd * global.dt_steady;
 		
+		//special attack uses energy
+		if (!energy_used) {
+			
+			health -= 10;
+			energy_used = true;
+		
+		}
+		
+		
 		alarmvar_mve -= global.dt_steady;
 		
 		//scr_mve_simple(spd_exct, dir);
 	
 	
-		#region movement(script doesn't work for some reason)
+		#region movement(calling scr_mve_simple doesn't work for some reason)
 	
 		var xtarg = x + lengthdir_x(spd_exct, 0);
 		var ytarg = y + lengthdir_y(spd_exct, 0);
@@ -284,6 +295,7 @@ start_atk_sp = function () {
 	
 	alarmvar_mve = atk_length_sp;
 	alarmvar_wait = wait_length_atk_sp;
+	energy_used = false;
 	
 }
 
