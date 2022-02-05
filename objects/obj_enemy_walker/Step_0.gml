@@ -17,9 +17,17 @@ if (instance_exists(obj_hb_player_atk_parent)) {
 		
 	}
 	
-	if (place_meeting(x, y, _close_atk)) {
+	if (place_meeting(x, y, _close_atk) && !invincible) {
 	
 		health_current -= _close_atk.atk_damage;
+		
+		mve_dir = point_direction(obj_player.x, obj_player.y, x, y);
+		mve_spd = mve_speed_recoil_recv;
+		moving = true;
+		alarmvar_mve = 0.075;
+		alarmvar_inv = alarmvar_inv_default;
+		
+		invincible = true;
 	
 	}
 }
@@ -109,6 +117,7 @@ else if (alarmvar_opt <= 0) {
 
 alarmvar_mve -= global.dt_steady;
 alarmvar_opt -= global.dt_steady;
+alarmvar_inv -= global.dt_steady;
 	
 if (alarmvar_mve <= 0) {
 	
@@ -120,6 +129,13 @@ if (alarmvar_mve <= 0) {
 	}
 	alarmvar_mve = 0;
 	
+}
+
+if (alarmvar_inv <= 0) {
+	
+	invincible = false;
+	alarmvar_inv = 50000;
+
 }
 
 #endregion
