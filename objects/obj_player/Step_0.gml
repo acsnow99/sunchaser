@@ -1,9 +1,5 @@
 /// @description movement/detect player input
 
-//DELETE ONCE ANIMATIONS ARE SPRITE-BASED ONLY
-//check if an animation is active to possibly terminate it
-chk_animat();
-
 
 
 

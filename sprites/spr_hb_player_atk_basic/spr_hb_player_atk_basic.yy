@@ -32,7 +32,7 @@
     "spriteId": {"name":"spr_hb_player_atk_basic","path":"sprites/spr_hb_player_atk_basic/spr_hb_player_atk_basic.yy",},
     "timeUnits": 1,
     "playback": 1,
-    "playbackSpeed": 7.0,
+    "playbackSpeed": 30.0,
     "playbackSpeedType": 0,
     "autoRecord": true,
     "volume": 1.0,

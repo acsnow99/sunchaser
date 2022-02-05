@@ -1,6 +1,6 @@
 /// @description enemy attributes. Health, speed, etc.
 
-health_max = 30;
+health_max = 10;
 health_current = health_max;
 
 invincible = false;
