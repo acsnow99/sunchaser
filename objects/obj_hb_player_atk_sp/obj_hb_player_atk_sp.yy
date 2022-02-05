@@ -1,7 +1,7 @@
 {
   "spriteId": {
-    "name": "spr_player_run_lr",
-    "path": "sprites/spr_player_run_lr/spr_player_run_lr.yy",
+    "name": "spr_hb_player_atk_basic",
+    "path": "sprites/spr_hb_player_atk_basic/spr_hb_player_atk_basic.yy",
   },
   "solid": false,
   "visible": true,
@@ -35,7 +35,7 @@
     "path": "folders/Objects.yy",
   },
   "resourceVersion": "1.0",
-  "name": "obj_hb_player_atk_special",
+  "name": "obj_hb_player_atk_sp",
   "tags": [],
   "resourceType": "GMObject",
 }

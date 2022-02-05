@@ -16,7 +16,7 @@ switch (mve_state) {
 		break;
 		
 	case 2:
-		
+		movement_input_atk_basic();
 		break;
 		
 	case 3:

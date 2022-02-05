@@ -4,6 +4,7 @@
 
 mve_spd_default = 400;
 mve_spd = mve_spd_default;
+mve_spd_atk_basic_default = 250;
 atk_special_mve_spd_default = 2500;
 atk_special_mve_spd = atk_special_mve_spd_default;
 dir_last = 0;
@@ -80,6 +81,8 @@ alarmvar_inv_default = 0.25;
 alarmvar_recoil_recv_default = 0.075;
 alarmvar_ghost_frame_default = 0.1;
 mve_spd_recoil_recv = mve_spd_default * 3;
+//FOR LATER: make array of all atk_basic variables with three values for the combos
+atk_length_basic = 0.2;
 atk_length_sp = 0.75;
 wait_length_atk_sp = 0.5; 
 
@@ -92,12 +95,13 @@ combo = 0;
 combo_max = 1;
 
 energy_used = false;
+attacking = false;
 
 
 enabled = true;
 
 spr_current = spr_player_idle_lr;
-current_atk_hb = -1;
+hb_atk_current = -1;
 
 
 #region movement input functions, movement, and step checks(called in step event or from each other)
@@ -176,12 +180,39 @@ movement_input_normal = function (dir, xinput, yinput) {
 }
 
 
+movement_input_atk_basic = function() {
+	//no input available, moves player slightly forward
+	
+	alarmvar_mve -= global.dt_steady;
+	
+	
+	var spd_exct = mve_spd * global.dt_steady;
+	var dir_exct = directions[dir_last];
+	
+	scr_mve_simple(spd_exct, dir_exct);
+	
+	
+	if (alarmvar_mve <= 0) {
+		
+		stop_atk_basic();
+		
+	}
+	
+}
+
+
 movement_input_atk_sp = function() {
 	
 	alarmvar_wait -= global.dt_steady;
 	
-	
 	if (alarmvar_wait <= 0) {
+		
+		attacking = true;
+		
+	}
+	
+	
+	if (attacking) {
 	
 		var spd_exct = mve_spd * global.dt_steady;
 		
@@ -191,6 +222,12 @@ movement_input_atk_sp = function() {
 			health -= 10;
 			energy_used = true;
 		
+		}
+		
+		if (!instance_exists(obj_hb_player_atk_sp)) {
+			
+			hb_atk_current = instance_create_layer(x, y, "hb", obj_hb_player_atk_sp);
+			
 		}
 		
 		
@@ -268,10 +305,13 @@ movement_input_atk_sp = function() {
 
 //called in movement_input_normal if player is hitting atk button
 start_atk_basic = function () {
-
-	start_animat(dir_atk_sq[dir_last, combo]);
 	
 	mve_state = 2;
+	
+	spr_current = dir_sprites[dir_last, 2];
+	mve_spd = mve_spd_atk_basic_default;
+	
+	alarmvar_mve = atk_length_basic;
 	
 	//combo sytem
 	if (combo < combo_max) {
@@ -288,8 +328,6 @@ start_atk_sp = function () {
 	
 	mve_state = 3;
 	
-	current_atk_hb = instance_create_layer(x, y, "Instances", obj_hb_player_atk_special);
-	
 	spr_current = dir_sprites[dir_last, mve_state];
 	mve_spd = atk_special_mve_spd;
 	
@@ -299,16 +337,26 @@ start_atk_sp = function () {
 	
 }
 
+stop_atk_basic = function() {
+	
+	mve_state = 0;
+	mve_spd = mve_spd_default;
+	spr_current = dir_sprites[dir_last, 0];
+	
+}
+
 stop_atk_sp = function () {
 	
 	mve_state = 0;
-	
-	instance_destroy(current_atk_hb);
 	
 	mve_spd = mve_spd_default;
 	
 	alarmvar_mve = global.dt_steady + 50000;
 	alarmvar_wait = global.dt_steady + 50000;
+	
+	instance_destroy(hb_atk_current);
+	
+	attacking = false;
 	
 }
 
