@@ -96,22 +96,38 @@ combo_max = 1;
 energy_used = false;
 attacking = false;
 
+//keeps track of buttons pressed 
+// 0 is for basic atk button
+// 1 is for sp atk button
+pressed[0] = false;
+pressed[1] = false;
+
 
 enabled = true;
 
 spr_current = spr_player_idle_lr;
 hb_atk_current = -1;
 
+//where the hb(hitbox) for the basic atk will be relative to the player
+x_offset_hb_atk_basic = 54;
+y_offset_hb_atk_basic = 54;
+
 
 #region movement input functions, movement, and step checks(called in step event or from each other)
 
 movement_input_normal = function (dir, xinput, yinput) {
 	
-	if (keyboard_check(atk_input_basic)) {
+	if (keyboard_check_pressed(atk_input_basic)) {
 	
 		start_atk_basic();
 		exit;
 	
+	}
+	//if they let go of the button, let them attack again
+	else if (keyboard_check_released(atk_input_basic)) {
+		
+		pressed[0] = false;
+		
 	}
 	
 	
@@ -119,6 +135,12 @@ movement_input_normal = function (dir, xinput, yinput) {
 		
 		start_atk_sp();
 		exit;
+		
+	}
+	//if they let go of the button, let them attack again
+	else if (keyboard_check_released(atk_input_sp)) {
+		
+		pressed[1] = false;
 		
 	}
 
@@ -216,6 +238,13 @@ movement_input_atk_basic = function() {
 	if (alarmvar_mve <= 0) {
 		
 		stop_atk_basic();
+		
+	}
+	
+	//if they let go of the button, let them attack again
+	if (keyboard_check_released(atk_input_basic)) {
+		
+		pressed[0] = false;
 		
 	}
 	
@@ -319,6 +348,15 @@ movement_input_atk_sp = function() {
 		
 	}
 	
+	
+	
+	//if they let go of the button, let them attack again
+	if (keyboard_check_released(atk_input_sp)) {
+		
+		pressed[1] = false;
+		
+	}
+	
 }
 
 movement_input_recoil_receiving = function() {
@@ -347,35 +385,41 @@ movement_input_recoil_receiving = function() {
 //called in movement_input_normal if player is hitting atk button
 start_atk_basic = function () {
 	
-	mve_state = 2;
-	
-	spr_current = dir_sprites[dir_last, 2];
-	image_index = 0;
-	
-	mve_spd = mve_spd_atk_basic_default;
-	
-	alarmvar_mve = atk_length_basic;
-	
-	hb_atk_current = instance_create_layer(x, y, "hb", obj_hb_player_atk_basic);
-	
-	if (dir_last == 0 || dir_last == 2) {
+	if (!pressed[0]) {
 		
-		hb_atk_current.x = x + (64 * (1 - dir_last))
-		
-	}
-	else if (dir_last == 1 || dir_last == 3) {
-		
-		hb_atk_current.y = y + (64 * -(2 - dir_last))
-		
-	}
+		mve_state = 2;
+		pressed[0] = true;
+	
+		spr_current = dir_sprites[dir_last, 2];
+		image_index = 0;
+	
+		mve_spd = mve_spd_atk_basic_default;
+	
+		alarmvar_mve = atk_length_basic;
 	
 	
-	//combo sytem
-	if (combo < combo_max) {
-		combo += 1;
-	}
-	else {
-		combo = 0;
+		hb_atk_current = instance_create_layer(x, y, "hb", obj_hb_player_atk_basic);
+		//set location of hb(hitbox) relative to the player
+		if (dir_last == 0 || dir_last == 2) {
+		
+			hb_atk_current.x_rel = (x_offset_hb_atk_basic * (1 - dir_last))
+		
+		}
+		else if (dir_last == 1 || dir_last == 3) {
+		
+			hb_atk_current.y_rel = (y_offset_hb_atk_basic * -(2 - dir_last))
+		
+		}
+	
+	
+		//combo sytem
+		if (combo < combo_max) {
+			combo += 1;
+		}
+		else {
+			combo = 0;
+		}
+		
 	}
 
 }
@@ -383,14 +427,19 @@ start_atk_basic = function () {
 //called in movement_input_normal if player is hitting special atk button
 start_atk_sp = function () {
 	
-	mve_state = 3;
+	if (!pressed[1]) {
+		
+		mve_state = 3;
+		pressed[1] = true;
 	
-	spr_current = dir_sprites[dir_last, mve_state];
-	mve_spd = atk_special_mve_spd;
+		spr_current = dir_sprites[dir_last, mve_state];
+		mve_spd = atk_special_mve_spd;
 	
-	alarmvar_mve = atk_length_sp;
-	alarmvar_wait = wait_length_atk_sp;
-	energy_used = false;
+		alarmvar_mve = atk_length_sp;
+		alarmvar_wait = wait_length_atk_sp;
+		energy_used = false;
+		
+	}
 	
 }
 

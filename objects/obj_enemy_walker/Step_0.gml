@@ -85,28 +85,28 @@ else if (alarmvar_opt <= 0) {
 			mve_speed = mve_spd_default;
 			mve_dir = 0;
 			moving = true;
-			alarmvar_mve = 4;
+			alarmvar_mve = 2;
 			break;
 		
 		case 2 :
 			mve_speed = mve_spd_default;
 			mve_dir = 180;
 			moving = true;
-			alarmvar_mve = 4;
+			alarmvar_mve = 2;
 			break;
 			
 		case 3 :
 			mve_speed = mve_spd_default;
 			mve_dir = 90;
 			moving = true;
-			alarmvar_mve = 4;
+			alarmvar_mve = 2;
 			break;
 		
 		case 4 :
 			mve_speed = mve_spd_default;
 			mve_dir = 270;
 			moving = true;
-			alarmvar_mve = 4;
+			alarmvar_mve = 2;
 			break;
 		
 		
