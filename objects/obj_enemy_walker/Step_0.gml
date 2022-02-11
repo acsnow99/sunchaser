@@ -11,7 +11,7 @@ if (instance_exists(obj_hb_player_atk_parent)) {
 		
 		if (distance_to_object(_this_atk) < distance_to_object(_close_atk)) {
 			
-			_close_atk = obj_hb_player_atk_parent[i];
+			_close_atk = _this_atk;
 			
 		}
 		
@@ -78,35 +78,35 @@ else if (alarmvar_opt <= 0) {
 		case 0 :
 			mve_speed = 0;
 			moving = true;
-			alarmvar_mve = 1;
+			alarmvar_mve = alarmvar_mve_default / 2;
 			break;
 		
 		case 1 :
 			mve_speed = mve_spd_default;
 			mve_dir = 0;
 			moving = true;
-			alarmvar_mve = 2;
+			alarmvar_mve = alarmvar_mve_default;
 			break;
 		
 		case 2 :
 			mve_speed = mve_spd_default;
 			mve_dir = 180;
 			moving = true;
-			alarmvar_mve = 2;
+			alarmvar_mve = alarmvar_mve_default;
 			break;
 			
 		case 3 :
 			mve_speed = mve_spd_default;
 			mve_dir = 90;
 			moving = true;
-			alarmvar_mve = 2;
+			alarmvar_mve = alarmvar_mve_default;
 			break;
 		
 		case 4 :
 			mve_speed = mve_spd_default;
 			mve_dir = 270;
 			moving = true;
-			alarmvar_mve = 2;
+			alarmvar_mve = alarmvar_mve_default;
 			break;
 		
 		

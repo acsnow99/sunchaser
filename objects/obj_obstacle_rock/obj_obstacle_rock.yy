@@ -1,13 +1,16 @@
 {
   "spriteId": {
-    "name": "spr_obstacle_rock_1",
-    "path": "sprites/spr_obstacle_rock_1/spr_obstacle_rock_1.yy",
+    "name": "spr_obstacle_rock",
+    "path": "sprites/spr_obstacle_rock/spr_obstacle_rock.yy",
   },
   "solid": false,
-  "visible": false,
+  "visible": true,
   "spriteMaskId": null,
   "persistent": false,
-  "parentObjectId": null,
+  "parentObjectId": {
+    "name": "obj_obstacle_parent",
+    "path": "objects/obj_obstacle_parent/obj_obstacle_parent.yy",
+  },
   "physicsObject": false,
   "physicsSensor": false,
   "physicsShape": 1,
@@ -20,7 +23,9 @@
   "physicsStartAwake": true,
   "physicsKinematic": false,
   "physicsShapePoints": [],
-  "eventList": [],
+  "eventList": [
+    {"isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
+  ],
   "properties": [],
   "overriddenProperties": [],
   "parent": {
@@ -28,7 +33,7 @@
     "path": "folders/Objects.yy",
   },
   "resourceVersion": "1.0",
-  "name": "obj_obstacle_parent",
+  "name": "obj_obstacle_rock",
   "tags": [],
   "resourceType": "GMObject",
 }

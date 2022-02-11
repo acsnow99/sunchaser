@@ -23,8 +23,7 @@ mve_speed_recoil_recv = mve_spd_default * 3;
 mve_dir = 0;
 dir_last = 0;
 //how long until randomly assigning new movement pattern
-alarmvar_mve_default = 1.5;
-alarmvar_mve = alarmvar_mve_default;
+alarmvar_mve = 2;
 alarmvar_opt = 0;
 alarmvar_inv = 50000;
 //default invincibility frames

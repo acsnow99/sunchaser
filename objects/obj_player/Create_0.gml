@@ -266,7 +266,7 @@ movement_input_atk_sp = function() {
 		var spd_exct = mve_spd * global.dt_steady;
 		
 		//special attack uses energy
-		if (!energy_used) {
+		if (!energy_used && health > 10) {
 			
 			health -= 10;
 			energy_used = true;

@@ -9,7 +9,7 @@
   "swfPrecision": 2.525,
   "bbox_left": 0,
   "bbox_right": 63,
-  "bbox_top": 0,
+  "bbox_top": 2,
   "bbox_bottom": 63,
   "HTile": false,
   "VTile": false,
@@ -24,12 +24,12 @@
   "gridX": 0,
   "gridY": 0,
   "frames": [
-    {"compositeImage":{"FrameId":{"name":"15a2f401-42dd-4274-98d8-e8b9ee1cb4aa","path":"sprites/spr_walker_run_lr/spr_walker_run_lr.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"15a2f401-42dd-4274-98d8-e8b9ee1cb4aa","path":"sprites/spr_walker_run_lr/spr_walker_run_lr.yy",},"LayerId":{"name":"5560f46f-351e-448a-bf87-576efa472f5f","path":"sprites/spr_walker_run_lr/spr_walker_run_lr.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_walker_run_lr","path":"sprites/spr_walker_run_lr/spr_walker_run_lr.yy",},"resourceVersion":"1.0","name":"15a2f401-42dd-4274-98d8-e8b9ee1cb4aa","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"249256c7-8038-450e-b56d-93f99784a712","path":"sprites/spr_obstacle_rock_1/spr_obstacle_rock_1.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"249256c7-8038-450e-b56d-93f99784a712","path":"sprites/spr_obstacle_rock_1/spr_obstacle_rock_1.yy",},"LayerId":{"name":"569d3f8f-f0b4-4459-858a-cfcafb921328","path":"sprites/spr_obstacle_rock_1/spr_obstacle_rock_1.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_obstacle_rock_1","path":"sprites/spr_obstacle_rock_1/spr_obstacle_rock_1.yy",},"resourceVersion":"1.0","name":"249256c7-8038-450e-b56d-93f99784a712","tags":[],"resourceType":"GMSpriteFrame",},
   ],
   "sequence": {
-    "spriteId": {"name":"spr_walker_run_lr","path":"sprites/spr_walker_run_lr/spr_walker_run_lr.yy",},
+    "spriteId": {"name":"spr_obstacle_rock_1","path":"sprites/spr_obstacle_rock_1/spr_obstacle_rock_1.yy",},
     "timeUnits": 1,
     "playback": 1,
     "playbackSpeed": 30.0,
@@ -41,7 +41,7 @@
     "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
     "tracks": [
       {"name":"frames","spriteId":null,"keyframes":{"Keyframes":[
-            {"id":"49a12377-786a-4d48-85ec-010625714a8f","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"15a2f401-42dd-4274-98d8-e8b9ee1cb4aa","path":"sprites/spr_walker_run_lr/spr_walker_run_lr.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"80a7845e-dbc3-47c4-8e8d-0bdda7599164","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"249256c7-8038-450e-b56d-93f99784a712","path":"sprites/spr_obstacle_rock_1/spr_obstacle_rock_1.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
           ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"isCreationTrack":false,"resourceVersion":"1.0","tags":[],"resourceType":"GMSpriteFramesTrack","modifiers":[],},
     ],
     "visibleRange": null,
@@ -58,14 +58,14 @@
     "yorigin": 32,
     "eventToFunction": {},
     "eventStubScript": null,
-    "parent": {"name":"spr_walker_run_lr","path":"sprites/spr_walker_run_lr/spr_walker_run_lr.yy",},
+    "parent": {"name":"spr_obstacle_rock_1","path":"sprites/spr_obstacle_rock_1/spr_obstacle_rock_1.yy",},
     "resourceVersion": "1.3",
-    "name": "spr_walker_run_lr",
+    "name": "spr_obstacle_rock_1",
     "tags": [],
     "resourceType": "GMSequence",
   },
   "layers": [
-    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"5560f46f-351e-448a-bf87-576efa472f5f","tags":[],"resourceType":"GMImageLayer",},
+    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"569d3f8f-f0b4-4459-858a-cfcafb921328","tags":[],"resourceType":"GMImageLayer",},
   ],
   "nineSlice": null,
   "parent": {
@@ -73,7 +73,7 @@
     "path": "folders/Sprites.yy",
   },
   "resourceVersion": "1.0",
-  "name": "spr_walker_run_lr",
+  "name": "spr_obstacle_rock_1",
   "tags": [],
   "resourceType": "GMSprite",
 }
