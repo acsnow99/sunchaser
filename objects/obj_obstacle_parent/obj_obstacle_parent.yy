@@ -1,7 +1,7 @@
 {
   "spriteId": {
-    "name": "spr_player_idle_lr",
-    "path": "sprites/spr_player_idle_lr/spr_player_idle_lr.yy",
+    "name": "spr_obstacle_rock_1",
+    "path": "sprites/spr_obstacle_rock_1/spr_obstacle_rock_1.yy",
   },
   "solid": false,
   "visible": false,

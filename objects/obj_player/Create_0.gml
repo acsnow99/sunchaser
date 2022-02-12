@@ -4,6 +4,7 @@
 
 mve_spd_default = 400;
 mve_spd = mve_spd_default;
+mve_spd_atk_basic_default = 250;
 atk_special_mve_spd_default = 2500;
 atk_special_mve_spd = atk_special_mve_spd_default;
 dir_last = 0;
@@ -39,10 +40,10 @@ dir_sprites[0, 1] = spr_player_run_lr;
 dir_sprites[1, 1] = spr_player_run_up;
 dir_sprites[2, 1] = spr_player_run_lr;
 dir_sprites[3, 1] = spr_player_run_dwn;
-dir_sprites[0, 2] = spr_player_run_lr;
-dir_sprites[1, 2] = spr_player_run_up;
-dir_sprites[2, 2] = spr_player_run_lr;
-dir_sprites[3, 2] = spr_player_run_dwn;
+dir_sprites[0, 2] = spr_player_atk_basic_lr;
+dir_sprites[1, 2] = spr_player_atk_basic_up;
+dir_sprites[2, 2] = spr_player_atk_basic_lr;
+dir_sprites[3, 2] = spr_player_atk_basic_dwn;
 dir_sprites[0, 3] = spr_player_run_lr;
 dir_sprites[1, 3] = spr_player_run_up;
 dir_sprites[2, 3] = spr_player_run_lr;
@@ -80,6 +81,7 @@ alarmvar_inv_default = 0.25;
 alarmvar_recoil_recv_default = 0.075;
 alarmvar_ghost_frame_default = 0.1;
 mve_spd_recoil_recv = mve_spd_default * 3;
+atk_length_basic = 0.2;
 atk_length_sp = 0.75;
 wait_length_atk_sp = 0.5; 
 
@@ -92,23 +94,40 @@ combo = 0;
 combo_max = 1;
 
 energy_used = false;
+attacking = false;
+
+//keeps track of buttons pressed 
+// 0 is for basic atk button
+// 1 is for sp atk button
+pressed[0] = false;
+pressed[1] = false;
 
 
 enabled = true;
 
 spr_current = spr_player_idle_lr;
-current_atk_hb = -1;
+hb_atk_current = -1;
+
+//where the hb(hitbox) for the basic atk will be relative to the player
+x_offset_hb_atk_basic = 54;
+y_offset_hb_atk_basic = 54;
 
 
 #region movement input functions, movement, and step checks(called in step event or from each other)
 
 movement_input_normal = function (dir, xinput, yinput) {
 	
-	if (keyboard_check(atk_input_basic)) {
+	if (keyboard_check_pressed(atk_input_basic)) {
 	
 		start_atk_basic();
 		exit;
 	
+	}
+	//if they let go of the button, let them attack again
+	else if (keyboard_check_released(atk_input_basic)) {
+		
+		pressed[0] = false;
+		
 	}
 	
 	
@@ -118,21 +137,19 @@ movement_input_normal = function (dir, xinput, yinput) {
 		exit;
 		
 	}
+	//if they let go of the button, let them attack again
+	else if (keyboard_check_released(atk_input_sp)) {
+		
+		pressed[1] = false;
+		
+	}
 
 
 	alarmvar_inv -= global.dt_steady;
 
 	if (place_meeting(x, y, obj_enemy_parent) && alarmvar_inv <= 0) {
 		
-		health -= 10;
-		
-		alarmvar_recoil_recv = alarmvar_recoil_recv_default;
-		alarmvar_inv = alarmvar_inv_default;
-		
-		//finds the values of the nearest enemy
-		attacker_id(x, y);
-		
-		mve_state = 5;
+		start_recoil_receiving();
 		exit;
 		
 	}
@@ -176,27 +193,94 @@ movement_input_normal = function (dir, xinput, yinput) {
 }
 
 
+movement_input_atk_basic = function() {
+	//no input available, moves player slightly forward
+	
+	alarmvar_mve -= global.dt_steady;
+	
+	
+	var spd_exct = mve_spd * global.dt_steady;
+	var dir_exct = directions[dir_last];
+	
+	#region movement(calling scr_mve_simple doesn't work for some reason)
+	
+	var xtarg = x + lengthdir_x(spd_exct, dir_exct);
+	var ytarg = y + lengthdir_y(spd_exct, dir_exct);
+	var setx = false;
+	var sety = false;
+
+
+	if !place_meeting(xtarg, y, obj_obstacle_parent) {
+		
+		x = xtarg;
+		setx = true;
+	
+	}
+	
+	if !place_meeting(x, ytarg, obj_obstacle_parent) {
+		
+		y = ytarg;
+		sety = true;
+	
+	}
+
+
+	if (!setx || !sety) {
+		moving = false;
+	}
+	else {
+		moving = true;
+	}
+
+	#endregion
+	
+	
+	if (alarmvar_mve <= 0) {
+		
+		stop_atk_basic();
+		
+	}
+	
+	//if they let go of the button, let them attack again
+	if (keyboard_check_released(atk_input_basic)) {
+		
+		pressed[0] = false;
+		
+	}
+	
+}
+
 movement_input_atk_sp = function() {
 	
 	alarmvar_wait -= global.dt_steady;
 	
-	
 	if (alarmvar_wait <= 0) {
+		
+		attacking = true;
+		
+	}
+	
+	
+	if (attacking) {
 	
 		var spd_exct = mve_spd * global.dt_steady;
 		
 		//special attack uses energy
-		if (!energy_used) {
+		if (!energy_used && health > 10) {
 			
 			health -= 10;
 			energy_used = true;
 		
 		}
 		
+		if (!instance_exists(obj_hb_player_atk_sp)) {
+			
+			hb_atk_current = instance_create_layer(x, y, "hb", obj_hb_player_atk_sp);
+			
+		}
+		
 		
 		alarmvar_mve -= global.dt_steady;
-		
-		//scr_mve_simple(spd_exct, dir);
 	
 	
 		#region movement(calling scr_mve_simple doesn't work for some reason)
@@ -260,55 +344,18 @@ movement_input_atk_sp = function() {
 	
 		}
 		
-		spr_current = dir_sprites[dir_last, 4]; 
+		spr_current = dir_sprites[dir_last, 4];
 		
 	}
 	
-}
-
-//called in movement_input_normal if player is hitting atk button
-start_atk_basic = function () {
-
-	start_animat(dir_atk_sq[dir_last, combo]);
 	
-	mve_state = 2;
 	
-	//combo sytem
-	if (combo < combo_max) {
-		combo += 1;
+	//if they let go of the button, let them attack again
+	if (keyboard_check_released(atk_input_sp)) {
+		
+		pressed[1] = false;
+		
 	}
-	else {
-		combo = 0;
-	}
-
-}
-
-//called in movement_input_normal if player is hitting special atk button
-start_atk_sp = function () {
-	
-	mve_state = 3;
-	
-	current_atk_hb = instance_create_layer(x, y, "Instances", obj_hb_player_atk_special);
-	
-	spr_current = dir_sprites[dir_last, mve_state];
-	mve_spd = atk_special_mve_spd;
-	
-	alarmvar_mve = atk_length_sp;
-	alarmvar_wait = wait_length_atk_sp;
-	energy_used = false;
-	
-}
-
-stop_atk_sp = function () {
-	
-	mve_state = 0;
-	
-	instance_destroy(current_atk_hb);
-	
-	mve_spd = mve_spd_default;
-	
-	alarmvar_mve = global.dt_steady + 50000;
-	alarmvar_wait = global.dt_steady + 50000;
 	
 }
 
@@ -335,10 +382,112 @@ movement_input_recoil_receiving = function() {
 	
 }
 
+//called in movement_input_normal if player is hitting atk button
+start_atk_basic = function () {
+	
+	if (!pressed[0]) {
+		
+		mve_state = 2;
+		pressed[0] = true;
+	
+		spr_current = dir_sprites[dir_last, 2];
+		image_index = 0;
+	
+		mve_spd = mve_spd_atk_basic_default;
+	
+		alarmvar_mve = atk_length_basic;
+	
+	
+		hb_atk_current = instance_create_layer(x, y, "hb", obj_hb_player_atk_basic);
+		//set location of hb(hitbox) relative to the player
+		if (dir_last == 0 || dir_last == 2) {
+		
+			hb_atk_current.x_rel = (x_offset_hb_atk_basic * (1 - dir_last))
+		
+		}
+		else if (dir_last == 1 || dir_last == 3) {
+		
+			hb_atk_current.y_rel = (y_offset_hb_atk_basic * -(2 - dir_last))
+		
+		}
+	
+	
+		//combo sytem
+		if (combo < combo_max) {
+			combo += 1;
+		}
+		else {
+			combo = 0;
+		}
+		
+	}
+
+}
+
+//called in movement_input_normal if player is hitting special atk button
+start_atk_sp = function () {
+	
+	if (!pressed[1]) {
+		
+		mve_state = 3;
+		pressed[1] = true;
+	
+		spr_current = dir_sprites[dir_last, mve_state];
+		mve_spd = atk_special_mve_spd;
+	
+		alarmvar_mve = atk_length_sp;
+		alarmvar_wait = wait_length_atk_sp;
+		energy_used = false;
+		
+	}
+	
+}
+
+//called in movement_input_normal if player is receiving damage
+start_recoil_receiving = function() {
+	
+	health -= 10;
+	
+	mve_state = 5;
+		
+	alarmvar_recoil_recv = alarmvar_recoil_recv_default;
+	alarmvar_inv = alarmvar_inv_default;
+		
+	//finds the values of the nearest enemy
+	attacker_id(x, y);
+	
+}
+
+stop_atk_basic = function() {
+	
+	mve_state = 0;
+	mve_spd = mve_spd_default;
+	spr_current = dir_sprites[dir_last, 0];
+	
+	instance_destroy(hb_atk_current);
+	
+}
+
+stop_atk_sp = function () {
+	
+	mve_state = 0;
+	
+	mve_spd = mve_spd_default;
+	
+	alarmvar_mve = global.dt_steady + 50000;
+	alarmvar_wait = global.dt_steady + 50000;
+	
+	instance_destroy(hb_atk_current);
+	
+	attacking = false;
+	
+}
+
+
 #endregion
 
 
-//updates enem_closest values
+//updates enem_closest values by detecting the closest object in the enemy parent/child tree
 attacker_id = function(_x, _y) {
 	
 	enem_closest = instance_nearest(_x, _y, obj_enemy_parent);
@@ -347,77 +496,4 @@ attacker_id = function(_x, _y) {
 	
 }
 
-
-enable = function () {
-	enabled = true;
-	image_alpha = 1;
-	mve_spd = mve_spd_default;
-}
-
-disable = function () {
-	enabled = false;
-	mve_spd = 0;
-}
-
-
 #endregion
-
-
-#region animations
-active_animat = -1;
-sequence_layer = -1;
-active_sequence = -1;
-
-//NOTE: before starting an animation using this function, 
-// use stop_anim to stop the current attack
-start_animat = function (_sequence) {
-	if (active_sequence != -1) return;
-	
-	active_animat = _sequence;
-	sequence_layer = layer_create(depth);
-	active_sequence = layer_sequence_create(sequence_layer, x, y, _sequence);
-	layer_sequence_xscale(active_sequence, image_xscale);
-	
-	disable();
-}
-
-chk_animat = function () {
-	if (active_sequence == -1) return;
-	
-	if (layer_sequence_is_finished(active_sequence)) {
-		layer_sequence_destroy(active_sequence);
-		layer_destroy(sequence_layer);
-		
-		active_animat = -1;
-		active_sequence = -1;
-		sequence_layer = -1;
-		
-		combo = 0;
-		
-		enable();
-	}
-	
-	mve_state = 0;
-	
-}
-
-
-stop_anim = function() {
-	
-	if (active_sequence == -1) return;
-	
-	layer_sequence_destroy(active_sequence);
-	layer_destroy(sequence_layer);
-		
-	active_animat = -1;
-	active_sequence = -1;
-	sequence_layer = -1;
-		
-	combo = 0;
-		
-	enable();
-	
-}
-
-#endregion
-

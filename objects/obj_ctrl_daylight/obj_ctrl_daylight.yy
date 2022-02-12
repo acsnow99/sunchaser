@@ -1,16 +1,10 @@
 {
-  "spriteId": {
-    "name": "spr_player_run_lr",
-    "path": "sprites/spr_player_run_lr/spr_player_run_lr.yy",
-  },
+  "spriteId": null,
   "solid": false,
   "visible": true,
   "spriteMaskId": null,
-  "persistent": false,
-  "parentObjectId": {
-    "name": "obj_hb_player_atk_parent",
-    "path": "objects/obj_hb_player_atk_parent/obj_hb_player_atk_parent.yy",
-  },
+  "persistent": true,
+  "parentObjectId": null,
   "physicsObject": false,
   "physicsSensor": false,
   "physicsShape": 1,
@@ -35,7 +29,7 @@
     "path": "folders/Objects.yy",
   },
   "resourceVersion": "1.0",
-  "name": "obj_hb_player_atk_special",
+  "name": "obj_ctrl_daylight",
   "tags": [],
   "resourceType": "GMObject",
 }

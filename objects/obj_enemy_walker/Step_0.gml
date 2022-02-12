@@ -11,15 +11,23 @@ if (instance_exists(obj_hb_player_atk_parent)) {
 		
 		if (distance_to_object(_this_atk) < distance_to_object(_close_atk)) {
 			
-			_close_atk = obj_hb_player_atk_parent[i];
+			_close_atk = _this_atk;
 			
 		}
 		
 	}
 	
-	if (place_meeting(x, y, _close_atk)) {
+	if (place_meeting(x, y, _close_atk) && !invincible) {
 	
 		health_current -= _close_atk.atk_damage;
+		
+		mve_dir = point_direction(obj_player.x, obj_player.y, x, y);
+		mve_spd = mve_speed_recoil_recv;
+		moving = true;
+		alarmvar_mve = 0.075;
+		alarmvar_inv = alarmvar_inv_default;
+		
+		invincible = true;
 	
 	}
 }
@@ -70,35 +78,35 @@ else if (alarmvar_opt <= 0) {
 		case 0 :
 			mve_speed = 0;
 			moving = true;
-			alarmvar_mve = 1;
+			alarmvar_mve = alarmvar_mve_default / 2;
 			break;
 		
 		case 1 :
 			mve_speed = mve_spd_default;
 			mve_dir = 0;
 			moving = true;
-			alarmvar_mve = 4;
+			alarmvar_mve = alarmvar_mve_default;
 			break;
 		
 		case 2 :
 			mve_speed = mve_spd_default;
 			mve_dir = 180;
 			moving = true;
-			alarmvar_mve = 4;
+			alarmvar_mve = alarmvar_mve_default;
 			break;
 			
 		case 3 :
 			mve_speed = mve_spd_default;
 			mve_dir = 90;
 			moving = true;
-			alarmvar_mve = 4;
+			alarmvar_mve = alarmvar_mve_default;
 			break;
 		
 		case 4 :
 			mve_speed = mve_spd_default;
 			mve_dir = 270;
 			moving = true;
-			alarmvar_mve = 4;
+			alarmvar_mve = alarmvar_mve_default;
 			break;
 		
 		
@@ -109,6 +117,7 @@ else if (alarmvar_opt <= 0) {
 
 alarmvar_mve -= global.dt_steady;
 alarmvar_opt -= global.dt_steady;
+alarmvar_inv -= global.dt_steady;
 	
 if (alarmvar_mve <= 0) {
 	
@@ -120,6 +129,13 @@ if (alarmvar_mve <= 0) {
 	}
 	alarmvar_mve = 0;
 	
+}
+
+if (alarmvar_inv <= 0) {
+	
+	invincible = false;
+	alarmvar_inv = 50000;
+
 }
 
 #endregion

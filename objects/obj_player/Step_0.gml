@@ -1,9 +1,5 @@
 /// @description movement/detect player input
 
-//DELETE ONCE ANIMATIONS ARE SPRITE-BASED ONLY
-//check if an animation is active to possibly terminate it
-chk_animat();
-
 
 
 
@@ -16,7 +12,7 @@ switch (mve_state) {
 		break;
 		
 	case 2:
-		
+		movement_input_atk_basic();
 		break;
 		
 	case 3:
