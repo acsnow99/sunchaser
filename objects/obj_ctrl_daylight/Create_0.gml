@@ -16,6 +16,8 @@ alarmvar_dmg_default = 4;
 alarmvar_dmg = alarmvar_dmg_default;
 
 
+//max amount of seconds that are added to the clock per second
+max_secs_mod = 1.5;
 //crash prevention
 if (instance_exists(obj_player)) {
 	

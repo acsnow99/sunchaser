@@ -264,6 +264,7 @@ movement_input_atk_sp = function() {
 	if (attacking) {
 	
 		var spd_exct = mve_spd * global.dt_steady;
+		var dir_exct = directions[dir_last];
 		
 		//special attack uses energy
 		if (!energy_used && health > 10) {
@@ -273,9 +274,13 @@ movement_input_atk_sp = function() {
 		
 		}
 		
+		
+		var _x = x + lengthdir_x(spd_exct, dir_exct);
+		var _y = y + lengthdir_y(spd_exct, dir_exct);
+		
 		if (!instance_exists(obj_hb_player_atk_sp)) {
 			
-			hb_atk_current = instance_create_layer(x, y, "hb", obj_hb_player_atk_sp);
+			hb_atk_current = instance_create_layer(_x, _y, "hb", obj_hb_player_atk_sp);
 			
 		}
 		
@@ -285,8 +290,8 @@ movement_input_atk_sp = function() {
 	
 		#region movement(calling scr_mve_simple doesn't work for some reason)
 	
-		var xtarg = x + lengthdir_x(spd_exct, 0);
-		var ytarg = y + lengthdir_y(spd_exct, 0);
+		var xtarg = x + lengthdir_x(spd_exct, dir_exct);
+		var ytarg = y + lengthdir_y(spd_exct, dir_exct);
 		var setx = false;
 		var sety = false;
 
