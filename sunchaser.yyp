@@ -25,6 +25,7 @@
     {"id":{"name":"obj_enemy_blocker","path":"objects/obj_enemy_blocker/obj_enemy_blocker.yy",},"order":14,},
     {"id":{"name":"spr_player_run_dwn","path":"sprites/spr_player_run_dwn/spr_player_run_dwn.yy",},"order":6,},
     {"id":{"name":"spr_player_run_lr","path":"sprites/spr_player_run_lr/spr_player_run_lr.yy",},"order":4,},
+    {"id":{"name":"spr_healthbar","path":"sprites/spr_healthbar/spr_healthbar.yy",},"order":20,},
     {"id":{"name":"spr_obstacle_rock_1","path":"sprites/spr_obstacle_rock_1/spr_obstacle_rock_1.yy",},"order":19,},
     {"id":{"name":"obj_ctrl_skip_rm","path":"objects/obj_ctrl_skip_rm/obj_ctrl_skip_rm.yy",},"order":8,},
     {"id":{"name":"note_use_steadydt","path":"notes/note_use_steadydt/note_use_steadydt.yy",},"order":0,},
