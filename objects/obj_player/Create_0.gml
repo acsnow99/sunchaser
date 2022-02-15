@@ -57,16 +57,6 @@ dir_sprites[1, 5] = spr_player_run_up;
 dir_sprites[2, 5] = spr_player_run_lr;
 dir_sprites[3, 5] = spr_player_run_dwn;
 
-//sequences for the atks(****REMOVE SOON TO REPLACE WITH REGULAR SPRITES ABOVE****)
-//second value of this matrix should never exceed var combo_max below
-dir_atk_sq[0, 0] = sq_player_atk_basic_lr;
-dir_atk_sq[1, 0] = sq_player_atk_basic_up;
-dir_atk_sq[2, 0] = sq_player_atk_basic_lr;
-dir_atk_sq[3, 0] = sq_player_atk_basic_dwn;
-dir_atk_sq[0, 1] = sq_player_atk_basic_lr;
-dir_atk_sq[1, 1] = sq_player_atk_basic_up;
-dir_atk_sq[2, 1] = sq_player_atk_basic_lr;
-dir_atk_sq[3, 1] = sq_player_atk_basic_dwn;
 
 moving = false;
 mve_state = 0;
