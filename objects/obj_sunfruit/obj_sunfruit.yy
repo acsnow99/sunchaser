@@ -1,7 +1,7 @@
 {
   "spriteId": {
-    "name": "spr_obstacle_rock_1",
-    "path": "sprites/spr_obstacle_rock_1/spr_obstacle_rock_1.yy",
+    "name": "spr_sunfruit",
+    "path": "sprites/spr_sunfruit/spr_sunfruit.yy",
   },
   "solid": false,
   "visible": true,
@@ -20,7 +20,9 @@
   "physicsStartAwake": true,
   "physicsKinematic": false,
   "physicsShapePoints": [],
-  "eventList": [],
+  "eventList": [
+    {"isDnD":false,"eventNum":0,"eventType":3,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
+  ],
   "properties": [],
   "overriddenProperties": [],
   "parent": {
@@ -28,7 +30,7 @@
     "path": "folders/Objects.yy",
   },
   "resourceVersion": "1.0",
-  "name": "obj_obstacle_parent",
+  "name": "obj_sunfruit",
   "tags": [],
   "resourceType": "GMObject",
 }

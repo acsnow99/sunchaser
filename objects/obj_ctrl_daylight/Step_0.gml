@@ -19,7 +19,12 @@ if (!vars_set) {
 
 
 
-var _x = obj_player.x;
+var _x;
+if (instance_exists(obj_player)) {
+	
+	_x = obj_player.x;
+	
+}
 var _dx = _x - player_pos_previous;
 
 var _lighten = alarmvar_sunset > alarmvar_sunset_previous;
@@ -66,8 +71,8 @@ if (sunlight_current <= 0) {
 
 
 
-player_pos_previous = _x; 
+player_pos_previous = _x;
 
 //distance moved by player modified by the seconds gained per pixel moved
-alarmvar_sunset += clamp(_dx * seconds_per_pixel, 0, global.dt_steady * 2);
+alarmvar_sunset -= clamp(_dx * seconds_per_pixel, -global.dt_steady * max_secs_mod, 0);
 alarmvar_sunset -= global.dt_steady;
