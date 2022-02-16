@@ -32,19 +32,19 @@ var _darken = alarmvar_sunset <= 0;
 
 if (_lighten || _darken) {
 	
-	if (_lighten && sunlight_current < sunlight_max) {
+	if (_lighten && global.sunlight_current > sunlight_min) {
 		
-		sunlight_current += 1;
-		
-	}
-	
-	if (_darken && sunlight_current > sunlight_min) {
-		
-		sunlight_current -= 1;
+		global.sunlight_current -= 1;
 		
 	}
 	
-	var _mod = sunset_spd_modifier * abs(abs(sunlight_current) - 4);
+	if (_darken && global.sunlight_current < sunlight_max) {
+		
+		global.sunlight_current += 1;
+		
+	}
+	
+	var _mod = sunset_spd_modifier * abs(abs(global.sunlight_current - 3) - 4);
 	
 	alarmvar_sunset = sunset_spd - _mod;
 	alarmvar_sunset_previous = alarmvar_sunset;
@@ -53,11 +53,11 @@ if (_lighten || _darken) {
 
 
 
-if (sunlight_current <= 0) {
+if (global.sunlight_current >= 4) {
 	
 	if (alarmvar_dmg <= 0) {
 		
-		var _d = abs(sunlight_current - 4) - 4
+		var _d = abs(global.sunlight_current - 4) - 4
 		var _mod_d = clamp(_d, 0, 4);
 		
 		health -= 10;

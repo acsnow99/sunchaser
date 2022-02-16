@@ -1,5 +1,7 @@
 /// @description check if dead; if atk hitbox hits this object, it takes the atk damage
 
+sunlight_mod = 1;
+
 if (instance_exists(obj_hb_player_atk_parent)) {
 	
 	var _close_atk = obj_hb_player_atk_parent[0];

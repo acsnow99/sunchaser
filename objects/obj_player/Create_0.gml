@@ -57,6 +57,10 @@ dir_sprites[1, 5] = spr_player_run_up;
 dir_sprites[2, 5] = spr_player_run_lr;
 dir_sprites[3, 5] = spr_player_run_dwn;
 
+//animation length
+animation_length_current = 1;
+animation_pos = 0;
+
 
 moving = false;
 mve_state = 0;

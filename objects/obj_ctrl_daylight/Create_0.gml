@@ -1,8 +1,8 @@
 ///@description initialize variables
 
-sunlight_max = 4;
-sunlight_min = -sunlight_max;
-sunlight_current = sunlight_max;
+sunlight_max = 7;
+sunlight_min = 0;
+global.sunlight_current = sunlight_min;
 
 sunset_spd_default = 5;
 sunset_spd = sunset_spd_default;
