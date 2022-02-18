@@ -8,7 +8,7 @@ if (!vars_set) {
 	if (instance_exists(obj_player)) {
 	
 		player_pos_previous = obj_player.x; 
-		seconds_per_pixel = 1/(obj_player.mve_spd / 2);
+		
 		vars_set = true;
 		
 	}
@@ -19,34 +19,30 @@ if (!vars_set) {
 
 
 
-var _x;
+var _x = 0;
 if (instance_exists(obj_player)) {
 	
 	_x = obj_player.x;
 	
 }
-var _dx = _x - player_pos_previous;
 
-var _lighten = alarmvar_sunset > alarmvar_sunset_previous;
+
+
 var _darken = alarmvar_sunset <= 0;
 
-if (_lighten || _darken) {
+if (_darken) {
 	
-	if (_lighten && global.sunlight_current > sunlight_min) {
-		
-		global.sunlight_current -= 1;
-		
-	}
-	
-	if (_darken && global.sunlight_current < sunlight_max) {
+	if (global.sunlight_current < sunlight_max) {
 		
 		global.sunlight_current += 1;
 		
 	}
 	
-	var _mod = sunset_spd_modifier * abs(abs(global.sunlight_current - 3) - 4);
+	// may implement modifier to sunset speed later
+	//var _mod = sunset_spd_modifier * abs(global.sunlight_current - 7);
 	
-	alarmvar_sunset = sunset_spd - _mod;
+	// would use mod to subtract from sunset_spd
+	alarmvar_sunset = sunset_spd;
 	alarmvar_sunset_previous = alarmvar_sunset;
 	
 }
@@ -73,6 +69,4 @@ if (global.sunlight_current >= 4) {
 
 player_pos_previous = _x;
 
-//distance moved by player modified by the seconds gained per pixel moved
-alarmvar_sunset -= clamp(_dx * seconds_per_pixel, -global.dt_steady * max_secs_mod, 0);
 alarmvar_sunset -= global.dt_steady;

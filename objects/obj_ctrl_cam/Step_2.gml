@@ -1,6 +1,14 @@
 #macro view view_camera[0]
 
 
+if (!levels_initiated) {
+	
+	levels_init();
+	
+}
+
+
+
 camera_set_view_size(view, global.view_width, global.view_height);
 
 if (instance_exists(focus_obj)) {
