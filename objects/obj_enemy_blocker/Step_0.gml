@@ -1,5 +1,13 @@
 /// @description check if dead; if atk hitbox hits this object, it takes the atk damage
 
+var lvl = scr_lvl_check(x, y);
+
+if (!lvl == global.level) {
+	
+	exit;
+
+}
+
 if (instance_exists(obj_hb_player_atk_sp)) {
 	
 	var _close_atk = obj_hb_player_atk_sp[0];
