@@ -10,22 +10,6 @@ window_set_size(global.view_width*global.window_scale, global.view_height*global
 surface_resize(application_surface, global.view_width*global.window_scale, global.view_height*global.window_scale);
 window_set_fullscreen(true);
 
-
-levels_initiated = false;
-
-if (instance_exists(obj_level_frame)) {
-
-	levels_init();
-	
-}
-
-
-//default camera limits
-max_x = room_width;
-max_y = room_height;
-min_x = 0;
-min_y = 0;
-
 //object on which to focus the camera
 focus_obj = obj_player;
 focus_quick = false;
@@ -39,10 +23,13 @@ levels_init = function() {
 
 	for (var i = 0; i < instance_number(obj_level_frame); i++) {
 	
-		var _this_frame = obj_level_frame[i];
+		var _this_frame = instance_find(obj_level_frame, i);
 	
+		//mins and maxes for each level's camera reach
 		global.levels[i, 0] = _this_frame.x;
-		global.levels[i, 1] = _this_frame.y;
+		global.levels[i, 1] = global.levels[i, 0] + _this_frame.sprite_width;
+		global.levels[i, 2] = _this_frame.y;
+		global.levels[i, 3] = global.levels[i, 2] + _this_frame.sprite_height;
 	
 	
 	}
@@ -50,3 +37,40 @@ levels_init = function() {
 	levels_initiated = true;
 
 }
+
+
+
+level_seek = function(_focusx, _focusy) {
+	
+	for (var i = 0; i < instance_number(obj_level_frame); i++) {
+		
+		var _min_x = global.levels[i, 0];
+		var _max_x = global.levels[i, 1];
+		
+		var _min_y = global.levels[i, 2];
+		var _max_y = global.levels[i, 3];
+		
+		if (_focusx >= _min_x && _focusx <= _max_x && _focusy >= _min_y && _focusy <= _max_y) {
+			
+			// set originally in obj_control_other
+			global.level = i;
+			exit;
+		
+		}
+		
+	}
+	
+}
+
+
+
+
+// initiate the level boundaries using the above function
+levels_initiated = false;
+
+if (instance_exists(obj_level_frame)) {
+
+	levels_init();
+	
+}
+
