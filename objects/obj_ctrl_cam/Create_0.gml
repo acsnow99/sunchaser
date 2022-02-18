@@ -4,7 +4,7 @@
 //camera
 global.view_width = 1152/4;
 global.view_height = 768/4;
-global.window_scale = 4;
+global.window_scale = 3;
 
 window_set_size(global.view_width*global.window_scale, global.view_height*global.window_scale);
 surface_resize(application_surface, global.view_width*global.window_scale, global.view_height*global.window_scale);
@@ -20,5 +20,8 @@ min_y = 0;
 //object on which to focus the camera
 focus_obj = obj_player;
 focus_quick = false;
+
+cam_spd_normal = 0.75;
+cam_spd_quick = 1;
 
 

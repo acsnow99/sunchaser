@@ -2,10 +2,10 @@
 
 #region movement
 
-mve_spd_default = 400;
+mve_spd_default = 115;
 mve_spd = mve_spd_default;
-mve_spd_atk_basic_default = 250;
-atk_special_mve_spd_default = 2500;
+mve_spd_atk_basic_default = 75;
+atk_special_mve_spd_default = 300;
 atk_special_mve_spd = atk_special_mve_spd_default;
 dir_last = 0;
 
@@ -101,10 +101,9 @@ enabled = true;
 
 spr_current = spr_player_idle_lr;
 hb_atk_current = -1;
-
-//where the hb(hitbox) for the basic atk will be relative to the player
-x_offset_hb_atk_basic = 54;
-y_offset_hb_atk_basic = 54;
+//how big the hb(hitbox) for the basic atk is relative to its normal size(1 for normal size)
+hb_atk_basic_xscale = 1;
+hb_atk_basic_yscale = 1;
 
 
 #region movement input functions, movement, and step checks(called in step event or from each other)
@@ -198,8 +197,8 @@ movement_input_atk_basic = function() {
 	
 	#region movement(calling scr_mve_simple doesn't work for some reason)
 	
-	var xtarg = x + lengthdir_x(spd_exct, dir_exct);
-	var ytarg = y + lengthdir_y(spd_exct, dir_exct);
+	var xtarg = round(x + lengthdir_x(spd_exct, dir_exct));
+	var ytarg = round(y + lengthdir_y(spd_exct, dir_exct));
 	var setx = false;
 	var sety = false;
 
@@ -284,8 +283,8 @@ movement_input_atk_sp = function() {
 	
 		#region movement(calling scr_mve_simple doesn't work for some reason)
 	
-		var xtarg = x + lengthdir_x(spd_exct, dir_exct);
-		var ytarg = y + lengthdir_y(spd_exct, dir_exct);
+		var xtarg = round(x + lengthdir_x(spd_exct, dir_exct));
+		var ytarg = round(y + lengthdir_y(spd_exct, dir_exct));
 		var setx = false;
 		var sety = false;
 
@@ -397,18 +396,17 @@ start_atk_basic = function () {
 		alarmvar_mve = atk_length_basic;
 	
 	
-		hb_atk_current = instance_create_layer(x, y, "hb", obj_hb_player_atk_basic);
-		//set location of hb(hitbox) relative to the player
-		if (dir_last == 0 || dir_last == 2) {
+	
+		var x_rel = x;
+		var y_rel = y;
+		var atk_dir = dir_last;
 		
-			hb_atk_current.x_rel = (x_offset_hb_atk_basic * (1 - dir_last))
 		
-		}
-		else if (dir_last == 1 || dir_last == 3) {
+		hb_atk_current = instance_create_layer(x_rel, y_rel, "hb", obj_hb_player_atk_basic);
 		
-			hb_atk_current.y_rel = (y_offset_hb_atk_basic * -(2 - dir_last))
-		
-		}
+		hb_atk_current.image_angle = directions[atk_dir];
+		hb_atk_current.image_xscale = hb_atk_basic_xscale;
+		hb_atk_current.image_yscale = hb_atk_basic_yscale;
 	
 	
 		//combo sytem

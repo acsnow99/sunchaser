@@ -1,8 +1,6 @@
-/// @description set color to red; alpha based on current health
+/// @description
 
 depth = -y;
-
-image_alpha = health_max / health_current;
 
 
 var mve_state = moving;

@@ -18,7 +18,7 @@ spr_current = dir_sprites[0, 0];
 
 moving = false;
 mve_spd_default = 300;
-mve_speed = 300;
+mve_speed = 75;
 mve_speed_recoil_recv = mve_spd_default * 3;
 mve_dir = 0;
 dir_last = 0;
