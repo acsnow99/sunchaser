@@ -16,6 +16,9 @@ dir_sprites[3, 1] = spr_walker_run_dwn;
 
 spr_current = dir_sprites[0, 0];
 
+animation_pos = 0;
+animation_length_current = 1;
+
 moving = false;
 mve_spd_default = 300;
 mve_speed = 75;

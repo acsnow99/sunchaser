@@ -7,8 +7,8 @@ if (global.debug) {
 
 	draw_sprite_ext(spr_hb_player_atk_basic, 0, _cur_x + 600, _cur_y + 100, 2, 2, 45, c_black, clamp(_a, 0, 1));
 	
-	draw_text(_cur_x + 20, _cur_y + 100, alarmvar_sunset);
-	draw_text(_cur_x + 20, _cur_y + 300, global.sunlight_current);
+	draw_text(_cur_x + 20, _cur_y + 50, alarmvar_sunset);
+	draw_text(_cur_x + 20, _cur_y + 100, global.sunlight_current);
 	
 }
 

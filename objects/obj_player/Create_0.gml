@@ -5,7 +5,7 @@
 mve_spd_default = 115;
 mve_spd = mve_spd_default;
 mve_spd_atk_basic_default = 75;
-atk_special_mve_spd_default = 300;
+atk_special_mve_spd_default = 500;
 atk_special_mve_spd = atk_special_mve_spd_default;
 dir_last = 0;
 
