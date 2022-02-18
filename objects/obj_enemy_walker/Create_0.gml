@@ -27,7 +27,7 @@ moving = false;
 mve_state = 0;
 mve_spd_default = 75;
 mve_speed = 75;
-mve_speed_recoil_recv = mve_spd_default * 3;
+mve_speed_recoil_recv = 250;
 mve_dir = 0;
 dir_last = 0;
 //how long until randomly assigning new movement pattern
@@ -40,7 +40,7 @@ alarmvar_ghost_frame_default = 0.1;
 recoil_time_default = 0.075;
 pause_time_default = 1;
 //default invincibility frames
-alarmvar_inv_default = 0.2
+alarmvar_inv_default = 0.3
 
 
 
@@ -53,7 +53,7 @@ movement_normal = function() {
 	var player_hit = place_meeting(x, y, obj_player);
 	if (player_hit) {
 	
-		start_recoil();
+		start_recoil(false);
 		exit;
 
 	}
@@ -64,7 +64,7 @@ movement_normal = function() {
 	if (this_hit) {
 		
 		//start recoil reaction
-		start_recoil();
+		start_recoil(true);
 		exit;
 		
 	}
@@ -195,18 +195,22 @@ movement_recoil = function() {
 
 
 
-start_recoil = function() {
+start_recoil = function(inv) {
 	
 		
 	mve_dir = point_direction(obj_player.x, obj_player.y, x, y);
 	mve_spd = mve_speed_recoil_recv;
 	moving = true;
 	alarmvar_mve = recoil_time_default;
-	alarmvar_inv = alarmvar_inv_default;
 	
 	mve_state = 2;
-		
-	invincible = true;
+	
+	if (inv) {
+	
+		alarmvar_inv = alarmvar_inv_default;
+		invincible = true;
+	
+	}
 	
 	
 }

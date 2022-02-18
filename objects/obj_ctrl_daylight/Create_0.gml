@@ -18,6 +18,17 @@ alarmvar_dmg_default = 4;
 alarmvar_dmg = alarmvar_dmg_default;
 
 
+
+colors[0] = spr_background_0;
+colors[1] = spr_background_1;
+colors[2] = spr_background_2;
+colors[3] = spr_background_3;
+colors[4] = spr_background_4;
+colors[5] = spr_background_5;
+colors[6] = spr_background_6;
+colors[7] = spr_background_7;
+
+
 //crash prevention
 if (instance_exists(obj_player)) {
 	

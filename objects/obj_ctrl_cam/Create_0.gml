@@ -4,7 +4,7 @@
 //camera
 global.view_width = 1152/4;
 global.view_height = 768/4;
-global.window_scale = 3;
+global.window_scale = 1;
 
 window_set_size(global.view_width*global.window_scale, global.view_height*global.window_scale);
 surface_resize(application_surface, global.view_width*global.window_scale, global.view_height*global.window_scale);

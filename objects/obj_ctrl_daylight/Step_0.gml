@@ -89,4 +89,9 @@ if (global.sunlight_current >= 4) {
 	
 }
 
+var lay_id = layer_get_id("Background");
+var back_id = layer_background_get_id(lay_id);
+layer_background_sprite(back_id, colors[global.sunlight_current]);
+
+
 alarmvar_sunset -= global.dt_steady;

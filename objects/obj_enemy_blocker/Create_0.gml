@@ -28,3 +28,7 @@ alarmvar_opt = 0;
 alarmvar_inv = 50000;
 //default invincibility frames
 alarmvar_inv_default = 0.2
+
+
+animation_length_current = 1;
+animation_pos = 0;
