@@ -61,6 +61,8 @@ dir_sprites[3, 5] = spr_player_run_dwn;
 animation_length_current = 1;
 animation_pos = 0;
 
+image_xscale_default = image_xscale;
+
 
 moving = false;
 mve_state = 0;
@@ -176,7 +178,7 @@ movement_input_normal = function (dir, xinput, yinput) {
 		mve_state = 1;
 	
 		//sprite change
-		determine_sprite(mve_state);
+		determine_sprite(mve_state, image_xscale_default);
 	
 	}
 	else {
@@ -416,6 +418,7 @@ start_atk_basic = function () {
 		else {
 			combo = 0;
 		}
+		
 		
 	}
 

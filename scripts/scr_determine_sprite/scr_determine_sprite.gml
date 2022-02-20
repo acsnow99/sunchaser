@@ -5,17 +5,17 @@
 // @function determine_sprite(mve_state)
 // @param {real} mve_state
 
-function determine_sprite(mve_state){
+function determine_sprite(mve_state, _xscale){
 	
 	if (x > xprevious) {
 		spr_current = dir_sprites[0, mve_state]; 
 		dir_last = 0;
-		image_xscale = 1;
+		image_xscale = 1 * _xscale;
 	}
 	else if (x < xprevious) {
 		spr_current = dir_sprites[2, mve_state]; 
 		dir_last = 2;
-		image_xscale = -1;
+		image_xscale = -1 * _xscale;
 	}
 		
 	if (y > yprevious) {

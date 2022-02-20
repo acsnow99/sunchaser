@@ -46,6 +46,9 @@ if (_darken) {
 
 if (lvl_previous != global.level) { 
 	
+	//player has moved towards the sun, extending their time if they:
+	// -changed levels
+	// -is in a level that is to the left of the previous level
 	if (obj_player.x < player_pos_previous) {
 		
 		if (global.sunlight_current > sunlight_min) {
@@ -55,6 +58,11 @@ if (lvl_previous != global.level) {
 			 
 		}
 		
+		// block the player from returning
+		var _x = global.levels[global.level, 1] + 19;
+		var _y = room_height / 2;
+		instance_create_layer(_x, _y, "Instances", obj_obstacle_backtrackblocker);
+		
 		// new level
 		player_pos_previous = obj_player.x;
 		lvl_previous = global.level; 
@@ -62,10 +70,6 @@ if (lvl_previous != global.level) {
 		// give the player a little extra time
 		alarmvar_sunset += sunlight_mod_lvlup;
 		
-		// block the player from returning
-		var _x = global.levels[global.level, 1] + 19;
-		var _y = room_height / 2;
-		instance_create_layer(_x, _y, "Instances", obj_obstacle_backtrackblocker);
 		
 	}
 	

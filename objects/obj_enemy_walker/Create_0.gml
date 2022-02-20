@@ -23,6 +23,8 @@ spr_current = dir_sprites[0, 0];
 animation_pos = 0;
 animation_length_current = 1;
 
+image_xscale_default = image_xscale;
+
 moving = false;
 mve_state = 0;
 mve_spd_default = 75;

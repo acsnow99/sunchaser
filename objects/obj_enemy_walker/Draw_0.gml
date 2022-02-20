@@ -29,7 +29,7 @@ else {
 }
 
 
-determine_sprite(mve_state);
+determine_sprite(mve_state, image_xscale_default);
 
 
 draw_sprite_ext(spr_current, image_index, x, y, image_xscale, image_yscale, 0, c_white, image_alpha)
