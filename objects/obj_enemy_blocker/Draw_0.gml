@@ -1,4 +1,4 @@
-/// @description set color to red; alpha based on current health
+/// @description
 
 depth = -y;
 
@@ -6,8 +6,30 @@ depth = -y;
 image_index = global.sunlight_current * animation_length_current + animation_pos;
 
 
-var mve_state = moving;
-determine_sprite(mve_state);
+if (alarmvar_inv > 0) {
+	
+	alarmvar_ghost_frame -= global.dt_steady;
+	
+	if (alarmvar_ghost_frame <= 0) {
+		image_alpha = 0;
+	
+		alarmvar_ghost_frame = alarmvar_ghost_frame_default;
+	}
+	else {
+		
+		image_alpha = 1;
+		
+	}
+	
+}
+else {
+	
+	image_alpha = 1;
+	
+}
+
+
+determine_sprite(mve_state, image_xscale_default);
 
 
 draw_sprite_ext(spr_current, image_index, x, y, image_xscale, image_yscale, 0, c_white, image_alpha)

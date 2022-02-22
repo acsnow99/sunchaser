@@ -1,15 +1,15 @@
 {
   "spriteId": {
-    "name": "spr_walker_idle_lr",
-    "path": "sprites/spr_walker_idle_lr/spr_walker_idle_lr.yy",
+    "name": "spr_city",
+    "path": "sprites/spr_city/spr_city.yy",
   },
   "solid": false,
   "visible": true,
   "spriteMaskId": null,
   "persistent": false,
   "parentObjectId": {
-    "name": "obj_enemy_parent",
-    "path": "objects/obj_enemy_parent/obj_enemy_parent.yy",
+    "name": "obj_obstacle_parent",
+    "path": "objects/obj_obstacle_parent/obj_obstacle_parent.yy",
   },
   "physicsObject": false,
   "physicsSensor": false,
@@ -25,8 +25,7 @@
   "physicsShapePoints": [],
   "eventList": [
     {"isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
-    {"isDnD":false,"eventNum":0,"eventType":8,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
-    {"isDnD":false,"eventNum":2,"eventType":3,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
+    {"isDnD":false,"eventNum":0,"eventType":3,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
   ],
   "properties": [],
   "overriddenProperties": [],
@@ -35,7 +34,7 @@
     "path": "folders/Objects.yy",
   },
   "resourceVersion": "1.0",
-  "name": "obj_enemy_walker",
+  "name": "obj_city",
   "tags": [],
   "resourceType": "GMObject",
 }

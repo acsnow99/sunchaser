@@ -4,4 +4,4 @@ health = global.health_max;
 
 global.level = 0;
 
-global.debug = true;
+global.debug = false;

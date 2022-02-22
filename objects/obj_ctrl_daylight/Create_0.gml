@@ -4,17 +4,17 @@ sunlight_max = 7;
 sunlight_min = 0;
 global.sunlight_current = sunlight_min;
 
-sunset_spd_default = 5;
+sunset_spd_default = 2;
 sunset_spd = sunset_spd_default;
 // for future use: each sunlight level away from zero, this many seconds are pulled from the clock
 //sunset_spd_modifier = 2;
 // how much extra time you get every time you pass a room
-sunlight_mod_lvlup = 3;
+sunlight_mod_lvlup = 1;
 
 alarmvar_sunset = sunset_spd;
 alarmvar_sunset_previous = alarmvar_sunset;
 
-alarmvar_dmg_default = 4;
+alarmvar_dmg_default = 2;
 alarmvar_dmg = alarmvar_dmg_default;
 
 

@@ -68,7 +68,7 @@ if (lvl_previous != global.level) {
 		lvl_previous = global.level; 
 		
 		// give the player a little extra time
-		alarmvar_sunset += sunlight_mod_lvlup;
+		alarmvar_sunset = clamp(alarmvar_sunset + sunlight_mod_lvlup, sunset_spd, sunset_spd + sunlight_mod_lvlup);
 		
 		
 	}

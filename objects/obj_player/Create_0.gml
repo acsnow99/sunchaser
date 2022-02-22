@@ -89,8 +89,12 @@ enem_closest_y = 0;
 combo = 0;
 combo_max = 1;
 
+//to check if a sp atk has started yet
 energy_used = false;
 attacking = false;
+
+//to check if a basic atk has landed
+atk_landed = false;
 
 //keeps track of buttons pressed 
 // 0 is for basic atk button
@@ -144,7 +148,7 @@ movement_input_normal = function (dir, xinput, yinput) {
 
 	if (place_meeting(x, y, obj_enemy_parent) && alarmvar_inv <= 0) {
 		
-		start_recoil_receiving();
+		start_recoil_receiving(true);
 		exit;
 		
 	}
@@ -196,6 +200,21 @@ movement_input_atk_basic = function() {
 	
 	var spd_exct = mve_spd * global.dt_steady;
 	var dir_exct = directions[dir_last];
+	
+	if (!atk_landed) {
+		
+		with(hb_atk_current) {
+			
+			obj_player.atk_landed = place_meeting(x, y, obj_enemy_parent);
+			
+		}
+		
+	}
+	else {
+		
+		spd_exct -= (mve_spd * global.dt_steady) * 1.5;
+		
+	}
 	
 	#region movement(calling scr_mve_simple doesn't work for some reason)
 	
@@ -276,6 +295,8 @@ movement_input_atk_sp = function() {
 		if (!instance_exists(obj_hb_player_atk_sp)) {
 			
 			hb_atk_current = instance_create_layer(_x, _y, "hb", obj_hb_player_atk_sp);
+			
+			hb_atk_current.image_angle = directions[dir_last];
 			
 		}
 		
@@ -444,14 +465,20 @@ start_atk_sp = function () {
 }
 
 //called in movement_input_normal if player is receiving damage
-start_recoil_receiving = function() {
+start_recoil_receiving = function(dmg) {
 	
-	health -= 10;
+	
+	if (dmg) {
+		
+		health -= 10;
+		alarmvar_inv = alarmvar_inv_default;
+		
+	}
+	
 	
 	mve_state = 5;
 		
 	alarmvar_recoil_recv = alarmvar_recoil_recv_default;
-	alarmvar_inv = alarmvar_inv_default;
 		
 	//finds the values of the nearest enemy
 	attacker_id(x, y);
@@ -463,6 +490,7 @@ stop_atk_basic = function() {
 	mve_state = 0;
 	mve_spd = mve_spd_default;
 	spr_current = dir_sprites[dir_last, 0];
+	atk_landed = false;
 	
 	instance_destroy(hb_atk_current);
 	
