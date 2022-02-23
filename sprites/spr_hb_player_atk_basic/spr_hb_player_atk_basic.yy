@@ -7,15 +7,15 @@
   "edgeFiltering": false,
   "collisionTolerance": 0,
   "swfPrecision": 2.525,
-  "bbox_left": 0,
-  "bbox_right": 63,
+  "bbox_left": 14,
+  "bbox_right": 31,
   "bbox_top": 0,
-  "bbox_bottom": 63,
+  "bbox_bottom": 31,
   "HTile": false,
   "VTile": false,
   "For3D": false,
-  "width": 64,
-  "height": 64,
+  "width": 32,
+  "height": 32,
   "textureGroupId": {
     "name": "Default",
     "path": "texturegroups/Default",
@@ -25,6 +25,7 @@
   "gridY": 0,
   "frames": [
     {"compositeImage":{"FrameId":{"name":"e81ef6f8-859c-4a4c-b7c4-06e1de647828","path":"sprites/spr_hb_player_atk_basic/spr_hb_player_atk_basic.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"e81ef6f8-859c-4a4c-b7c4-06e1de647828","path":"sprites/spr_hb_player_atk_basic/spr_hb_player_atk_basic.yy",},"LayerId":{"name":"3cbee048-2518-4918-a89d-b84608db61fd","path":"sprites/spr_hb_player_atk_basic/spr_hb_player_atk_basic.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
         {"FrameId":{"name":"e81ef6f8-859c-4a4c-b7c4-06e1de647828","path":"sprites/spr_hb_player_atk_basic/spr_hb_player_atk_basic.yy",},"LayerId":{"name":"0c540e70-0919-4df9-8f30-8b3d496ecc0d","path":"sprites/spr_hb_player_atk_basic/spr_hb_player_atk_basic.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
       ],"parent":{"name":"spr_hb_player_atk_basic","path":"sprites/spr_hb_player_atk_basic/spr_hb_player_atk_basic.yy",},"resourceVersion":"1.0","name":"e81ef6f8-859c-4a4c-b7c4-06e1de647828","tags":[],"resourceType":"GMSpriteFrame",},
   ],
@@ -54,8 +55,8 @@
     "backdropHeight": 768,
     "backdropXOffset": 0.0,
     "backdropYOffset": 0.0,
-    "xorigin": 32,
-    "yorigin": 32,
+    "xorigin": 16,
+    "yorigin": 16,
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_hb_player_atk_basic","path":"sprites/spr_hb_player_atk_basic/spr_hb_player_atk_basic.yy",},
@@ -65,6 +66,7 @@
     "resourceType": "GMSequence",
   },
   "layers": [
+    {"visible":false,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"Layer 1","resourceVersion":"1.0","name":"3cbee048-2518-4918-a89d-b84608db61fd","tags":[],"resourceType":"GMImageLayer",},
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"0c540e70-0919-4df9-8f30-8b3d496ecc0d","tags":[],"resourceType":"GMImageLayer",},
   ],
   "nineSlice": {

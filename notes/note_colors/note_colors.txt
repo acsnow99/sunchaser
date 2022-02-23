@@ -1,0 +1,12 @@
+Color hex codes:
+
+Daylight 0 = ffebd7
+Daylight 1 = e1d2c4
+Daylight 2 = c3b5aa
+Daylight 3 = 877e78
+
+Nighttime 4 = 414655
+Nighttime 5 = 1e2d3c
+Nighttime 6 = 0a0f23
+Nighttime 7 = 000000
+

@@ -8,56 +8,80 @@ if (!vars_set) {
 	if (instance_exists(obj_player)) {
 	
 		player_pos_previous = obj_player.x; 
-		seconds_per_pixel = 1/(obj_player.mve_spd / 2);
+		lvl_previous = global.level;
+		
 		vars_set = true;
 		
 	}
+	else {
+		
+		exit;
+		
+	}
 	
 }
 
 
 
 
-
-var _x;
-if (instance_exists(obj_player)) {
-	
-	_x = obj_player.x;
-	
-}
-var _dx = _x - player_pos_previous;
-
-var _lighten = alarmvar_sunset > alarmvar_sunset_previous;
 var _darken = alarmvar_sunset <= 0;
 
-if (_lighten || _darken) {
+if (_darken) {
 	
-	if (_lighten && sunlight_current < sunlight_max) {
+	if (global.sunlight_current < sunlight_max) {
 		
-		sunlight_current += 1;
-		
-	}
-	
-	if (_darken && sunlight_current > sunlight_min) {
-		
-		sunlight_current -= 1;
+		global.sunlight_current += 1;
 		
 	}
 	
-	var _mod = sunset_spd_modifier * abs(abs(sunlight_current) - 4);
+	// may implement modifier to sunset speed later
+	//var _mod = sunset_spd_modifier * abs(global.sunlight_current - 7);
 	
-	alarmvar_sunset = sunset_spd - _mod;
+	// would use mod to subtract from sunset_spd
+	alarmvar_sunset = sunset_spd;
 	alarmvar_sunset_previous = alarmvar_sunset;
 	
 }
 
 
+if (lvl_previous != global.level) { 
+	
+	//player has moved towards the sun, extending their time if they:
+	// -changed levels
+	// -is in a level that is to the left of the previous level
+	if (obj_player.x < player_pos_previous) {
+		
+		if (global.sunlight_current > sunlight_min) {
+			
+			// update sunlight
+			global.sunlight_current -= 1;
+			 
+		}
+		
+		// block the player from returning
+		var _x = global.levels[global.level, 1] + 19;
+		var _y = room_height / 2;
+		instance_create_layer(_x, _y, "Instances", obj_obstacle_backtrackblocker);
+		
+		// new level
+		player_pos_previous = obj_player.x;
+		lvl_previous = global.level; 
+		
+		// give the player a little extra time
+		alarmvar_sunset = clamp(alarmvar_sunset + sunlight_mod_lvlup, sunset_spd, sunset_spd + sunlight_mod_lvlup);
+		
+		
+	}
+	
+}
 
-if (sunlight_current <= 0) {
+
+
+if (global.sunlight_current >= 4) {
 	
 	if (alarmvar_dmg <= 0) {
 		
-		var _d = abs(sunlight_current - 4) - 4
+		var _d = abs(global.sunlight_current - 4) - 4
 		var _mod_d = clamp(_d, 0, 4);
 		
 		health -= 10;
@@ -69,10 +93,9 @@ if (sunlight_current <= 0) {
 	
 }
 
+var lay_id = layer_get_id("Background");
+var back_id = layer_background_get_id(lay_id);
+layer_background_sprite(back_id, colors[global.sunlight_current]);
 
 
-player_pos_previous = _x;
-
-//distance moved by player modified by the seconds gained per pixel moved
-alarmvar_sunset -= clamp(_dx * seconds_per_pixel, -global.dt_steady * max_secs_mod, 0);
 alarmvar_sunset -= global.dt_steady;

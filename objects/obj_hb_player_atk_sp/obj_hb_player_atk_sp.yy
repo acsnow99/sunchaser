@@ -1,7 +1,7 @@
 {
   "spriteId": {
-    "name": "spr_hb_player_atk_basic",
-    "path": "sprites/spr_hb_player_atk_basic/spr_hb_player_atk_basic.yy",
+    "name": "spr_fx_atk_basic",
+    "path": "sprites/spr_fx_atk_basic/spr_fx_atk_basic.yy",
   },
   "solid": false,
   "visible": true,

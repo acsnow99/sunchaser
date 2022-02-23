@@ -2,10 +2,10 @@
 
 #region movement
 
-mve_spd_default = 400;
+mve_spd_default = 115;
 mve_spd = mve_spd_default;
-mve_spd_atk_basic_default = 250;
-atk_special_mve_spd_default = 2500;
+mve_spd_atk_basic_default = 75;
+atk_special_mve_spd_default = 500;
 atk_special_mve_spd = atk_special_mve_spd_default;
 dir_last = 0;
 
@@ -57,16 +57,12 @@ dir_sprites[1, 5] = spr_player_run_up;
 dir_sprites[2, 5] = spr_player_run_lr;
 dir_sprites[3, 5] = spr_player_run_dwn;
 
-//sequences for the atks(****REMOVE SOON TO REPLACE WITH REGULAR SPRITES ABOVE****)
-//second value of this matrix should never exceed var combo_max below
-dir_atk_sq[0, 0] = sq_player_atk_basic_lr;
-dir_atk_sq[1, 0] = sq_player_atk_basic_up;
-dir_atk_sq[2, 0] = sq_player_atk_basic_lr;
-dir_atk_sq[3, 0] = sq_player_atk_basic_dwn;
-dir_atk_sq[0, 1] = sq_player_atk_basic_lr;
-dir_atk_sq[1, 1] = sq_player_atk_basic_up;
-dir_atk_sq[2, 1] = sq_player_atk_basic_lr;
-dir_atk_sq[3, 1] = sq_player_atk_basic_dwn;
+//animation length
+animation_length_current = 1;
+animation_pos = 0;
+
+image_xscale_default = image_xscale;
+
 
 moving = false;
 mve_state = 0;
@@ -93,8 +89,12 @@ enem_closest_y = 0;
 combo = 0;
 combo_max = 1;
 
+//to check if a sp atk has started yet
 energy_used = false;
 attacking = false;
+
+//to check if a basic atk has landed
+atk_landed = false;
 
 //keeps track of buttons pressed 
 // 0 is for basic atk button
@@ -107,10 +107,9 @@ enabled = true;
 
 spr_current = spr_player_idle_lr;
 hb_atk_current = -1;
-
-//where the hb(hitbox) for the basic atk will be relative to the player
-x_offset_hb_atk_basic = 54;
-y_offset_hb_atk_basic = 54;
+//how big the hb(hitbox) for the basic atk is relative to its normal size(1 for normal size)
+hb_atk_basic_xscale = 1;
+hb_atk_basic_yscale = 1;
 
 
 #region movement input functions, movement, and step checks(called in step event or from each other)
@@ -149,7 +148,7 @@ movement_input_normal = function (dir, xinput, yinput) {
 
 	if (place_meeting(x, y, obj_enemy_parent) && alarmvar_inv <= 0) {
 		
-		start_recoil_receiving();
+		start_recoil_receiving(true);
 		exit;
 		
 	}
@@ -183,7 +182,7 @@ movement_input_normal = function (dir, xinput, yinput) {
 		mve_state = 1;
 	
 		//sprite change
-		determine_sprite(mve_state);
+		determine_sprite(mve_state, image_xscale_default);
 	
 	}
 	else {
@@ -202,10 +201,25 @@ movement_input_atk_basic = function() {
 	var spd_exct = mve_spd * global.dt_steady;
 	var dir_exct = directions[dir_last];
 	
+	if (!atk_landed) {
+		
+		with(hb_atk_current) {
+			
+			obj_player.atk_landed = place_meeting(x, y, obj_enemy_parent);
+			
+		}
+		
+	}
+	else {
+		
+		spd_exct -= (mve_spd * global.dt_steady) * 1.5;
+		
+	}
+	
 	#region movement(calling scr_mve_simple doesn't work for some reason)
 	
-	var xtarg = x + lengthdir_x(spd_exct, dir_exct);
-	var ytarg = y + lengthdir_y(spd_exct, dir_exct);
+	var xtarg = round(x + lengthdir_x(spd_exct, dir_exct));
+	var ytarg = round(y + lengthdir_y(spd_exct, dir_exct));
 	var setx = false;
 	var sety = false;
 
@@ -282,6 +296,8 @@ movement_input_atk_sp = function() {
 			
 			hb_atk_current = instance_create_layer(_x, _y, "hb", obj_hb_player_atk_sp);
 			
+			hb_atk_current.image_angle = directions[dir_last];
+			
 		}
 		
 		
@@ -290,8 +306,8 @@ movement_input_atk_sp = function() {
 	
 		#region movement(calling scr_mve_simple doesn't work for some reason)
 	
-		var xtarg = x + lengthdir_x(spd_exct, dir_exct);
-		var ytarg = y + lengthdir_y(spd_exct, dir_exct);
+		var xtarg = round(x + lengthdir_x(spd_exct, dir_exct));
+		var ytarg = round(y + lengthdir_y(spd_exct, dir_exct));
 		var setx = false;
 		var sety = false;
 
@@ -403,18 +419,17 @@ start_atk_basic = function () {
 		alarmvar_mve = atk_length_basic;
 	
 	
-		hb_atk_current = instance_create_layer(x, y, "hb", obj_hb_player_atk_basic);
-		//set location of hb(hitbox) relative to the player
-		if (dir_last == 0 || dir_last == 2) {
+	
+		var x_rel = x;
+		var y_rel = y;
+		var atk_dir = dir_last;
 		
-			hb_atk_current.x_rel = (x_offset_hb_atk_basic * (1 - dir_last))
 		
-		}
-		else if (dir_last == 1 || dir_last == 3) {
+		hb_atk_current = instance_create_layer(x_rel, y_rel, "hb", obj_hb_player_atk_basic);
 		
-			hb_atk_current.y_rel = (y_offset_hb_atk_basic * -(2 - dir_last))
-		
-		}
+		hb_atk_current.image_angle = directions[atk_dir];
+		hb_atk_current.image_xscale = hb_atk_basic_xscale;
+		hb_atk_current.image_yscale = hb_atk_basic_yscale;
 	
 	
 		//combo sytem
@@ -424,6 +439,7 @@ start_atk_basic = function () {
 		else {
 			combo = 0;
 		}
+		
 		
 	}
 
@@ -449,14 +465,20 @@ start_atk_sp = function () {
 }
 
 //called in movement_input_normal if player is receiving damage
-start_recoil_receiving = function() {
+start_recoil_receiving = function(dmg) {
 	
-	health -= 10;
+	
+	if (dmg) {
+		
+		health -= 10;
+		alarmvar_inv = alarmvar_inv_default;
+		
+	}
+	
 	
 	mve_state = 5;
 		
 	alarmvar_recoil_recv = alarmvar_recoil_recv_default;
-	alarmvar_inv = alarmvar_inv_default;
 		
 	//finds the values of the nearest enemy
 	attacker_id(x, y);
@@ -468,6 +490,7 @@ stop_atk_basic = function() {
 	mve_state = 0;
 	mve_spd = mve_spd_default;
 	spr_current = dir_sprites[dir_last, 0];
+	atk_landed = false;
 	
 	instance_destroy(hb_atk_current);
 	

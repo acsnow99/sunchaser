@@ -12,7 +12,7 @@ if (keyboard_check(ord("R"))) {
 
 }
 
-if (keyboard_check(ord("P"))) {
+if (keyboard_check_released(ord("P"))) {
 	
 	if (global.debug) {
 		global.debug = false;

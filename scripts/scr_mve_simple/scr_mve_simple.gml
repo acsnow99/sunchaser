@@ -18,8 +18,8 @@ function mve_simple(_spd, _dir){
 	*/
 	#endregion
 
-	var xtarg = x + lengthdir_x(_spd, _dir);
-	var ytarg = y + lengthdir_y(_spd, _dir);
+	var xtarg = round(x + lengthdir_x(_spd, _dir));
+	var ytarg = round(y + lengthdir_y(_spd, _dir));
 	var setx = false;
 	var sety = false;
 
