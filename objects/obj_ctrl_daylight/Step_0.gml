@@ -1,6 +1,10 @@
 /// @description sunlight ticks down - checks for light level to decrease
 
-
+if (room == rm_end || room == rm_setup) {
+	
+	exit;
+	
+}
 
 //crash prevention
 if (!vars_set) {
