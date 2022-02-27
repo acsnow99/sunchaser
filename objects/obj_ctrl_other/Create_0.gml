@@ -5,3 +5,5 @@ health = global.health_max;
 global.level = 0;
 
 global.debug = false;
+
+global.alarmvar_runtime = 0;
