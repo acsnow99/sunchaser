@@ -20,5 +20,9 @@ switch(mve_state) {
 	case 2:
 		movement_recoil();
 		break;
+		
+	case 3:
+		movement_atk();
+		break;
 
 }

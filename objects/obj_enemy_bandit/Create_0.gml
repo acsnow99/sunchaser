@@ -17,6 +17,10 @@ dir_sprites[0, 2] = spr_bandit;
 dir_sprites[1, 2] = spr_bandit;
 dir_sprites[2, 2] = spr_bandit;
 dir_sprites[3, 2] = spr_bandit;
+dir_sprites[0, 3] = spr_bandit;
+dir_sprites[1, 3] = spr_bandit;
+dir_sprites[2, 3] = spr_bandit;
+dir_sprites[3, 3] = spr_bandit;
 
 directions[0] = 270;
 directions[1] = 90;
@@ -29,21 +33,24 @@ animation_length_current = 1;
 image_xscale_default = image_xscale;
 
 moving = false;
+attacked = false;
 mve_state = 0;
 mve_spd_default = 75;
 mve_speed = 75;
 mve_speed_recoil_recv = 250;
+mve_speed_atk = mve_speed * 3;
 mve_dir = 0;
 dir_last = 0;
+atk_dist = 24;
 //how long until randomly assigning new movement pattern
 alarmvar_mve_default = 0.75;
-alarmvar_mve = alarmvar_mve_default;
-alarmvar_opt = 0;
+alarmvar_atk_default = 0.2;
+alarmvar_atk = 0;
+alarmvar_mve = 0;
 alarmvar_inv = 0;
 alarmvar_ghost_frame = 0;
 alarmvar_ghost_frame_default = 0.1;
 recoil_time_default = 0.075;
-pause_time_default = 1;
 //default invincibility frames
 alarmvar_inv_default = 0.3
 
@@ -75,6 +82,16 @@ movement_normal = function() {
 	}
 	
 	
+	var atk = abs(obj_player.x - x) <= atk_dist;
+	if (atk && !attacked) {
+		
+		//start the atk movement to try to hit the player
+		start_atk();
+		exit;
+		
+	}
+	
+	
 	if (health_current <= 0) {
 	
 		die();
@@ -82,7 +99,7 @@ movement_normal = function() {
 	}
 
 
-	#region random movement
+	#region movement
 
 	
 	var pos = y > obj_player.y;
@@ -97,20 +114,37 @@ movement_normal = function() {
 	
 		mve_simple(spd, dir);
 		
+		//correct the direction the enemy is facing
+		if (x <= obj_player.x) {
+			
+			image_xscale = 1;
+			
+		}
+		else {
+			
+			image_xscale = -1;
+			
+		}
+		
 	}
 	
 	
-#endregion	
+#endregion
 
 	if (alarmvar_inv <= 0) {
 	
 		invincible = false;
 
 	}
+	if (alarmvar_atk <= 0) {
+	
+		attacked = false;
+
+	}
 
 	alarmvar_mve -= global.dt_steady;
-	alarmvar_opt -= global.dt_steady;
 	alarmvar_inv -= global.dt_steady;
+	alarmvar_atk -= global.dt_steady;
 
 	mve_state = moving;
 	
@@ -120,7 +154,7 @@ movement_normal = function() {
 
 movement_recoil = function() {
 	
-	var spd = mve_spd * global.dt_steady;
+	var spd = mve_speed * global.dt_steady;
 	var dir = mve_dir;
 	
 	mve_simple(spd, dir);
@@ -143,13 +177,39 @@ movement_recoil = function() {
 	
 }
 
+movement_atk = function() {
+	
+	var dir = mve_dir;
+	var spd = mve_speed * global.dt_steady;
+	
+	mve_simple(spd, dir);
+	
+	
+	if (alarmvar_mve <= 0) {
+		
+		stop_atk();
+		
+	}
+	
+	if (alarmvar_inv <= 0) {
+		
+		invincible = false;
+		
+	}
+	
+	
+	alarmvar_mve -= global.dt_steady;
+	alarmvar_inv -= global.dt_steady;
+	
+}
+
 
 
 start_recoil = function(inv) {
 	
 		
 	mve_dir = point_direction(obj_player.x, obj_player.y, x, y);
-	mve_spd = mve_speed_recoil_recv;
+	mve_speed = mve_speed_recoil_recv;
 	moving = true;
 	alarmvar_mve = recoil_time_default;
 	
@@ -165,13 +225,39 @@ start_recoil = function(inv) {
 	
 }
 
+start_atk = function() {
+	
+	mve_dir = point_direction(x, y, obj_player.x, obj_player.y);;
+	mve_speed = mve_speed_atk;
+	
+	moving = true;
+	attacked = true;
+	
+	mve_state = 3;
+	
+	alarmvar_mve = alarmvar_atk_default;
+	
+}
+
 stop_recoil = function() {
 	
+	mve_speed = mve_spd_default;
+	
 	moving = false;
-	alarmvar_mve = 0;
-	alarmvar_opt = pause_time_default;
 	
 	mve_state = 0;
+	
+}
+
+stop_atk = function() {
+	
+	mve_speed = mve_spd_default;
+	
+	moving = false;
+	
+	mve_state = 0;
+	
+	alarmvar_atk = 0.5;
 	
 }
 
