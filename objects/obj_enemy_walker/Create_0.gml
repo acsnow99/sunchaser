@@ -67,6 +67,13 @@ movement_normal = function() {
 		
 		//start recoil reaction
 		start_recoil(true);
+		
+		if (global.combo < 3) {
+				
+			global.combo += 1;
+				
+		}
+		
 		exit;
 		
 	}

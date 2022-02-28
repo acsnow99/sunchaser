@@ -37,14 +37,14 @@ attacked = false;
 mve_state = 0;
 mve_spd_default = 75;
 mve_speed = 75;
-mve_speed_recoil_recv = 250;
+mve_speed_recoil_recv = 100;
 mve_speed_atk = mve_speed * 3;
 mve_dir = 0;
 dir_last = 0;
 atk_dist = 24;
 //how long until randomly assigning new movement pattern
 alarmvar_mve_default = 0.75;
-alarmvar_atk_default = 0.2;
+atk_length_default = 0.05;
 alarmvar_atk = 0;
 alarmvar_mve = 0;
 alarmvar_inv = 0;
@@ -52,7 +52,7 @@ alarmvar_ghost_frame = 0;
 alarmvar_ghost_frame_default = 0.1;
 recoil_time_default = 0.075;
 //default invincibility frames
-alarmvar_inv_default = 0.3
+alarmvar_inv_default = 0.3;
 
 
 
@@ -235,7 +235,7 @@ start_atk = function() {
 	
 	mve_state = 3;
 	
-	alarmvar_mve = alarmvar_atk_default;
+	alarmvar_mve = atk_length_default;
 	
 }
 

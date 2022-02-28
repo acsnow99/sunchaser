@@ -79,6 +79,14 @@ if (lvl_previous != global.level) {
 	
 }
 
+if (global.combo >= 3 && global.sunlight_current > 0) {
+	
+	global.sunlight_current -= 1;
+	
+	global.combo = 0;
+	
+}
+
 
 
 if (global.sunlight_current >= 4) {
