@@ -185,6 +185,16 @@ movement_atk = function() {
 	mve_simple(spd, dir);
 	
 	
+	var this_hit = check_dmg();
+	if (this_hit) {
+		
+		//start recoil reaction
+		start_recoil(true);
+		exit;
+		
+	}
+	
+	
 	if (alarmvar_mve <= 0) {
 		
 		stop_atk();
@@ -216,6 +226,13 @@ start_recoil = function(inv) {
 	mve_state = 2;
 	
 	if (inv) {
+		
+		if (global.combo < 3) {
+				
+			global.combo += 1;
+				
+		}
+		
 	
 		alarmvar_inv = alarmvar_inv_default;
 		invincible = true;

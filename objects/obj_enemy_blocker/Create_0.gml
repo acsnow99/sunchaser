@@ -212,6 +212,12 @@ start_recoil = function(inv) {
 	mve_state = 2;
 	
 	if (inv) {
+		
+		if (global.combo < 3) {
+				
+			global.combo += 1;
+				
+		}
 	
 		alarmvar_inv = alarmvar_inv_default;
 		invincible = true;
