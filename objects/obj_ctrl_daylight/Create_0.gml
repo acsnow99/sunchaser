@@ -1,15 +1,14 @@
 ///@description initialize variables
 
-sunlight_max = 7;
-sunlight_min = 0;
-global.sunlight_current = sunlight_min;
+//where the highest light level is on the map
+global.sunlight_current = 0;
+//where the player is
+global.sunbox_current = 0;
+//how many sunlight layers there are
+global.sunbox_count = 0;
 
 sunset_spd_default = 2;
 sunset_spd = sunset_spd_default;
-// for future use: each sunlight level away from zero, this many seconds are pulled from the clock
-//sunset_spd_modifier = 2;
-// how much extra time you get every time you pass a room
-sunlight_mod_lvlup = 1;
 
 alarmvar_sunset = sunset_spd;
 alarmvar_sunset_previous = alarmvar_sunset;
@@ -33,7 +32,7 @@ colors[7] = spr_background_7;
 if (instance_exists(obj_player)) {
 	
 	player_pos_previous = obj_player.x; 
-	lvl_previous = global.level;
+	sunbox_previous = global.sunbox_current;
 
 	vars_set = true;
 	
@@ -43,4 +42,65 @@ else {
 	vars_set = false;
 	
 }
+
+if (instance_exists(obj_sunbox)) {
+	
+	sunbox_init();
+	
+	sunbox_initiated = true;
+	
+}
+else {
+	
+	sunbox_initiated = false;
+	
+}
+
+
+//based off of levels_init from obj_control_cam
+sunbox_init = function() {
+	
+	global.sunbox_count = instance_number(obj_sunbox);
+
+	for (var i = 0; i < global.sunbox_count; i++) {
+	
+		var _this_frame = instance_find(obj_sunbox, i);
+	
+		//mins and maxes for each level's camera reach
+		global.sunbox[i, 0] = _this_frame.x;
+		global.sunbox[i, 1] = global.sunbox[i, 0] + _this_frame.sprite_width;
+		global.sunbox[i, 2] = _this_frame.y;
+		global.sunbox[i, 3] = global.sunbox[i, 2] + _this_frame.sprite_height;
+	
+	
+	}
+	
+	sunbox_initiated = true;
+
+}
+
+
+//based off level_seek in obj_ctrl_cam create event
+sunbox_seek = function(_focusx, _focusy) {
+	
+	for (var i = 0; i < instance_number(obj_level_frame); i++) {
+		
+		var _min_x = global.sunbox[i, 0];
+		var _max_x = global.sunbox[i, 1];
+		
+		var _min_y = global.sunbox[i, 2];
+		var _max_y = global.sunbox[i, 3];
+		
+		if (_focusx >= _min_x && _focusx <= _max_x && _focusy >= _min_y && _focusy <= _max_y) {
+			
+			// set originally in obj_control_other
+			global.sunbox = i;
+			exit;
+		
+		}
+		
+	}
+	
+}
+
 
