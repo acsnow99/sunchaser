@@ -26,7 +26,6 @@ if (!vars_set || !sunbox_initiated) {
 	if (instance_exists(obj_sunbox)) {
 		
 		sunbox_init();
-		
 		sunbox_initiated = true;
 		
 	}
@@ -46,15 +45,25 @@ if (obj_player.x != obj_player.xprevious || obj_player.y != obj_player.yprevious
 }
 
 
+//SET SUNLIGHT LEVEL
+var diff = abs(global.sunlight_level - global.sunbox_current);
+
+global.sunlight_current = clamp(diff, sunlight_min, sunlight_max);
+
 
 
 var _darken = alarmvar_sunset <= 0;
 
 if (_darken) {
 	
-	if (global.sunlight_current < sunlight_max) {
+	if (global.sunlight_level > sunlight_min) {
 		
-		global.sunlight_current += 1;
+		global.sunlight_level -= 1;
+		
+	}
+	else {
+		
+		global.sunlight_level = sunlight_max;
 		
 	}
 	

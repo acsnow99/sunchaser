@@ -1,11 +1,16 @@
 ///@description initialize variables
 
 //where the highest light level is on the map
+global.sunlight_level = 4;
+//the sunlight of where the player is
 global.sunlight_current = 0;
-//where the player is
+//where the player is on the map(based on x axis, not y)
 global.sunbox_current = 0;
-//how many sunlight layers there are
+//how many sunlight levels there are
 global.sunbox_count = 0;
+
+sunlight_min = 0;
+sunlight_max = 3;
 
 sunset_spd_default = 2;
 sunset_spd = sunset_spd_default;
@@ -60,7 +65,7 @@ else {
 //based off of levels_init from obj_control_cam
 sunbox_init = function() {
 	
-	global.sunbox_count = instance_number(obj_sunbox);
+	global.sunbox_count = instance_number(obj_sunbox) - 1;
 
 	for (var i = 0; i < global.sunbox_count; i++) {
 	
@@ -83,11 +88,11 @@ sunbox_init = function() {
 //based off level_seek in obj_ctrl_cam create event
 sunbox_seek = function(_focusx, _focusy) {
 	
-	for (var i = 0; i < instance_number(obj_level_frame); i++) {
+	for (var i = 0; i < global.sunbox_count; i++) {
 		
 		var _min_x = global.sunbox[i, 0];
 		var _max_x = global.sunbox[i, 1];
-		
+
 		var _min_y = global.sunbox[i, 2];
 		var _max_y = global.sunbox[i, 3];
 		
