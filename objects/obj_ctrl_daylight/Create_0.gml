@@ -1,6 +1,6 @@
 ///@description initialize variables
 
-//where the highest light level is on the map
+//where the highest light level is on the map(which sunbox is "lit")
 global.sunlight_level = 4;
 //the sunlight of where the player is
 global.sunlight_current = 0;
@@ -9,8 +9,11 @@ global.sunbox_current = 0;
 //how many sunlight levels there are
 global.sunbox_count = 0;
 
+//sunlight_max is the highest index of sunlight that can exist
 sunlight_min = 0;
-sunlight_max = 3;
+sunlight_max = 7;
+//how far the player can go from the "lit" box to still have the highest light level
+sunlight_reach = 2;
 
 sunset_spd_default = 2;
 sunset_spd = sunset_spd_default;
@@ -98,8 +101,7 @@ sunbox_seek = function(_focusx, _focusy) {
 		
 		if (_focusx >= _min_x && _focusx <= _max_x && _focusy >= _min_y && _focusy <= _max_y) {
 			
-			// set originally in obj_control_other
-			global.sunbox = i;
+			global.sunbox_current = i;
 			exit;
 		
 		}

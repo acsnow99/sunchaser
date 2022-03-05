@@ -12,6 +12,7 @@ if (!vars_set || !sunbox_initiated) {
 	if (instance_exists(obj_player)) {
 	
 		player_pos_previous = obj_player.x; 
+		sunbox_seek(obj_player.x, obj_player.y);
 		sunbox_previous = global.sunbox_current;
 		
 		vars_set = true;
@@ -46,9 +47,15 @@ if (obj_player.x != obj_player.xprevious || obj_player.y != obj_player.yprevious
 
 
 //SET SUNLIGHT LEVEL
-var diff = abs(global.sunlight_level - global.sunbox_current);
+/*
+if (global.sunbox_current < global.sunlight_level && global.sunbox_current > (global.sunlight_level - sunlight_reach)) {
+	
+	global.sunlight_current = 0;
+	
+}*/
+var diff = clamp(global.sunlight_level - global.sunbox_current - sunlight_reach, 0, sunlight_max);
 
-global.sunlight_current = clamp(diff, sunlight_min, sunlight_max);
+global.sunlight_current = diff;
 
 
 
