@@ -36,6 +36,86 @@ colors[6] = spr_background_6;
 colors[7] = spr_background_7;
 
 
+
+//based off of levels_init from obj_control_cam
+sunbox_init = function() {
+	
+	global.sunbox_count = instance_number(obj_sunbox) - 1;
+
+	for (var i = 0; i < global.sunbox_count; i++) {
+	
+		var _this_frame = instance_find(obj_sunbox, i);
+	
+		//mins and maxes for each level's camera reach
+		global.sunbox[i, 0] = _this_frame.x;
+		global.sunbox[i, 1] = global.sunbox[i, 0] + _this_frame.sprite_width;
+		//light level in the sunbox
+		global.sunbox[i, 2] = 0;
+	
+	
+	}
+	
+	sunbox_initiated = true;
+
+}
+
+
+//based off level_seek in obj_ctrl_cam create event
+sunbox_seek = function(_focusx) {
+	
+	for (var i = 0; i < global.sunbox_count; i++) {
+		
+		var _min_x = global.sunbox[i, 0];
+		var _max_x = global.sunbox[i, 1];
+		
+		if (_focusx >= _min_x && _focusx <= _max_x) {
+			
+			global.sunbox_current = i;
+			exit;
+		
+		}
+		
+	}
+	
+}
+
+
+
+sunbox_assign = function(light) {
+	
+	/*
+	switch(light) {
+		
+		//sunlight_min should be 0
+		case sunlight_min:
+			
+			for (var i = 0; i < global.sunbox_count; i++) {
+
+				global.sunbox[i, 2] = clamp(abs(global.sunlight_level - i - sunlight_reach), 0, sunlight_max);
+				
+			}
+			
+			//the far right sunbox's light level
+			global.sunbox[i, 2] = sunlight_min + 1 - sunlight_reach;
+			
+			
+			
+		
+	}
+	*/
+	
+	for (var i = 0; i < global.sunbox_count; i++) {
+
+		global.sunbox[i, 2] = clamp(abs(global.sunlight_level - i - sunlight_reach), 0, sunlight_max);
+				
+	}
+	
+	
+}
+
+
+
+
 //crash prevention
 if (instance_exists(obj_player)) {
 	
@@ -61,52 +141,6 @@ if (instance_exists(obj_sunbox)) {
 else {
 	
 	sunbox_initiated = false;
-	
-}
-
-
-//based off of levels_init from obj_control_cam
-sunbox_init = function() {
-	
-	global.sunbox_count = instance_number(obj_sunbox) - 1;
-
-	for (var i = 0; i < global.sunbox_count; i++) {
-	
-		var _this_frame = instance_find(obj_sunbox, i);
-	
-		//mins and maxes for each level's camera reach
-		global.sunbox[i, 0] = _this_frame.x;
-		global.sunbox[i, 1] = global.sunbox[i, 0] + _this_frame.sprite_width;
-		global.sunbox[i, 2] = _this_frame.y;
-		global.sunbox[i, 3] = global.sunbox[i, 2] + _this_frame.sprite_height;
-	
-	
-	}
-	
-	sunbox_initiated = true;
-
-}
-
-
-//based off level_seek in obj_ctrl_cam create event
-sunbox_seek = function(_focusx, _focusy) {
-	
-	for (var i = 0; i < global.sunbox_count; i++) {
-		
-		var _min_x = global.sunbox[i, 0];
-		var _max_x = global.sunbox[i, 1];
-
-		var _min_y = global.sunbox[i, 2];
-		var _max_y = global.sunbox[i, 3];
-		
-		if (_focusx >= _min_x && _focusx <= _max_x && _focusy >= _min_y && _focusy <= _max_y) {
-			
-			global.sunbox_current = i;
-			exit;
-		
-		}
-		
-	}
 	
 }
 

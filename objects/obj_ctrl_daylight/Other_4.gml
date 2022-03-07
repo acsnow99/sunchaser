@@ -6,7 +6,7 @@ sunbox_initiated = true;
 
 if (instance_exists(obj_player)) {
 	
-	sunbox_seek(obj_player.x, obj_player.y);
+	global.sunbox_current = sunbox_seek(obj_player.x, obj_player.y);
 	
 }
 else {

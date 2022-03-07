@@ -12,7 +12,7 @@ if (!vars_set || !sunbox_initiated) {
 	if (instance_exists(obj_player)) {
 	
 		player_pos_previous = obj_player.x; 
-		sunbox_seek(obj_player.x, obj_player.y);
+		sunbox_seek(player_pos_previous);
 		sunbox_previous = global.sunbox_current;
 		
 		vars_set = true;
@@ -47,16 +47,7 @@ if (obj_player.x != obj_player.xprevious || obj_player.y != obj_player.yprevious
 
 
 //SET SUNLIGHT LEVEL
-/*
-if (global.sunbox_current < global.sunlight_level && global.sunbox_current > (global.sunlight_level - sunlight_reach)) {
-	
-	global.sunlight_current = 0;
-	
-}*/
-var diff = clamp(global.sunlight_level - global.sunbox_current - sunlight_reach, 0, sunlight_max);
-
-global.sunlight_current = diff;
-
+global.sunlight_current = global.sunbox[global.sunbox_current, 2];
 
 
 var _darken = alarmvar_sunset <= 0;
@@ -70,12 +61,15 @@ if (_darken) {
 	}
 	else {
 		
-		global.sunlight_level = sunlight_max;
+		global.sunlight_level = global.sunbox_count;
 		
 	}
 	
 	// may implement modifier to sunset speed later
 	//var _mod = sunset_spd_modifier * abs(global.sunlight_current - 7);
+	
+	//change the light value of each sunbox
+	sunbox_assign(global.sunlight_level);
 	
 	// would use mod to subtract from sunset_spd
 	alarmvar_sunset = sunset_spd;
