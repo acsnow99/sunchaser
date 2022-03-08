@@ -13,7 +13,7 @@ global.sunbox_count = 0;
 sunlight_min = 0;
 sunlight_max = 7;
 //how far the player can go from the "lit" box to still have the highest light level
-sunlight_reach = 2;
+sunlight_reach = 0;
 
 sunset_spd_default = 2;
 sunset_spd = sunset_spd_default;
@@ -35,6 +35,34 @@ colors[5] = spr_background_5;
 colors[6] = spr_background_6;
 colors[7] = spr_background_7;
 
+
+//crash prevention
+if (instance_exists(obj_player)) {
+	
+	player_pos_previous = obj_player.x; 
+	sunbox_previous = global.sunbox_current;
+
+	vars_set = true;
+	
+}
+else {
+	
+	vars_set = false;
+	
+}
+
+if (instance_exists(obj_sunbox)) {
+	
+	sunbox_init();
+	
+	sunbox_initiated = true;
+	
+}
+else {
+	
+	sunbox_initiated = false;
+	
+}
 
 
 //based off of levels_init from obj_control_cam
@@ -105,42 +133,30 @@ sunbox_assign = function(light) {
 	*/
 	
 	for (var i = 0; i < global.sunbox_count; i++) {
-
-		global.sunbox[i, 2] = clamp(abs(global.sunlight_level - i - sunlight_reach), 0, sunlight_max);
-				
+		
+		var far_l = 0;
+		var far_r = global.sunbox_count;
+		
+		var l = light - i;
+		var r = light + i;
+		
+		if (l < far_l) {
+			
+			l = far_r + l + 1;
+			
+		}
+		
+		if (r > far_r) {
+			
+			r = far_l + (r - far_r - 1);
+			
+		}
+		
+		global.sunbox[l, 2] = clamp(0 + i - sunlight_reach, 0, sunlight_max);
+		global.sunbox[r, 2] = clamp(0 + i - sunlight_reach, 0, sunlight_max);
+		
 	}
 	
-	
-}
-
-
-
-
-//crash prevention
-if (instance_exists(obj_player)) {
-	
-	player_pos_previous = obj_player.x; 
-	sunbox_previous = global.sunbox_current;
-
-	vars_set = true;
-	
-}
-else {
-	
-	vars_set = false;
-	
-}
-
-if (instance_exists(obj_sunbox)) {
-	
-	sunbox_init();
-	
-	sunbox_initiated = true;
-	
-}
-else {
-	
-	sunbox_initiated = false;
 	
 }
 

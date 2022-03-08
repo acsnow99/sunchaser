@@ -42,12 +42,19 @@ if (!vars_set || !sunbox_initiated) {
 if (obj_player.x != obj_player.xprevious || obj_player.y != obj_player.yprevious) {
 	
 	sunbox_seek(obj_player.x, obj_player.y);
+	global.sunlight_current = global.sunbox[global.sunbox_current, 2];
 	
 }
 
 
 //SET SUNLIGHT LEVEL
-global.sunlight_current = global.sunbox[global.sunbox_current, 2];
+/*
+if (global.sunbox_current < global.sunlight_level && global.sunbox_current > (global.sunlight_level - sunlight_reach)) {
+	
+	global.sunlight_current = 0;
+	
+}*/
+
 
 
 var _darken = alarmvar_sunset <= 0;
@@ -70,6 +77,7 @@ if (_darken) {
 	
 	//change the light value of each sunbox
 	sunbox_assign(global.sunlight_level);
+	global.sunlight_current = global.sunbox[global.sunbox_current, 2];
 	
 	// would use mod to subtract from sunset_spd
 	alarmvar_sunset = sunset_spd;
