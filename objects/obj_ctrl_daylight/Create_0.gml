@@ -163,15 +163,15 @@ check_outside_room = function() {
 	
 	var m = global.sunbox_count
 
-	if (obj_player.x < global.sunbox[0, 0]) {
+	if (obj_player.x < 0) {
 	
-		obj_player.x = global.sunbox[m, 1] - 16;2
+		obj_player.x = room_width - 16;
 	
 	}
 
-	if (obj_player.x > global.sunbox[m, 1]) {
+	if (obj_player.x > room_width) {
 	
-		obj_player.x = global.sunbox[0, 0] + 16;
+		obj_player.x = 0 + 16;
 	
 	}
 	
