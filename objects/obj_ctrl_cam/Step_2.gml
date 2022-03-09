@@ -22,9 +22,10 @@ if (instance_exists(focus_obj) && levels_initiated) {
 	
 	
 	//	check which level the player is in if they are moving
-	if (obj_player.x != obj_player.xprevious || obj_player.y != obj_player.yprevious) {
+	if (room_start || obj_player.x != obj_player.xprevious || obj_player.y != obj_player.yprevious) {
 	
 		level_seek(_focusx, _focusy);
+		room_start = false;
 	
 	}
 	
