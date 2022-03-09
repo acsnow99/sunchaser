@@ -98,12 +98,14 @@ sunbox_seek = function(_focusx) {
 		
 		if (_focusx >= _min_x && _focusx <= _max_x) {
 			
-			global.sunbox_current = i;
+			return i;
 			exit;
 		
 		}
 		
 	}
+	
+	return 0;
 	
 }
 
@@ -111,26 +113,7 @@ sunbox_seek = function(_focusx) {
 
 sunbox_assign = function(light) {
 	
-	/*
-	switch(light) {
-		
-		//sunlight_min should be 0
-		case sunlight_min:
-			
-			for (var i = 0; i < global.sunbox_count; i++) {
-
-				global.sunbox[i, 2] = clamp(abs(global.sunlight_level - i - sunlight_reach), 0, sunlight_max);
-				
-			}
-			
-			//the far right sunbox's light level
-			global.sunbox[i, 2] = sunlight_min + 1 - sunlight_reach;
-			
-			
-			
-		
-	}
-	*/
+	var o = 0;
 	
 	for (var i = 0; i < global.sunbox_count; i++) {
 		
@@ -139,6 +122,7 @@ sunbox_assign = function(light) {
 		
 		var l = light - i;
 		var r = light + i;
+		
 		
 		if (l < far_l) {
 			
@@ -152,11 +136,44 @@ sunbox_assign = function(light) {
 			
 		}
 		
-		global.sunbox[l, 2] = clamp(0 + i - sunlight_reach, 0, sunlight_max);
-		global.sunbox[r, 2] = clamp(0 + i - sunlight_reach, 0, sunlight_max);
+		
+		//if the two sunboxes being assigned are right next to each other, end the function
+		if ((l <= r && l >= (r - 1)) || (l == far_l && r == far_r)) {
+			
+			o++;
+			
+			if (o > 1) {
+				exit;
+			}
+			
+		}
+		
+		
+		global.sunbox[l, 2] = clamp(i - sunlight_reach, 0, sunlight_max);
+		global.sunbox[r, 2] = clamp(i - sunlight_reach, 0, sunlight_max);
+		
 		
 	}
 	
+	
+}
+
+
+check_outside_room = function() {
+	
+	var m = global.sunbox_count
+
+	if (obj_player.x < global.sunbox[0, 0]) {
+	
+		obj_player.x = global.sunbox[m, 1] - 16;2
+	
+	}
+
+	if (obj_player.x > global.sunbox[m, 1]) {
+	
+		obj_player.x = global.sunbox[0, 0] + 16;
+	
+	}
 	
 }
 
