@@ -87,7 +87,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_player_idle_dwn","path":"sprites/spr_player_idle_dwn/spr_player_idle_dwn.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_player_idle_dwn",
     "tags": [],
     "resourceType": "GMSequence",

@@ -87,7 +87,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_walker_idle_lr","path":"sprites/spr_walker_idle_lr/spr_walker_idle_lr.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_walker_idle_lr",
     "tags": [],
     "resourceType": "GMSequence",

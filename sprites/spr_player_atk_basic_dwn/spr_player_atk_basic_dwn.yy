@@ -87,7 +87,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_player_atk_basic_dwn","path":"sprites/spr_player_atk_basic_dwn/spr_player_atk_basic_dwn.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_player_atk_basic_dwn",
     "tags": [],
     "resourceType": "GMSequence",

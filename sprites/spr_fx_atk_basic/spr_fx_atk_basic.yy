@@ -67,7 +67,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_fx_atk_basic","path":"sprites/spr_fx_atk_basic/spr_fx_atk_basic.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_fx_atk_basic",
     "tags": [],
     "resourceType": "GMSequence",

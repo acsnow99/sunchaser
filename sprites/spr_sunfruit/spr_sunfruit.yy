@@ -63,7 +63,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_sunfruit","path":"sprites/spr_sunfruit/spr_sunfruit.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_sunfruit",
     "tags": [],
     "resourceType": "GMSequence",

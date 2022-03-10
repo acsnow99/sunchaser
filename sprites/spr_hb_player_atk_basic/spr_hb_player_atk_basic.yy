@@ -60,7 +60,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_hb_player_atk_basic","path":"sprites/spr_hb_player_atk_basic/spr_hb_player_atk_basic.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_hb_player_atk_basic",
     "tags": [],
     "resourceType": "GMSequence",

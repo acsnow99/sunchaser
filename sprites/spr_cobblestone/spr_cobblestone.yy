@@ -87,7 +87,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_cobblestone","path":"sprites/spr_cobblestone/spr_cobblestone.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_cobblestone",
     "tags": [],
     "resourceType": "GMSequence",

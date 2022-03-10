@@ -1,7 +1,7 @@
 {
   "spriteId": {
-    "name": "spr_tp",
-    "path": "sprites/spr_tp/spr_tp.yy",
+    "name": "spr_tp_vertical",
+    "path": "sprites/spr_tp_vertical/spr_tp_vertical.yy",
   },
   "solid": false,
   "visible": true,

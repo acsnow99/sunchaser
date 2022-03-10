@@ -87,7 +87,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_player_atk_basic_lr","path":"sprites/spr_player_atk_basic_lr/spr_player_atk_basic_lr.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_player_atk_basic_lr",
     "tags": [],
     "resourceType": "GMSequence",

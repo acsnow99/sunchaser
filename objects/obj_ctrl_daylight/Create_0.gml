@@ -138,7 +138,7 @@ sunbox_assign = function(light) {
 		
 		
 		//if the two sunboxes being assigned are right next to each other, end the function
-		if ((l <= r && l >= (r - 1)) || (l == far_l && r == far_r)) {
+		if ((l <= r && l >= (r-1)) || (l == far_l && r == far_r)) {
 			
 			o++;
 			

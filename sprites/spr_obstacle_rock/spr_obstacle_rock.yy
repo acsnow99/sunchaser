@@ -87,7 +87,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_obstacle_rock","path":"sprites/spr_obstacle_rock/spr_obstacle_rock.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_obstacle_rock",
     "tags": [],
     "resourceType": "GMSequence",

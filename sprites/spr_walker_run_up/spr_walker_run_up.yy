@@ -87,7 +87,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_walker_run_up","path":"sprites/spr_walker_run_up/spr_walker_run_up.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_walker_run_up",
     "tags": [],
     "resourceType": "GMSequence",

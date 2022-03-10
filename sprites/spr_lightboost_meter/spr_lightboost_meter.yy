@@ -75,7 +75,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_lightboost_meter","path":"sprites/spr_lightboost_meter/spr_lightboost_meter.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_lightboost_meter",
     "tags": [],
     "resourceType": "GMSequence",

@@ -59,7 +59,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_tp_vertical","path":"sprites/spr_tp_vertical/spr_tp_vertical.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_tp_vertical",
     "tags": [],
     "resourceType": "GMSequence",

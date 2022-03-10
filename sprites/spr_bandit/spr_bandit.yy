@@ -87,7 +87,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_bandit","path":"sprites/spr_bandit/spr_bandit.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_bandit",
     "tags": [],
     "resourceType": "GMSequence",

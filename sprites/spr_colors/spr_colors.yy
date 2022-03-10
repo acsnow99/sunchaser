@@ -59,7 +59,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_colors","path":"sprites/spr_colors/spr_colors.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_colors",
     "tags": [],
     "resourceType": "GMSequence",
