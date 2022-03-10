@@ -137,6 +137,12 @@ sunbox_assign = function(light) {
 		}
 		
 		
+		
+		global.sunbox[l, 2] = clamp(i - sunlight_reach, 0, sunlight_max);
+		global.sunbox[r, 2] = clamp(i - sunlight_reach, 0, sunlight_max);
+		
+		
+		
 		//if the two sunboxes being assigned are right next to each other, end the function
 		if ((l <= r && l >= (r-1)) || (l == far_l && r == far_r)) {
 			
@@ -147,10 +153,6 @@ sunbox_assign = function(light) {
 			}
 			
 		}
-		
-		
-		global.sunbox[l, 2] = clamp(i - sunlight_reach, 0, sunlight_max);
-		global.sunbox[r, 2] = clamp(i - sunlight_reach, 0, sunlight_max);
 		
 		
 	}

@@ -1,6 +1,6 @@
 
 
-tp_endpoint = obj_tp_a_1;
+tp_endpoint = obj_tp_b_1;
 
 // 1 for right side, -1 for left side - 0 for vertical boundaries
 side_x = -1;
