@@ -8,6 +8,8 @@ global.sunlight_current = 0;
 global.sunbox_current = 0;
 //how many sunlight levels there are
 global.sunbox_count = 0;
+//at what value of sunlight_current nighttime hits
+global.nighttime_trigger = 4;
 
 //sunlight_max is the highest index of sunlight that can exist
 sunlight_min = 0;
