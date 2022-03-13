@@ -38,11 +38,17 @@ var _focusy = obj_player.y;
 if (room_start || obj_player.x != obj_player.xprevious || obj_player.y != obj_player.yprevious) {
 	
 	global.level = level_seek(_focusx, _focusy);
+	
+	if(lvl_previous != global.level) {
+		
+		enemy_cleanup();
+		enemy_spawn();
+		
+	}
+	
+	//updates(stops this code from running constantly with room_start)
 	room_start = false;
-		
-		
-	enemy_cleanup();
-	enemy_spawn();
+	lvl_previous = global.level;
 	
 }
 

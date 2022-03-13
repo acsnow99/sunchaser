@@ -4,6 +4,8 @@ global.levels_initiated = false;
 
 spawners_initiated = false;
 
+lvl_previous = 0;
+
 
 levels_init = function() {
 
@@ -71,7 +73,7 @@ enemy_cleanup = function() {
 		
 		var obj = instance_find(obj_enemy_spawner, i);
 		
-		if (!obj.level == global.level) {
+		if (obj.level != global.level) {
 			
 			with (obj) {
 				
