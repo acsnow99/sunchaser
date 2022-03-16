@@ -37,7 +37,7 @@ var _focusy = obj_player.y;
 //	check which level the player is in if they are moving
 if (room_start || obj_player.x != obj_player.xprevious || obj_player.y != obj_player.yprevious) {
 	
-	global.level = level_seek(_focusx, _focusy);
+	global.level = clamp(level_seek(_focusx, _focusy), 0, global.level_count);
 	
 	if(lvl_previous != global.level) {
 		

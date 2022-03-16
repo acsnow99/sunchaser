@@ -1,12 +1,12 @@
 
 ///End game when escape is hit
-if (keyboard_check(vk_escape)) {
+if (keyboard_check_pressed(vk_escape)) {
 	
-	game_end();
+	global.pause = !global.pause;
 
 }
 
-if (keyboard_check(ord("R"))) {
+if (keyboard_check_pressed(ord("R"))) {
 	
 	game_restart();
 

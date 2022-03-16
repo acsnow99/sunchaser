@@ -6,6 +6,9 @@ global.level = 0;
 
 global.debug = false;
 
+global.pause = false;
+deactivated = false;
+
 global.alarmvar_runtime = 0;
 
 //keeps track of how many hits the player has landed(0-2) 

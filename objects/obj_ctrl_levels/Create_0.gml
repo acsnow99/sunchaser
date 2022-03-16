@@ -8,8 +8,10 @@ lvl_previous = 0;
 
 
 levels_init = function() {
+	
+	global.level_count = instance_number(obj_level_frame) - 1;
 
-	for (var i = 0; i < instance_number(obj_level_frame); i++) {
+	for (var i = 0; i <= global.level_count; i++) {
 	
 		var _this_frame = instance_find(obj_level_frame, i);
 	
