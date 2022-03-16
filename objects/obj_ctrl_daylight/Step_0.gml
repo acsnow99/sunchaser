@@ -15,10 +15,6 @@ if (!vars_set || !sunbox_initiated) {
 		global.sunbox_current = sunbox_seek(player_pos_previous);
 		sunbox_previous = global.sunbox_current;
 		
-		//change the light value of each sunbox
-		sunbox_assign(global.sunlight_level);
-		global.sunlight_current = global.sunbox[global.sunbox_current, 2];
-		
 		vars_set = true;
 		
 	}
@@ -31,6 +27,11 @@ if (!vars_set || !sunbox_initiated) {
 	if (instance_exists(obj_sunbox)) {
 		
 		sunbox_init();
+		
+		//change the light value of each sunbox
+		sunbox_assign(global.sunlight_level);
+		global.sunlight_current = global.sunbox[global.sunbox_current, 2];
+		
 		sunbox_initiated = true;
 		
 	}

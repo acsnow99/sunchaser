@@ -70,7 +70,7 @@ else {
 //based off of levels_init from obj_control_cam
 sunbox_init = function() {
 	
-	global.sunbox_count = instance_number(obj_sunbox) - 1;
+	global.sunbox_count = instance_number(obj_sunbox);
 
 	for (var i = 0; i < global.sunbox_count; i++) {
 	
