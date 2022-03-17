@@ -49,6 +49,8 @@ level_seek = function(_focusx, _focusy) {
 		
 	}
 	
+	return -1;
+	
 }
 
 

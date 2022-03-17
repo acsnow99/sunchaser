@@ -173,6 +173,8 @@ movement_input_normal = function (dir, xinput, yinput) {
 	if moving {
 	
 		var spd_exct = mve_spd * global.dt_steady;
+		//TEMPORARY CLAUSE
+		if (global.debug) { spd_exct = spd_exct * 4 }
 		var dir_exct = point_direction(0, 0, xinput, yinput);
 		//value of variable 'moving' may change in the process of this script
 		//if the player can't move in the desired direction, moving will change to false

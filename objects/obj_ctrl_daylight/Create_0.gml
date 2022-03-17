@@ -38,39 +38,11 @@ colors[6] = spr_background_6;
 colors[7] = spr_background_7;
 
 
-//crash prevention
-if (instance_exists(obj_player)) {
-	
-	player_pos_previous = obj_player.x; 
-	sunbox_previous = global.sunbox_current;
-
-	vars_set = true;
-	
-}
-else {
-	
-	vars_set = false;
-	
-}
-
-if (instance_exists(obj_sunbox)) {
-	
-	sunbox_init();
-	
-	sunbox_initiated = true;
-	
-}
-else {
-	
-	sunbox_initiated = false;
-	
-}
-
 
 //based off of levels_init from obj_control_cam
 sunbox_init = function() {
 	
-	global.sunbox_count = instance_number(obj_sunbox);
+	global.sunbox_count = instance_number(obj_sunbox) - 1;
 
 	for (var i = 0; i < global.sunbox_count; i++) {
 	

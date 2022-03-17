@@ -67,7 +67,7 @@ if (_darken) {
 	}
 	else {
 		
-		global.sunlight_level = global.sunbox_count;
+		global.sunlight_level = global.sunbox_count - 1;
 		
 	}
 	
