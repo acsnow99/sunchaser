@@ -6,7 +6,7 @@ if (room == rm_end || room == rm_setup) {
 	
 }
 
-//crash prevention
+#region crash prevention
 if (!vars_set || !sunbox_initiated) {
 	
 	if (instance_exists(obj_sunbox)) {
@@ -42,6 +42,8 @@ if (!vars_set || !sunbox_initiated) {
 	}
 	
 }
+#endregion
+
 
 
 //if (obj_player.x != obj_player.xprevious || obj_player.y != obj_player.yprevious) {

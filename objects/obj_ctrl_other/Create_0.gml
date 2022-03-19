@@ -16,3 +16,4 @@ global.alarmvar_runtime = 0;
 global.combo = 0;
 
 map_spr = spr_map_grid_160x160;
+grid_square_width = 16;

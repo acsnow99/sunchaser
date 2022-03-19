@@ -13,6 +13,11 @@ if (instance_exists(obj_sunbox)) {
 	sunbox_initiated = true;
 	
 }
+else {
+	
+	sunbox_initiated = false;
+	
+}
 
 if (instance_exists(obj_player) && sunbox_initiated) {
 	
