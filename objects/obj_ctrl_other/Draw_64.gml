@@ -14,7 +14,7 @@ if (global.pause) {
 	//var left = (global.view_width / 2) - (sprite_get_width(map_spr) / 2) + (sprite_get_width(spr_moon) / 2);
 	var left = 16;
 	
-	for (var i = 0; i < global.sunbox_count; i++) {
+	for (var i = 0; i <= global.sunbox_count; i++) {
 
 		var _x = i * inc + left;
 		var light = clamp(global.sunbox[i, 2], 0, sprite_get_number(spr_moon));

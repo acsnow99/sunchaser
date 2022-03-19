@@ -115,3 +115,45 @@ enemy_spawn = function() {
 	
 	
 }
+
+
+
+check_outside_room = function() {
+	
+	/*
+	var m = global.sunbox_count
+
+	if (obj_player.x < 0) {
+	
+		obj_player.x = room_width - 16;
+	
+	}
+
+	if (obj_player.x > room_width) {
+	
+		obj_player.x = 0 + 16;
+	
+	}*/
+	
+	with (obj_player) {
+		
+		var obj = instance_nearest(x, y, obj_tp_parent);
+		
+		if place_meeting(x, y, obj) {
+			
+			var obj_endpt = obj.tp_endpoint;
+			
+			var off_x = obj_endpt.side_x * 32;
+			var off_y = obj_endpt.side_y * 32;
+			
+			x = obj_endpt.x + off_x;
+			y = obj_endpt.y + off_y;
+			
+		}
+		
+	}
+	
+}
+
+
+

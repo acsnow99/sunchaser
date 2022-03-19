@@ -9,21 +9,6 @@ if (room == rm_end || room == rm_setup) {
 //crash prevention
 if (!vars_set || !sunbox_initiated) {
 	
-	if (instance_exists(obj_player)) {
-	
-		player_pos_previous = obj_player.x; 
-		global.sunbox_current = sunbox_seek(player_pos_previous);
-		sunbox_previous = global.sunbox_current;
-		
-		vars_set = true;
-		
-	}
-	else {
-		
-		exit;
-		
-	}
-	
 	if (instance_exists(obj_sunbox)) {
 		
 		sunbox_init();
@@ -41,18 +26,31 @@ if (!vars_set || !sunbox_initiated) {
 		
 	}
 	
+	if (instance_exists(obj_player)) {
+	
+		player_pos_previous = obj_player.x; 
+		global.sunbox_current = sunbox_seek(player_pos_previous);
+		sunbox_previous = global.sunbox_current;
+		
+		vars_set = true;
+		
+	}
+	else {
+		
+		exit;
+		
+	}
+	
 }
 
 
-if (obj_player.x != obj_player.xprevious || obj_player.y != obj_player.yprevious) {
+//if (obj_player.x != obj_player.xprevious || obj_player.y != obj_player.yprevious) {
 	
 	//set the location of the player and use that location to set the displayed sunlight
 	global.sunbox_current = sunbox_seek(obj_player.x, obj_player.y);
 	global.sunlight_current = global.sunbox[global.sunbox_current, 2];
 	
-	check_outside_room();
-	
-}
+//}
 
 
 
@@ -67,7 +65,7 @@ if (_darken) {
 	}
 	else {
 		
-		global.sunlight_level = global.sunbox_count - 1;
+		global.sunlight_level = global.sunbox_count;
 		
 	}
 	

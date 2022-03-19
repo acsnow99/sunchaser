@@ -53,3 +53,7 @@ if (room_start || obj_player.x != obj_player.xprevious || obj_player.y != obj_pl
 }
 
 
+//checks if the player is in an edge-of-world teleport point - then teleports them
+check_outside_room();
+
+

@@ -44,7 +44,7 @@ sunbox_init = function() {
 	
 	global.sunbox_count = instance_number(obj_sunbox) - 1;
 
-	for (var i = 0; i < global.sunbox_count; i++) {
+	for (var i = 0; i <= global.sunbox_count; i++) {
 	
 		var _this_frame = instance_find(obj_sunbox, i);
 	
@@ -65,7 +65,7 @@ sunbox_init = function() {
 //based off level_seek in obj_ctrl_cam create event
 sunbox_seek = function(_focusx) {
 	
-	for (var i = 0; i < global.sunbox_count; i++) {
+	for (var i = 0; i <= global.sunbox_count; i++) {
 		
 		var _min_x = global.sunbox[i, 0];
 		var _max_x = global.sunbox[i, 1];
@@ -89,13 +89,15 @@ sunbox_assign = function(light) {
 	
 	var o = 0;
 	
-	for (var i = 0; i < global.sunbox_count; i++) {
+	for (var i = 0; i <= global.sunbox_count; i++) {
 		
 		var far_l = 0;
 		var far_r = global.sunbox_count;
 		
 		var l = light - i;
 		var r = light + i;
+		
+		
 		
 		
 		if (l < far_l) {
@@ -131,44 +133,6 @@ sunbox_assign = function(light) {
 		
 	}
 	
-	
-}
-
-
-check_outside_room = function() {
-	
-	/*
-	var m = global.sunbox_count
-
-	if (obj_player.x < 0) {
-	
-		obj_player.x = room_width - 16;
-	
-	}
-
-	if (obj_player.x > room_width) {
-	
-		obj_player.x = 0 + 16;
-	
-	}*/
-	
-	with (obj_player) {
-		
-		var obj = instance_nearest(x, y, obj_tp_parent);
-		
-		if place_meeting(x, y, obj) {
-			
-			var obj_endpt = obj.tp_endpoint;
-			
-			var off_x = obj_endpt.side_x * 32;
-			var off_y = obj_endpt.side_y * 32;
-			
-			x = obj_endpt.x + off_x;
-			y = obj_endpt.y + off_y;
-			
-		}
-		
-	}
 	
 }
 
