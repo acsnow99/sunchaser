@@ -8,7 +8,7 @@ if (global.pause) {
 	draw_sprite(spr_map_grid_160x160, 0, global.view_width/2, global.view_height/2);
 	
 
-	var inc = grid_square_width;
+	var inc = grid_square_width * 2;
 	//middle of the room, to the left edge of the map, offset by the sprite size
 	var left = (global.view_width / 2) - (sprite_get_width(map_spr) / 2);
 	var top = (global.view_height / 2) - (sprite_get_height(map_spr) / 2);
