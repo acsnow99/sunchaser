@@ -1,9 +1,9 @@
 /// @description 
 if (!enabled) exit;
 
-
+var sprite = dir_last;
 //set the index to the current sunlight level(for color), offset by the length of the animation
-image_index = global.sunlight_current * (animation_length_current + dir_last) + animation_pos;
+image_index = global.sunlight_current * animation_length_current + (colors_count * sprite) + animation_pos;
 
 
 if (alarmvar_inv > 0) {

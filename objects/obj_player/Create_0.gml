@@ -42,6 +42,11 @@ directions[3] = 270;
 animation_length_current = 1;
 animation_pos = 0;
 
+//number of colors in the sprite pallete(including 0 as a number)
+colors_count = 8;
+sprite_count = 2;
+
+
 image_xscale_default = image_xscale;
 
 
@@ -160,13 +165,15 @@ movement_input_normal = function (dir, xinput, yinput) {
 		//value of variable 'moving' may change in the process of this script
 		//if the player can't move in the desired direction, moving will change to false
 		mve_simple(spd_exct, dir_exct);
+		
+		dir_sprite(mve_state, image_xscale);
 	
 		//true/1 for running, false/0 for idle
 		mve_state = 1;
 	
 	}
 	
-	dir_sprite(mve_state, image_xscale);
+	
 	
 }
 
@@ -241,7 +248,6 @@ movement_input_atk_basic = function() {
 		
 	}
 	
-	dir_sprite(mve_state, image_xscale);
 	
 }
 
@@ -356,8 +362,6 @@ movement_input_atk_sp = function() {
 		
 	}
 	
-	dir_sprite(mve_state, image_xscale);
-	
 }
 
 movement_input_recoil_receiving = function() {
@@ -381,7 +385,6 @@ movement_input_recoil_receiving = function() {
 		
 	}
 	
-	dir_sprite(mve_state, image_xscale);
 	
 }
 
@@ -498,11 +501,9 @@ dir_sprite = function(mve_state, _xscale) {
 	
 	if (x > xprevious) {
 		dir_last = 0;
-		image_xscale = 1 * _xscale;
 	}
 	else if (x < xprevious) {
 		dir_last = 2;
-		image_xscale = -1 * _xscale;
 	}
 		
 	if (y > yprevious) {
