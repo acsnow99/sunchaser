@@ -2,10 +2,22 @@
 
 #region movement
 
-mve_spd_default = 115;
+
+//dir_last indicates direction
+//0 is 0, 1 is 90, 2 is 180, 3 is 270
+//mve_state indicates movement state
+//index 0 for second value means idle
+//index 1 for second value means moving normally
+//index 2 for second value means attacking normally
+//index 3 for second value means using a special atk
+//index 4 for second value means prepping for a special atk
+//index 5 for second value means recoil from incoming damage
+
+
+mve_spd_default = 500;
 mve_spd = mve_spd_default;
-mve_spd_atk_basic_default = 75;
-atk_special_mve_spd_default = 500;
+mve_spd_atk_basic_default = 300;
+atk_special_mve_spd_default = 2000;
 atk_special_mve_spd = atk_special_mve_spd_default;
 dir_last = 0;
 
@@ -23,39 +35,8 @@ directions[0] = 0;
 directions[1] = 90;
 directions[2] = 180;
 directions[3] = 270;
-//the first value indicates direction
-//0 is 0, 1 is 90, 2 is 180, 3 is 270
-//the second value indicates movement state
-//index 0 for second value means idle
-//index 1 for second value means moving normally
-//index 2 for second value means attacking normally
-//index 3 for second value means using a special atk
-//index 4 for second value means prepping for a special atk
-//index 5 for second value means recoil from incoming damage
-dir_sprites[0, 0] = spr_player_idle_lr;
-dir_sprites[1, 0] = spr_player_idle_up;
-dir_sprites[2, 0] = spr_player_idle_lr;
-dir_sprites[3, 0] = spr_player_idle_dwn;
-dir_sprites[0, 1] = spr_player_run_lr;
-dir_sprites[1, 1] = spr_player_run_up;
-dir_sprites[2, 1] = spr_player_run_lr;
-dir_sprites[3, 1] = spr_player_run_dwn;
-dir_sprites[0, 2] = spr_player_atk_basic_lr;
-dir_sprites[1, 2] = spr_player_atk_basic_up;
-dir_sprites[2, 2] = spr_player_atk_basic_lr;
-dir_sprites[3, 2] = spr_player_atk_basic_dwn;
-dir_sprites[0, 3] = spr_player_run_lr;
-dir_sprites[1, 3] = spr_player_run_up;
-dir_sprites[2, 3] = spr_player_run_lr;
-dir_sprites[3, 3] = spr_player_run_dwn;
-dir_sprites[0, 4] = spr_player_run_lr;
-dir_sprites[1, 4] = spr_player_run_up;
-dir_sprites[2, 4] = spr_player_run_lr;
-dir_sprites[3, 4] = spr_player_run_dwn;
-dir_sprites[0, 5] = spr_player_run_lr;
-dir_sprites[1, 5] = spr_player_run_up;
-dir_sprites[2, 5] = spr_player_run_lr;
-dir_sprites[3, 5] = spr_player_run_dwn;
+
+
 
 //animation length
 animation_length_current = 1;
@@ -105,7 +86,7 @@ pressed[1] = false;
 
 enabled = true;
 
-spr_current = spr_player_idle_lr;
+spr_current = spr_player_complete;
 hb_atk_current = -1;
 //how big the hb(hitbox) for the basic atk is relative to its normal size(1 for normal size)
 hb_atk_basic_xscale = 1;
@@ -183,13 +164,9 @@ movement_input_normal = function (dir, xinput, yinput) {
 		//true/1 for running, false/0 for idle
 		mve_state = 1;
 	
-		//sprite change
-		determine_sprite(mve_state, image_xscale_default);
+	}
 	
-	}
-	else {
-		spr_current = dir_sprites[dir_last, 0]; 
-	}
+	dir_sprite(mve_state, image_xscale);
 	
 }
 
@@ -263,6 +240,8 @@ movement_input_atk_basic = function() {
 		pressed[0] = false;
 		
 	}
+	
+	dir_sprite(mve_state, image_xscale);
 	
 }
 
@@ -351,8 +330,6 @@ movement_input_atk_sp = function() {
 		}
 	
 	
-		spr_current = dir_sprites[dir_last, 3]; 
-	
 	}
 	else {
 		
@@ -367,7 +344,6 @@ movement_input_atk_sp = function() {
 	
 		}
 		
-		spr_current = dir_sprites[dir_last, 4];
 		
 	}
 	
@@ -379,6 +355,8 @@ movement_input_atk_sp = function() {
 		pressed[1] = false;
 		
 	}
+	
+	dir_sprite(mve_state, image_xscale);
 	
 }
 
@@ -403,6 +381,8 @@ movement_input_recoil_receiving = function() {
 		
 	}
 	
+	dir_sprite(mve_state, image_xscale);
+	
 }
 
 //called in movement_input_normal if player is hitting atk button
@@ -413,7 +393,6 @@ start_atk_basic = function () {
 		mve_state = 2;
 		pressed[0] = true;
 	
-		spr_current = dir_sprites[dir_last, 2];
 		image_index = 0;
 	
 		mve_spd = mve_spd_atk_basic_default;
@@ -455,7 +434,6 @@ start_atk_sp = function () {
 		mve_state = 3;
 		pressed[1] = true;
 	
-		spr_current = dir_sprites[dir_last, mve_state];
 		mve_spd = atk_special_mve_spd;
 	
 		alarmvar_mve = atk_length_sp;
@@ -491,7 +469,6 @@ stop_atk_basic = function() {
 	
 	mve_state = 0;
 	mve_spd = mve_spd_default;
-	spr_current = dir_sprites[dir_last, 0];
 	atk_landed = false;
 	
 	instance_destroy(hb_atk_current);
@@ -515,6 +492,27 @@ stop_atk_sp = function () {
 
 
 #endregion
+
+
+dir_sprite = function(mve_state, _xscale) {
+	
+	if (x > xprevious) {
+		dir_last = 0;
+		image_xscale = 1 * _xscale;
+	}
+	else if (x < xprevious) {
+		dir_last = 2;
+		image_xscale = -1 * _xscale;
+	}
+		
+	if (y > yprevious) {
+		dir_last = 3;
+	}
+	else if (y < yprevious) {
+		dir_last = 1;
+	}
+	
+}
 
 
 //updates enem_closest values by detecting the closest object in the enemy parent/child tree

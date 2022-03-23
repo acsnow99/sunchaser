@@ -27,9 +27,9 @@ image_xscale_default = image_xscale;
 
 moving = false;
 mve_state = 0;
-mve_spd_default = 75;
-mve_speed = 75;
-mve_speed_recoil_recv = 250;
+mve_spd_default = 300;
+mve_speed = 300;
+mve_speed_recoil_recv = 1000;
 mve_dir = 0;
 dir_last = 0;
 //how long until randomly assigning new movement pattern

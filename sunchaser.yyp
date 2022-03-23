@@ -75,6 +75,7 @@
     {"id":{"name":"obj_obstacle_tree","path":"objects/obj_obstacle_tree/obj_obstacle_tree.yy",},"order":20,},
     {"id":{"name":"scr_mve_simple","path":"scripts/scr_mve_simple/scr_mve_simple.yy",},"order":0,},
     {"id":{"name":"obj_obstacle_parent","path":"objects/obj_obstacle_parent/obj_obstacle_parent.yy",},"order":9,},
+    {"id":{"name":"spr_player_complete","path":"sprites/spr_player_complete/spr_player_complete.yy",},"order":47,},
     {"id":{"name":"obj_enemy_squeed","path":"objects/obj_enemy_squeed/obj_enemy_squeed.yy",},"order":36,},
     {"id":{"name":"sq_player_atk_basic_dwn","path":"sequences/sq_player_atk_basic_dwn/sq_player_atk_basic_dwn.yy",},"order":4,},
     {"id":{"name":"obj_obstacle_rock","path":"objects/obj_obstacle_rock/obj_obstacle_rock.yy",},"order":13,},

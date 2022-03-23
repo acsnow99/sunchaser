@@ -27,9 +27,9 @@ image_xscale_default = image_xscale;
 
 moving = false;
 mve_state = 0;
-mve_spd_default = 20;
-mve_spd_pause_default = 10;
-mve_speed = 30;
+mve_spd_default = 80;
+mve_spd_pause_default = 40;
+mve_speed = 40;
 mve_speed_recoil_recv = 200;
 mve_dir = 270;
 dir_last = 0;
