@@ -1,5 +1,4 @@
-/// @description 
-if (!enabled) exit;
+
 
 var sprite = dir_last;
 //set the index to the current sunlight level(for color), offset by the length of the animation

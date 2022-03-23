@@ -88,9 +88,6 @@ atk_landed = false;
 pressed[0] = false;
 pressed[1] = false;
 
-
-enabled = true;
-
 spr_current = spr_player_complete;
 hb_atk_current = -1;
 //how big the hb(hitbox) for the basic atk is relative to its normal size(1 for normal size)
