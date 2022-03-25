@@ -44,7 +44,6 @@ animation_pos = 0;
 
 //number of colors in the sprite pallete(including 0 as a number)
 colors_count = 8;
-sprite_count = 2;
 
 
 image_xscale_default = image_xscale;

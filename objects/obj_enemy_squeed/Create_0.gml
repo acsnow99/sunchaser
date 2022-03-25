@@ -28,11 +28,12 @@ image_xscale_default = image_xscale;
 moving = false;
 mve_state = 0;
 mve_spd_default = 80;
-mve_spd_pause_default = 40;
+mve_spd_pause_default = 80;
 mve_speed = 40;
 mve_speed_recoil_recv = 200;
 mve_dir = 270;
 dir_last = 0;
+projectile = -1;
 //how long until randomly assigning new movement pattern
 alarmvar_mve_default = 0.5;
 alarmvar_mve_pause_default = 0.1;
@@ -41,6 +42,8 @@ alarmvar_opt = 0;
 alarmvar_inv = 0;
 alarmvar_ghost_frame = 0;
 alarmvar_ghost_frame_default = 0.1;
+alarmvar_projectile_default = 5;
+alarmvar_projectile = alarmvar_projectile_default;
 recoil_time_default = 0.15;
 //default invincibility frames
 alarmvar_inv_default = 0.3;
@@ -78,6 +81,15 @@ movement_normal = function() {
 		die();
 	
 	}
+	
+	
+	if (alarmvar_projectile <= 0) {
+		
+		projectile = instance_create_layer(x, y, "Instances", obj_projectile_squeed);
+		projectile.squeed = self;
+		alarmvar_projectile = alarmvar_projectile_default;
+		
+	}
 
 
 	#region movement
@@ -85,32 +97,13 @@ movement_normal = function() {
 	
 	if (alarmvar_mve <= 0) {
 		
-		if (moving) {
-			
-			moving = false;
-			
-			mve_speed = mve_spd_pause_default;
-			mve_dir = 270;
-			
-			alarmvar_mve = alarmvar_mve_pause_default;
-			
-		}
-		else {
-			
-			moving = true;
-			
-			mve_speed = mve_spd_default;
-			mve_dir = 90;
-			
-			alarmvar_mve = alarmvar_mve_default;
-			
-		}
+		start_movement_pause();
 		
 	}
 
 
 
-	var spd = round(mve_speed * global.dt_steady + 0.2);
+	var spd = mve_speed * global.dt_steady;
 	mve_simple(spd, mve_dir);
 	
 	
@@ -119,8 +112,72 @@ movement_normal = function() {
 
 	alarmvar_mve -= global.dt_steady;
 	alarmvar_inv -= global.dt_steady;
+	alarmvar_projectile -= global.dt_steady;
+	
+}
 
-	//mve_state = moving;
+
+movement_pause = function() {
+	
+	
+	//if this object hit the player
+	var player_hit = place_meeting(x, y, obj_player);
+	if (player_hit) {
+	
+		start_recoil(false);
+		exit;
+
+	}
+	
+	
+	//if this object was hit with an attack(if returns true, obj takes dmg)
+	var this_hit = check_dmg();
+	if (this_hit) {
+		
+		//start recoil reaction
+		start_recoil(true);	
+		exit;
+		
+	}
+	
+	
+	if (health_current <= 0) {
+	
+		die();
+	
+	}
+	
+	
+	if (alarmvar_projectile <= 0) {
+		
+		projectile = instance_create_layer(x, y, "Instances", obj_projectile_squeed);
+		projectile.squeed = self;
+		alarmvar_projectile = alarmvar_projectile_default;
+		
+	}
+
+
+	#region movement
+	
+	
+	if (alarmvar_mve <= 0) {
+		
+		start_movement_normal();
+		
+	}
+
+
+
+	var spd = mve_speed * global.dt_steady;
+	mve_simple(spd, mve_dir);
+	
+	
+	
+	#endregion
+
+	alarmvar_mve -= global.dt_steady;
+	alarmvar_inv -= global.dt_steady;
+	alarmvar_projectile -= global.dt_steady;
 	
 }
 
@@ -151,6 +208,31 @@ movement_recoil = function() {
 	alarmvar_inv -= global.dt_steady;
 	
 }
+
+
+start_movement_normal = function() {
+	
+	mve_state = 1;
+	
+	mve_speed = mve_spd_default;
+	mve_dir = 90;
+			
+	alarmvar_mve = alarmvar_mve_default;
+	
+}
+
+
+start_movement_pause = function() {
+	
+	mve_state = 0;
+	
+	mve_speed = mve_spd_pause_default;
+	mve_dir = 270;
+			
+	alarmvar_mve = alarmvar_mve_pause_default;
+	
+}
+
 
 
 

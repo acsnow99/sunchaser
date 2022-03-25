@@ -14,6 +14,8 @@ if (!lvl == global.level) {
 switch(mve_state) {
 	
 	case 0:
+		movement_pause();
+		break;
 	case 1:
 		movement_normal();
 		break;
