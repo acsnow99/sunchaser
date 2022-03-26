@@ -38,13 +38,13 @@ mve_state = 0;
 mve_spd_default = 300;
 mve_speed = 300;
 mve_speed_recoil_recv = 400;
-mve_speed_atk = mve_speed * 3;
+mve_speed_atk = mve_speed * 2;
 mve_dir = 0;
 dir_last = 0;
-atk_dist = 24;
+atk_dist = 100;
 //how long until randomly assigning new movement pattern
 alarmvar_mve_default = 0.75;
-atk_length_default = 0.05;
+atk_length_default = 0.15;
 alarmvar_atk = 0;
 alarmvar_mve = 0;
 alarmvar_inv = 0;
@@ -82,7 +82,7 @@ movement_normal = function() {
 	}
 	
 	
-	var atk = abs(obj_player.x - x) <= atk_dist;
+	var atk = distance_to_object(obj_player) <= atk_dist;
 	if (atk && !attacked) {
 		
 		//start the atk movement to try to hit the player
@@ -249,10 +249,12 @@ start_atk = function() {
 	
 	moving = true;
 	attacked = true;
+	invincible = true;
 	
 	mve_state = 3;
 	
 	alarmvar_mve = atk_length_default;
+	alarmvar_inv = atk_length_default - 0.05;
 	
 }
 
