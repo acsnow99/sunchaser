@@ -28,15 +28,15 @@ image_xscale_default = image_xscale;
 moving = false;
 mve_state = 0;
 mve_spd_default = 80;
-mve_spd_pause_default = 80;
+mve_spd_pause_default = 40;
 mve_speed = 40;
 mve_speed_recoil_recv = 200;
 mve_dir = 270;
 dir_last = 0;
 projectile = -1;
 //how long until randomly assigning new movement pattern
-alarmvar_mve_default = 0.5;
-alarmvar_mve_pause_default = 0.1;
+alarmvar_mve_default = 0.25;
+alarmvar_mve_pause_default = 0.5;
 alarmvar_mve = alarmvar_mve_default;
 alarmvar_opt = 0;
 alarmvar_inv = 0;
@@ -85,7 +85,7 @@ movement_normal = function() {
 	
 	if (alarmvar_projectile <= 0) {
 		
-		projectile = instance_create_layer(x, y, "Instances", obj_projectile_squeed);
+		projectile = instance_create_layer(x, y, "fx", obj_projectile_squeed);
 		projectile.squeed = self;
 		alarmvar_projectile = alarmvar_projectile_default;
 		

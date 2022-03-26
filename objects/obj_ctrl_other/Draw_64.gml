@@ -30,5 +30,14 @@ if (global.pause) {
 	
 	}
 	
+	
+	var l = global.level;
+	var w = sprite_get_width(spr_level);
+	var h = sprite_get_height(spr_level);
+	var _x = global.levels[l, 0]/w * grid_square_width + left;
+	var _y = global.levels[l, 2]/h * grid_square_width + top;
+	
+	draw_sprite_ext(spr_map_locator, image_index, _x, _y, 1, 1, 0, c_white, 1);
+	
 }
 

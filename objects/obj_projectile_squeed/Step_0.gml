@@ -1,4 +1,11 @@
 
+var lvl = scr_lvl_check(x, y);
+
+if (lvl != global.level) {
+	
+	die();
+
+}
 
 switch(mve_state) {
 	
