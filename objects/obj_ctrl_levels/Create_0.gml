@@ -115,7 +115,11 @@ enemy_cleanup = function() {
 			
 			with (obj) {
 				
-				instance_destroy(liege);
+				if (instance_exists(liege)) {
+				
+					instance_destroy(liege);
+					
+				}
 				
 			}
 			
@@ -134,7 +138,7 @@ enemy_spawn = function() {
 	for (var i = 0; i < instance_number(obj_enemy_spawner); i++) {
 		
 		var obj = instance_find(obj_enemy_spawner, i);
-			
+		
 		with (obj) {
 				
 			if (level == global.level) {

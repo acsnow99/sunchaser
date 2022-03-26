@@ -4,6 +4,6 @@ enemy[1] = obj_enemy_bandit;
 
 light = 0;
 
-liege = -1;
+liege = obj_obstacle_backtrackblocker;
 
 level = 0;
