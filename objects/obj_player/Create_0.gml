@@ -362,25 +362,23 @@ movement_input_atk_sp = function() {
 
 movement_input_recoil_receiving = function() {
 	
-	alarmvar_inv -= global.dt_steady;
-	alarmvar_recoil_recv -= global.dt_steady;
+	
+	var spd_exct = mve_spd_recoil_recv * global.dt_steady;
+	var dir_exct = point_direction(enem_closest_x, enem_closest_y, x, y + 32);
+	//value of variable 'moving' may change in the process of this script
+	//if the player can't move in the desired direction, moving will change to false
+	mve_simple(spd_exct, dir_exct);
 	
 	
-	if (alarmvar_recoil_recv > 0) {
-		
-		var spd_exct = mve_spd_recoil_recv * global.dt_steady;
-		var dir_exct = point_direction(enem_closest_x, enem_closest_y, x, y + 32);
-		//value of variable 'moving' may change in the process of this script
-		//if the player can't move in the desired direction, moving will change to false
-		mve_simple(spd_exct, dir_exct);
-		
-	}
-	else {
+	if (alarmvar_recoil_recv <= 0) {
 		
 		mve_state = 0;
 		
 	}
 	
+		
+	alarmvar_inv -= global.dt_steady;
+	alarmvar_recoil_recv -= global.dt_steady;
 	
 }
 
