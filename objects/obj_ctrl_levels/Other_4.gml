@@ -1,12 +1,14 @@
 
+global.levels_initiated = false;
+spawners_initiated = false;
 
-if (!global.levels_initiated && instance_exists(obj_level_frame)) {
+if (instance_exists(obj_level_frame)) {
 	
 	global.levels_initiated = levels_init();
 	
 }
 
-if (!spawners_initiated && instance_exists(obj_enemy_spawner)) {
+if (instance_exists(obj_enemy_spawner)) {
 	
 	spawners_initiated = enemy_spawner_init();
 	

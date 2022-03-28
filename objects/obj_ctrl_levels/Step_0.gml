@@ -9,7 +9,7 @@ if (!instance_exists(obj_player)) {
 }
 
 if (!global.levels_initiated) {
-
+	
 	if instance_exists(obj_level_frame) {
 	
 		global.levels_initiated = levels_init();

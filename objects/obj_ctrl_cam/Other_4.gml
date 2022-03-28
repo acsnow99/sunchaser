@@ -1,6 +1,6 @@
 //@description camera setup - level bounds
 
-in_level = (room == rm_level);
+in_level = (room == rm_level || room == rm_underground);
 
 //object on which to focus the camera
 focus_obj = obj_player;

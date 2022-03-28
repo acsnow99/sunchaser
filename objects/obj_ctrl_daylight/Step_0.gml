@@ -1,7 +1,8 @@
 /// @description sunlight ticks down - checks for light level to decrease
 
-if (room == rm_end || room == rm_setup) {
+if (room != rm_level) {
 	
+	global.sunlight_current = 0;
 	exit;
 	
 }
