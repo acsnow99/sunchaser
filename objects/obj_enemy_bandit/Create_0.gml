@@ -2,6 +2,7 @@
 
 health_max = 50;
 health_current = health_max;
+health_last = health_current;
 
 invincible = false;
 
@@ -227,12 +228,6 @@ start_recoil = function(inv) {
 	
 	if (inv) {
 		
-		if (global.combo < 3) {
-				
-			global.combo += 1;
-				
-		}
-		
 	
 		alarmvar_inv = alarmvar_inv_default;
 		invincible = true;
@@ -265,6 +260,8 @@ stop_recoil = function() {
 	moving = false;
 	
 	mve_state = 0;
+	
+	health_last = health_current;
 	
 }
 

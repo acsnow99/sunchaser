@@ -20,5 +20,5 @@ if (open) {
 }
 
 
-draw_sprite_ext(spr_current, frame, x, y, 1, 1, 0, c_white, 1);
+draw_sprite_ext(spr_current, frame, _x, _y, 1, 1, 0, c_white, 1);
 

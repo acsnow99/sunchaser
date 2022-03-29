@@ -1,1 +1,2 @@
-open = true;
+
+act_open();
