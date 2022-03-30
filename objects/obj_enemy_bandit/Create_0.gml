@@ -261,8 +261,6 @@ stop_recoil = function() {
 	
 	mve_state = 0;
 	
-	health_last = health_current;
-	
 }
 
 stop_atk = function() {

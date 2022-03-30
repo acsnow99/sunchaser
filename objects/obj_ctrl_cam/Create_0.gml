@@ -14,3 +14,9 @@ camera_set_view_size(view_camera[0], global.view_width, global.view_height);
 
 
 
+
+item_sprites[0] = spr_placeholder;
+item_sprites[1] = spr_icon_sword;
+item_sprites[2] = spr_icon_sun_lantern;
+
+

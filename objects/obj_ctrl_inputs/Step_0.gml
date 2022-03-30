@@ -27,3 +27,26 @@ if (keyboard_check_released(ord("P"))) {
 
 }
 
+
+
+if (keyboard_check_pressed(ord("C"))) {
+	
+	for (var i = global.item_equipped + 1; i < 500; i++) {
+	
+		if (i >= global.items_count) {
+			
+			i = 0;
+			
+		}
+	
+		if (global.items[i]) {
+		
+			global.item_equipped = i;
+			i = 500;
+		
+		}
+		
+	}
+	
+}
+

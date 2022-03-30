@@ -57,9 +57,12 @@ for (var i = 0; i < instance_number(obj_enemy_parent); i++) {
 
 if (global.combo >= 3) {
 	
-	health += 1;
-	
-	global.combo = 0;
+	if (health < global.health_max - 1) {
+		
+		health += 10;
+		global.combo = 0;
+		
+	}
 	
 }
 
