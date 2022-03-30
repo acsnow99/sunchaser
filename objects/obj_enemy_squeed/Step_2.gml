@@ -13,6 +13,20 @@ if (lvl != global.level) {
 }
 
 
+if (y <= obj_player.y) {
+	
+	mve_spd_pause_default = 60;
+	mve_spd_default = 40;
+	
+}
+else {
+	
+	mve_spd_pause_default = 40;
+	mve_spd_default = 80;
+	
+}
+
+
 switch(mve_state) {
 	
 	case 0:

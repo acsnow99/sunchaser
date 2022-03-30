@@ -1,9 +1,12 @@
 
 
+health_current = 10;
+health_last = health_current;
+
 atk_damage = 1;
 
 mve_dir = 0;
-mve_spd_default = 200;
+mve_spd_default = 300;
 mve_spd = 0;
 mve_state = 0;
 

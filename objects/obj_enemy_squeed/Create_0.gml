@@ -28,22 +28,25 @@ image_xscale_default = image_xscale;
 
 moving = false;
 mve_state = 0;
-mve_spd_default = 80;
+mve_spd_default = 40;
+mve_speed_inc = 4;
 mve_spd_pause_default = 40;
 mve_speed = 40;
 mve_speed_recoil_recv = 200;
 mve_dir = 270;
 dir_last = 0;
 projectile = -1;
-//how long until randomly assigning new movement pattern
-alarmvar_mve_default = 0.25;
-alarmvar_mve_pause_default = 0.5;
+//how long until assigning new movement pattern
+alarmvar_mve_default = 0.5;
+alarmvar_mve_pause_default = 1;
 alarmvar_mve = alarmvar_mve_default;
+alarmvar_speed_inc_default = 0.8;
+alarmvar_speed_inc = alarmvar_speed_inc_default;
 alarmvar_opt = 0;
 alarmvar_inv = 0;
 alarmvar_ghost_frame = 0;
 alarmvar_ghost_frame_default = 0.1;
-alarmvar_projectile_default = 5;
+alarmvar_projectile_default = 3;
 alarmvar_projectile = alarmvar_projectile_default;
 recoil_time_default = 0.15;
 //default invincibility frames
@@ -104,6 +107,15 @@ movement_normal = function() {
 
 
 
+	if (alarmvar_speed_inc <= 0) {
+			
+		mve_speed += mve_speed_inc;
+		
+		alarmvar_speed_inc = alarmvar_speed_inc_default;
+		
+	}
+	
+
 	var spd = mve_speed * global.dt_steady;
 	mve_simple(spd, mve_dir);
 	
@@ -112,6 +124,7 @@ movement_normal = function() {
 	#endregion	
 
 	alarmvar_mve -= global.dt_steady;
+	alarmvar_speed_inc -= global.dt_steady;
 	alarmvar_inv -= global.dt_steady;
 	alarmvar_projectile -= global.dt_steady;
 	
@@ -216,8 +229,9 @@ start_movement_normal = function() {
 	mve_state = 1;
 	
 	mve_speed = mve_spd_default;
-	mve_dir = 90;
-			
+	mve_dir = irandom_range(70, 110);
+	
+	alarmvar_speed_inc = alarmvar_speed_inc_default;
 	alarmvar_mve = alarmvar_mve_default;
 	
 }
@@ -228,7 +242,7 @@ start_movement_pause = function() {
 	mve_state = 0;
 	
 	mve_speed = mve_spd_pause_default;
-	mve_dir = 270;
+	mve_dir = irandom_range(250, 290);
 			
 	alarmvar_mve = alarmvar_mve_pause_default;
 	
