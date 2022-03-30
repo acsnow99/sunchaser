@@ -37,33 +37,3 @@ if (health <= 0) {
 }
 
 
-for (var i = 0; i < instance_number(obj_enemy_parent); i++) {
-	
-	var o = instance_find(obj_enemy_parent, i);
-	
-	if (o.health_current < o.health_last) {
-
-		if (global.combo < 3) {
-				
-			global.combo += 1;
-				
-		}
-		
-		o.health_last = o.health_current;
-		
-	}
-			
-}
-
-if (global.combo >= 3) {
-	
-	if (health < global.health_max - 1) {
-		
-		health += 10;
-		global.combo = 0;
-		
-	}
-	
-}
-
-

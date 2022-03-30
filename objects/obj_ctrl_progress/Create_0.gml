@@ -10,3 +10,45 @@ global.item_equipped = 1;
 
 global.keys = 0;
 
+//keeps track of how many hits the player has landed(0-2) 
+global.combo = 0;
+
+
+
+
+combo_update = function() {
+	
+	for (var i = 0; i < instance_number(obj_enemy_parent); i++) {
+	
+		var o = instance_find(obj_enemy_parent, i);
+	
+		if (o.health_current < o.health_last) {
+
+			if (global.combo < 3) {
+				
+				global.combo += 1;
+				
+			}
+		
+			o.health_last = o.health_current;
+		
+		}
+			
+	}
+	
+	
+	
+	//give the player health for a completed combo
+	if (global.combo >= 3) {
+	
+		if (health < global.health_max - 1) {
+		
+			health += 10;
+			global.combo = 0;
+		
+		}
+	
+	}
+	
+}
+

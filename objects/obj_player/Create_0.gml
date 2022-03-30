@@ -37,7 +37,6 @@ directions[2] = 180;
 directions[3] = 270;
 
 
-
 //animation length
 animation_length_current = 1;
 animation_pos = 0;
@@ -63,6 +62,7 @@ alarmvar_recoil_recv_default = 0.075;
 alarmvar_ghost_frame_default = 0.1;
 mve_spd_recoil_recv = mve_spd_default * 3;
 atk_length_basic = 0.2;
+atk_length_lantern = 0.3;
 atk_length_sp = 0.75;
 wait_length_atk_sp = 0.5; 
 
@@ -89,9 +89,13 @@ pressed[1] = false;
 
 spr_current = spr_player_complete;
 hb_atk_current = -1;
+
+
 //how big the hb(hitbox) for the basic atk is relative to its normal size(1 for normal size)
 hb_atk_basic_xscale = 1;
 hb_atk_basic_yscale = 1;
+hb_atk_lantern_xscale = 1;
+hb_atk_lantern_yscale = 1;
 
 
 #region movement input functions, movement, and step checks(called in step event or from each other)
@@ -100,8 +104,19 @@ movement_input_normal = function (dir, xinput, yinput) {
 	
 	if (keyboard_check_pressed(atk_input_basic)) {
 	
-		start_atk_basic();
-		exit;
+		if (global.item_equipped == 1) {
+			
+			start_atk_basic();
+			exit;
+			
+		}
+		
+		if (global.item_equipped == 2) {
+			
+			start_atk_lantern();
+			exit;
+			
+		}
 	
 	}
 	//if they let go of the button, let them attack again
@@ -421,6 +436,39 @@ start_atk_basic = function () {
 		
 	}
 
+}
+
+
+start_atk_lantern = function() {
+	
+	
+	if (!pressed[0]) {
+		
+		mve_state = 2;
+		pressed[0] = true;
+	
+		image_index = 0;
+	
+		mve_spd = 0;
+	
+		alarmvar_mve = atk_length_lantern;
+	
+	
+	
+		var x_rel = x;
+		var y_rel = y;
+		var atk_dir = dir_last;
+		
+		
+		hb_atk_current = instance_create_layer(x_rel, y_rel, "hb", obj_hb_player_atk_lantern);
+		
+		hb_atk_current.image_angle = directions[atk_dir];
+		hb_atk_current.image_xscale = hb_atk_lantern_xscale;
+		hb_atk_current.image_yscale = hb_atk_lantern_yscale;
+		
+		
+	}
+	
 }
 
 //called in movement_input_normal if player is hitting special atk button
