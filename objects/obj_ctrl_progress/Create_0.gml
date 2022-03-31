@@ -9,6 +9,7 @@ global.items[2] = true;
 global.item_equipped = 1;
 
 global.keys = 0;
+global.currency = 0;
 
 //keeps track of how many hits the player has landed(0-2) 
 global.combo = 0;
@@ -49,6 +50,27 @@ combo_update = function() {
 		}
 	
 	}
+	
+}
+
+combo_end = function() {
+	
+	//reset all the enemies' values to prevent a combo from 
+	//"appearing" after the player switches back to sword
+	for (var i = 0; i < instance_number(obj_enemy_parent); i++) {
+	
+		var o = instance_find(obj_enemy_parent, i);
+	
+		if (o.health_current < o.health_last) {
+		
+			o.health_last = o.health_current;
+		
+		}
+			
+	}
+	
+	
+	global.combo = 0;
 	
 }
 

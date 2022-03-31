@@ -13,6 +13,9 @@ window_set_fullscreen(true);
 camera_set_view_size(view_camera[0], global.view_width, global.view_height);
 
 
+height_healthbar = sprite_get_height(spr_healthbar);
+width_meter = sprite_get_width(spr_lightboost_meter);
+height_lightcrystal = sprite_get_width(spr_lightcrystal);
 
 
 item_sprites[0] = spr_placeholder;

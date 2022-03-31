@@ -6,7 +6,7 @@ if (global.item_equipped == 1) {
 }
 else {
 	
-	global.combo = 0;
+	combo_end();
 	
 }
 
