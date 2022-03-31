@@ -17,7 +17,7 @@ global.sunlight_max = 7;
 //how far the player can go from the "lit" box to still have the highest light level
 sunlight_reach = 0;
 
-sunset_spd_default = 10;
+sunset_spd_default = 5;
 sunset_spd = sunset_spd_default;
 
 alarmvar_sunset = sunset_spd;
@@ -114,8 +114,8 @@ sunbox_assign = function(light) {
 		
 		
 		
-		global.sunbox[l, 2] = clamp(i - sunlight_reach, 0, global.sunlight_max);
-		global.sunbox[r, 2] = clamp(i - sunlight_reach, 0, global.sunlight_max);
+		global.sunbox[l, 2] = clamp((i * 2) - sunlight_reach, 0, global.sunlight_max);
+		global.sunbox[r, 2] = clamp((i * 2) - sunlight_reach, 0, global.sunlight_max);
 		
 		
 		
