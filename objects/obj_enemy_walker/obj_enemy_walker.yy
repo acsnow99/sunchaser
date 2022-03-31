@@ -1,7 +1,7 @@
 {
   "spriteId": {
-    "name": "spr_walker_idle_lr",
-    "path": "sprites/spr_walker_idle_lr/spr_walker_idle_lr.yy",
+    "name": "spr_enemy_walker_complete",
+    "path": "sprites/spr_enemy_walker_complete/spr_enemy_walker_complete.yy",
   },
   "solid": false,
   "visible": true,

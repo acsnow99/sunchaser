@@ -1,5 +1,6 @@
 /// @description check if dead; if atk hitbox hits this object, it takes the atk damage
 
+
 var lvl = scr_lvl_check(x, y);
 
 if (!lvl == global.level) {

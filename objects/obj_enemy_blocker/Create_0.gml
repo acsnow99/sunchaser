@@ -2,6 +2,7 @@
 
 health_max = 100;
 health_current = health_max;
+health_last = health_current;
 
 invincible = false;
 

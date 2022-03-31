@@ -87,7 +87,7 @@
     "eventToFunction": {},
     "eventStubScript": null,
     "parent": {"name":"spr_city","path":"sprites/spr_city/spr_city.yy",},
-    "resourceVersion": "1.3",
+    "resourceVersion": "1.4",
     "name": "spr_city",
     "tags": [],
     "resourceType": "GMSequence",

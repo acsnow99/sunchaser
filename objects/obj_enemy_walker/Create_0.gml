@@ -2,6 +2,7 @@
 
 health_max = 30;
 health_current = health_max;
+health_last = health_current;
 
 invincible = false;
 
@@ -27,9 +28,9 @@ image_xscale_default = image_xscale;
 
 moving = false;
 mve_state = 0;
-mve_spd_default = 75;
-mve_speed = 75;
-mve_speed_recoil_recv = 250;
+mve_spd_default = 300;
+mve_speed = 300;
+mve_speed_recoil_recv = 1000;
 mve_dir = 0;
 dir_last = 0;
 //how long until randomly assigning new movement pattern
@@ -66,7 +67,7 @@ movement_normal = function() {
 	if (this_hit) {
 		
 		//start recoil reaction
-		start_recoil(true);
+		start_recoil(true);	
 		exit;
 		
 	}

@@ -100,7 +100,7 @@
     "name": "Sequences",
     "path": "folders/Sequences.yy",
   },
-  "resourceVersion": "1.3",
+  "resourceVersion": "1.4",
   "name": "sq_player_atk_basic_lr",
   "tags": [],
   "resourceType": "GMSequence",
