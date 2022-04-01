@@ -1,5 +1,5 @@
 
-price = 60;
+price = 20;
 
 item_index = 2;
 

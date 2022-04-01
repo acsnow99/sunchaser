@@ -30,7 +30,7 @@ if (keyboard_check_pressed(ord("X"))) {
 
 }
 
-
+/*
 if (keyboard_check_released(ord("P"))) {
 	
 	if (global.debug) {
@@ -41,7 +41,7 @@ if (keyboard_check_released(ord("P"))) {
 	}
 
 }
-
+*/
 
 
 if (keyboard_check_pressed(ord("C"))) {
