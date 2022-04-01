@@ -1,8 +1,8 @@
 
-torch[0] = inst_4B71112C;
-torch[1] = inst_268FF009;
+torch[0] = inst_7587DB15;
+torch[1] = inst_587BA3F3;
 
-door = inst_5364529B;
+door = inst_145176F4;
 
 torch_count = 2;
 

@@ -10,11 +10,26 @@ if (_r) {
 	}
 }
 
+/*
 if (keyboard_check_pressed(ord("R"))) {
 	
-	game_restart();
+	game_load("savegame");
 
 }
+
+if (keyboard_check_pressed(ord("T"))) {
+	
+	game_save("savegame");
+
+}
+*/
+
+if (keyboard_check_pressed(ord("X"))) {
+	
+	game_end();
+
+}
+
 
 if (keyboard_check_released(ord("P"))) {
 	
