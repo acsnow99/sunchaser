@@ -1,8 +1,5 @@
 {
-  "spriteId": {
-    "name": "spr_walker_idle_lr",
-    "path": "sprites/spr_walker_idle_lr/spr_walker_idle_lr.yy",
-  },
+  "spriteId": null,
   "solid": false,
   "visible": true,
   "spriteMaskId": null,

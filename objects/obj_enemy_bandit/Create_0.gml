@@ -6,27 +6,10 @@ health_last = health_current;
 
 invincible = false;
 
-dir_sprites[0, 0] = spr_bandit;
-dir_sprites[1, 0] = spr_bandit;
-dir_sprites[2, 0] = spr_bandit;
-dir_sprites[3, 0] = spr_bandit;
-dir_sprites[0, 1] = spr_bandit;
-dir_sprites[1, 1] = spr_bandit;
-dir_sprites[2, 1] = spr_bandit;
-dir_sprites[3, 1] = spr_bandit;
-dir_sprites[0, 2] = spr_bandit;
-dir_sprites[1, 2] = spr_bandit;
-dir_sprites[2, 2] = spr_bandit;
-dir_sprites[3, 2] = spr_bandit;
-dir_sprites[0, 3] = spr_bandit;
-dir_sprites[1, 3] = spr_bandit;
-dir_sprites[2, 3] = spr_bandit;
-dir_sprites[3, 3] = spr_bandit;
-
 directions[0] = 270;
 directions[1] = 90;
 
-spr_current = dir_sprites[0, 0];
+spr_current = spr_bandit;
 
 animation_pos = 0;
 animation_length_current = 1;

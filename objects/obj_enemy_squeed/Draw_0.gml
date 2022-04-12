@@ -6,6 +6,8 @@ depth = -y;
 image_index = global.sunlight_current * animation_length_current + animation_pos;
 
 
+#region ghost frames
+
 if (alarmvar_inv > 0) {
 	
 	alarmvar_ghost_frame -= global.dt_steady;
@@ -28,8 +30,7 @@ else {
 	
 }
 
-
-determine_sprite(mve_state, image_xscale_default);
+#endregion
 
 
 draw_sprite_ext(spr_current, image_index, x, y, image_xscale, image_yscale, 0, c_white, image_alpha)

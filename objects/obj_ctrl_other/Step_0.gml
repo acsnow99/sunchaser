@@ -36,10 +36,9 @@ if (health <= 0) {
 	obj_player.y = start_y;
 	
 	global.sunlight_level = 2;
+	obj_ctrl_daylight.sunbox_assign(global.sunlight_level);
 	
 	health = 50;
-	
-	global.currency = clamp(global.currency - 10, 0, 5000);
 	
 }
 

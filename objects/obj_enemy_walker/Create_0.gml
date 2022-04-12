@@ -6,20 +6,7 @@ health_last = health_current;
 
 invincible = false;
 
-dir_sprites[0, 0] = spr_walker_idle_lr;
-dir_sprites[1, 0] = spr_walker_idle_up;
-dir_sprites[2, 0] = spr_walker_idle_lr;
-dir_sprites[3, 0] = spr_walker_idle_dwn;
-dir_sprites[0, 1] = spr_walker_run_lr;
-dir_sprites[1, 1] = spr_walker_run_up;
-dir_sprites[2, 1] = spr_walker_run_lr;
-dir_sprites[3, 1] = spr_walker_run_dwn;
-dir_sprites[0, 2] = spr_walker_run_lr;
-dir_sprites[1, 2] = spr_walker_run_up;
-dir_sprites[2, 2] = spr_walker_run_lr;
-dir_sprites[3, 2] = spr_walker_run_dwn;
-
-spr_current = dir_sprites[0, 0];
+spr_current = spr_enemy_walker_complete;
 
 animation_pos = 0;
 animation_length_current = 1;
@@ -39,7 +26,7 @@ alarmvar_mve = alarmvar_mve_default;
 alarmvar_opt = 0;
 alarmvar_inv = 0;
 alarmvar_ghost_frame = 0;
-alarmvar_ghost_frame_default = 0.1;
+alarmvar_ghost_frame_default = 0.3;
 recoil_time_default = 0.075;
 pause_time_default = 1;
 //default invincibility frames

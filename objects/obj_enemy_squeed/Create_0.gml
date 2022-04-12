@@ -6,20 +6,7 @@ health_last = health_current;
 
 invincible = false;
 
-dir_sprites[0, 0] = spr_squeed;
-dir_sprites[1, 0] = spr_squeed;
-dir_sprites[2, 0] = spr_squeed;
-dir_sprites[3, 0] = spr_squeed;
-dir_sprites[0, 1] = spr_squeed;
-dir_sprites[1, 1] = spr_squeed;
-dir_sprites[2, 1] = spr_squeed;
-dir_sprites[3, 1] = spr_squeed;
-dir_sprites[0, 2] = spr_squeed;
-dir_sprites[1, 2] = spr_squeed;
-dir_sprites[2, 2] = spr_squeed;
-dir_sprites[3, 2] = spr_squeed;
-
-spr_current = dir_sprites[0, 0];
+spr_current = spr_squeed;
 
 animation_pos = 0;
 animation_length_current = 2;

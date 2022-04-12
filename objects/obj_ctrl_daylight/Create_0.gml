@@ -13,7 +13,7 @@ global.nighttime_trigger = 4;
 
 //global.sunlight_max is the highest index of sunlight that can exist
 sunlight_min = 0;
-global.sunlight_max = 7;
+global.sunlight_max = 2;
 //how far the player can go from the "lit" box to still have the highest light level
 sunlight_reach = 0;
 
@@ -31,11 +31,6 @@ alarmvar_dmg = alarmvar_dmg_default;
 colors[0] = spr_background_0;
 colors[1] = spr_background_1;
 colors[2] = spr_background_2;
-colors[3] = spr_background_3;
-colors[4] = spr_background_4;
-colors[5] = spr_background_5;
-colors[6] = spr_background_6;
-colors[7] = spr_background_7;
 
 
 
@@ -114,8 +109,8 @@ sunbox_assign = function(light) {
 		
 		
 		
-		global.sunbox[l, 2] = clamp((i * 2) - sunlight_reach, 0, global.sunlight_max);
-		global.sunbox[r, 2] = clamp((i * 2) - sunlight_reach, 0, global.sunlight_max);
+		global.sunbox[l, 2] = clamp(i - sunlight_reach, 0, global.sunlight_max);
+		global.sunbox[r, 2] = clamp(i - sunlight_reach, 0, global.sunlight_max);
 		
 		
 		
