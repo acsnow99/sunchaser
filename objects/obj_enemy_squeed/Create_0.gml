@@ -1,6 +1,6 @@
 /// @description enemy attributes. Health, speed, etc.
 
-health_max = 30;
+health_max = 60;
 health_current = health_max;
 health_last = health_current;
 
@@ -46,8 +46,8 @@ alarmvar_opt = 0;
 alarmvar_inv = 0;
 alarmvar_ghost_frame = 0;
 alarmvar_ghost_frame_default = 0.1;
-alarmvar_projectile_default = 3;
-alarmvar_projectile = alarmvar_projectile_default;
+alarmvar_projectile_default = 4;
+alarmvar_projectile = 0;
 recoil_time_default = 0.15;
 //default invincibility frames
 alarmvar_inv_default = 0.3;

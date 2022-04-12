@@ -6,7 +6,7 @@ health_last = health_current;
 atk_damage = 1;
 
 mve_dir = 0;
-mve_spd_default = 300;
+mve_spd_default = 250;
 mve_spd = 0;
 mve_state = 0;
 
@@ -52,7 +52,7 @@ movement_charge = function() {
 movement_shoot = function() {
 	
 	
-	if (place_meeting(x, y, obj_player) || place_meeting(x, y, obj_obstacle_parent)) {
+	if (place_meeting(x, y, obj_player) || distance_to_object(obj_obstacle_parent) <= 64) {
 	
 		die();
 	

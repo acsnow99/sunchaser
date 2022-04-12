@@ -181,8 +181,8 @@ check_outside_room = function() {
 			
 			var obj_endpt = obj.tp_endpoint;
 			
-			var off_x = obj_endpt.side_x * 32;
-			var off_y = obj_endpt.side_y * 32;
+			var off_x = obj_endpt.side_x * 128;
+			var off_y = obj_endpt.side_y * 128;
 			
 			x = obj_endpt.x + off_x;
 			y = obj_endpt.y + off_y;

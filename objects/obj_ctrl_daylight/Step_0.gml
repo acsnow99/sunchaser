@@ -86,6 +86,30 @@ if (_darken) {
 }
 
 
+if (global.sunlight_current >= 4) {
+	
+	if (!(global.item_equipped == 2)) {
+		
+		if (alarmvar_dmg <= 0) {
+		
+			health -= 10;
+		
+			alarmvar_dmg = alarmvar_dmg_default;
+		
+		}
+	
+		alarmvar_dmg -= global.dt_steady;
+		
+	}
+	else {
+		
+		alarmvar_dmg = alarmvar_dmg_default;
+		
+	}
+	
+}
+
+
 
 
 var lay_id = layer_get_id("Background");

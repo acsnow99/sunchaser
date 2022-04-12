@@ -32,7 +32,14 @@ else {
 
 if (health <= 0) {
 	
-	game_restart();
+	obj_player.x = start_x;
+	obj_player.y = start_y;
+	
+	global.sunlight_level = 2;
+	
+	health = 50;
+	
+	global.currency = clamp(global.currency - 10, 0, 5000);
 	
 }
 

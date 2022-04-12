@@ -1,7 +1,7 @@
 ///@description initialize variables
 
 //where the highest light level is on the map(which sunbox is "lit")
-global.sunlight_level = 4;
+global.sunlight_level = 2;
 //the sunlight of where the player is
 global.sunlight_current = 0;
 //where the player is on the map(based on x axis, not y)
@@ -17,7 +17,7 @@ global.sunlight_max = 7;
 //how far the player can go from the "lit" box to still have the highest light level
 sunlight_reach = 0;
 
-sunset_spd_default = 5;
+sunset_spd_default = 8;
 sunset_spd = sunset_spd_default;
 
 alarmvar_sunset = sunset_spd;
