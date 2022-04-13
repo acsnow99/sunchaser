@@ -47,6 +47,9 @@ colors_count = 3;
 
 image_xscale_default = image_xscale;
 
+draw_color = c_white;
+draw_color_dmg = c_purple;
+
 
 moving = false;
 mve_state = 0;
@@ -77,6 +80,8 @@ combo_max = 1;
 //to check if a sp atk has started yet
 energy_used = false;
 attacking = false;
+
+invincible = false;
 
 //to check if a basic atk has landed
 atk_landed = false;
@@ -139,14 +144,21 @@ movement_input_normal = function (dir, xinput, yinput) {
 		pressed[1] = false;
 		
 	}
-
-
-	alarmvar_inv -= global.dt_steady;
-
-	if (place_meeting(x, y, obj_enemy_parent) && alarmvar_inv <= 0) {
+	
+	if (!invincible) {
+	
+		if (alarmvar_inv <= 0) {
 		
-		start_recoil_receiving(true);
-		exit;
+			make_vincible();
+		
+		}
+
+		if (place_meeting(x, y, obj_enemy_parent)) {
+		
+			start_recoil_receiving(true);
+			exit;
+		
+		}
 		
 	}
 	
@@ -185,6 +197,8 @@ movement_input_normal = function (dir, xinput, yinput) {
 	}
 	
 	
+	
+	alarmvar_inv -= global.dt_steady;
 	
 }
 
@@ -391,6 +405,12 @@ movement_input_recoil_receiving = function() {
 		
 	}
 	
+	if (alarmvar_inv <= 0) {
+		
+		make_vincible();
+		
+	}
+	
 		
 	alarmvar_inv -= global.dt_steady;
 	alarmvar_recoil_recv -= global.dt_steady;
@@ -492,21 +512,18 @@ start_atk_sp = function () {
 //called in movement_input_normal if player is receiving damage
 start_recoil_receiving = function(dmg) {
 	
-	
-	if (dmg) {
-		
-		health -= 10;
-		alarmvar_inv = alarmvar_inv_default;
-		
-	}
-	
-	
 	mve_state = 5;
 		
 	alarmvar_recoil_recv = alarmvar_recoil_recv_default;
 		
 	//finds the values of the nearest enemy
 	attacker_id(x, y);
+	
+	if (dmg) {
+		
+		damage_take(enem_closest.atk_damage);
+		
+	}
 	
 }
 
@@ -537,6 +554,24 @@ stop_atk_sp = function () {
 
 
 #endregion
+
+
+damage_take = function(dmg) {
+	
+	health -= dmg;
+	
+	alarmvar_inv = alarmvar_inv_default;
+	
+	draw_color = draw_color_dmg;
+	
+}
+
+make_vincible = function() {
+	
+	invincible = false;
+	draw_color = c_white;
+	
+}
 
 
 dir_sprite = function(mve_state, _xscale) {

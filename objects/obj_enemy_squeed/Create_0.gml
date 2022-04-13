@@ -4,6 +4,8 @@ health_max = 60;
 health_current = health_max;
 health_last = health_current;
 
+atk_damage = 10;
+
 invincible = false;
 
 spr_current = spr_squeed;

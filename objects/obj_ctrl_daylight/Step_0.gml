@@ -86,13 +86,17 @@ if (_darken) {
 }
 
 
-if (global.sunlight_current >= 4) {
+if (global.sunlight_current >= global.nighttime_trigger) {
 	
 	if (!(global.item_equipped == 2)) {
 		
 		if (alarmvar_dmg <= 0) {
 		
-			health -= 10;
+			with (obj_player) {
+				
+				damage_take(10);
+				
+			}
 		
 			alarmvar_dmg = alarmvar_dmg_default;
 		
