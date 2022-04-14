@@ -3,7 +3,7 @@ var _r = room == rm_level
 
 if (_r) {
 	///pause game when escape is hit
-	if (keyboard_check_pressed(vk_escape)) {
+	if (keyboard_check_pressed(ord("X"))) {
 	
 		global.pause = !global.pause;
 
@@ -24,7 +24,7 @@ if (keyboard_check_pressed(ord("T"))) {
 }
 */
 
-if (keyboard_check_pressed(ord("X"))) {
+if (keyboard_check_pressed(vk_escape)) {
 	
 	game_end();
 

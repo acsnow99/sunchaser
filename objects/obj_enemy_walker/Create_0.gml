@@ -15,6 +15,8 @@ animation_length_current = 1;
 
 image_xscale_default = image_xscale;
 
+colors_count = 3;
+
 moving = false;
 mve_state = 0;
 mve_spd_default = 300;
@@ -28,11 +30,11 @@ alarmvar_mve = alarmvar_mve_default;
 alarmvar_opt = 0;
 alarmvar_inv = 0;
 alarmvar_ghost_frame = 0;
-alarmvar_ghost_frame_default = 0.3;
+alarmvar_ghost_frame_default = 0.5;
 recoil_time_default = 0.075;
 pause_time_default = 1;
 //default invincibility frames
-alarmvar_inv_default = 0.3
+alarmvar_inv_default = 0.5
 
 
 
@@ -148,6 +150,8 @@ movement_normal = function() {
 	
 	
 	
+	dir_sprite();
+	
 #endregion	
 
 	alarmvar_mve -= global.dt_steady;
@@ -255,6 +259,25 @@ check_dmg = function() {
 		return false;
 		
 	}
+}
+
+
+dir_sprite = function(mve_state, _xscale) {
+	
+	if (x > xprevious) {
+		dir_last = 0;
+	}
+	else if (x < xprevious) {
+		dir_last = 2;
+	}
+		
+	if (y > yprevious) {
+		dir_last = 3;
+	}
+	else if (y < yprevious) {
+		dir_last = 1;
+	}
+	
 }
 
 
