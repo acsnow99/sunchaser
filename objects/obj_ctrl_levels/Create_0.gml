@@ -117,7 +117,7 @@ enemy_cleanup = function() {
 				
 				if (instance_exists(liege)) {
 				
-					instance_destroy(liege);
+					liege.die(false);
 					
 				}
 				

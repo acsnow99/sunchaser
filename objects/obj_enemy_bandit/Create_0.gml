@@ -31,6 +31,8 @@ atk_dist = 100;
 //how long until randomly assigning new movement pattern
 alarmvar_mve_default = 0.75;
 atk_length_default = 0.15;
+atk_vuln_length = 0.075;
+atk_cooldown_default = 0.5;
 alarmvar_atk = 0;
 alarmvar_mve = 0;
 alarmvar_inv = 0;
@@ -69,7 +71,8 @@ movement_normal = function() {
 	
 	
 	var atk = distance_to_object(obj_player) <= atk_dist;
-	if (atk && !attacked) {
+	var cooled = alarmvar_atk <= 0;
+	if (atk && cooled && !attacked) {
 		
 		//start the atk movement to try to hit the player
 		start_atk();
@@ -80,7 +83,7 @@ movement_normal = function() {
 	
 	if (health_current <= 0) {
 	
-		die();
+		die(true);
 	
 	}
 
@@ -234,7 +237,7 @@ start_atk = function() {
 	mve_state = 3;
 	
 	alarmvar_mve = atk_length_default;
-	alarmvar_inv = atk_length_default - 0.05;
+	alarmvar_inv = atk_length_default - atk_vuln_length;
 	
 }
 
@@ -256,7 +259,7 @@ stop_atk = function() {
 	
 	mve_state = 0;
 	
-	alarmvar_atk = 0.5;
+	alarmvar_atk = atk_cooldown_default;
 	
 }
 
@@ -301,7 +304,20 @@ check_dmg = function() {
 }
 
 
-die = function() {
+die = function(drop) {
+	
+	if (drop) {
+		
+		var i = irandom_range(0, 1);
+
+		if (i) {
+	
+			instance_create_layer(x, y, "Instances", obj_collectable_lightcrystal);
+	
+		}
+		
+	}
+	
 	
 	instance_destroy(self);
 	

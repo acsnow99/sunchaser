@@ -146,17 +146,20 @@ movement_input_normal = function (dir, xinput, yinput) {
 	}
 	
 	if (!invincible) {
-	
-		if (alarmvar_inv <= 0) {
-		
-			make_vincible();
-		
-		}
 
 		if (place_meeting(x, y, obj_enemy_parent)) {
 		
 			start_recoil_receiving(true);
 			exit;
+		
+		}
+		
+	}
+	else {
+		
+		if (alarmvar_inv <= 0) {
+		
+			make_vincible();
 		
 		}
 		
@@ -560,9 +563,16 @@ damage_take = function(dmg) {
 	
 	health -= dmg;
 	
+	make_invincible(draw_color_dmg);
+	
+}
+
+make_invincible = function(color) {
+	
 	alarmvar_inv = alarmvar_inv_default;
 	
-	draw_color = draw_color_dmg;
+	invincible = true;
+	draw_color = color;
 	
 }
 
@@ -599,6 +609,15 @@ attacker_id = function(_x, _y) {
 	enem_closest = instance_nearest(_x, _y, obj_enemy_parent);
 	enem_closest_x = enem_closest.x;
 	enem_closest_y = enem_closest.y + 32;
+	
+}
+
+
+
+reset_all = function() {
+	
+	make_vincible();
+	dir_last = 3;
 	
 }
 

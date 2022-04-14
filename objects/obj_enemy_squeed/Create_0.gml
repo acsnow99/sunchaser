@@ -71,7 +71,7 @@ movement_normal = function() {
 	
 	if (health_current <= 0) {
 	
-		die();
+		die(true);
 	
 	}
 	
@@ -146,7 +146,7 @@ movement_pause = function() {
 	
 	if (health_current <= 0) {
 	
-		die();
+		die(true);
 	
 	}
 	
@@ -321,7 +321,20 @@ check_dmg = function() {
 }
 
 
-die = function() {
+die = function(drop) {
+	
+	if (drop) {
+		
+		var i = irandom_range(0, 1);
+
+		if (i) {
+	
+			instance_create_layer(x, y, "Instances", obj_collectable_lightcrystal);
+	
+		}
+		
+	}
+	
 	
 	instance_destroy(self);
 	

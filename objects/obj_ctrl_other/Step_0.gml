@@ -32,13 +32,7 @@ else {
 
 if (health <= 0) {
 	
-	obj_player.x = start_x;
-	obj_player.y = start_y;
-	
-	global.sunlight_level = 2;
-	obj_ctrl_daylight.sunbox_assign(global.sunlight_level);
-	
-	health = 50;
+	restart_level();
 	
 }
 
