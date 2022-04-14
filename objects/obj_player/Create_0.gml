@@ -60,7 +60,7 @@ alarmvar_inv = 0;
 alarmvar_recoil_recv = 0;
 alarmvar_ghost_frame = 0;
 //default invincibility frames
-alarmvar_inv_default = 0.25;
+alarmvar_inv_default = 0.5;
 alarmvar_recoil_recv_default = 0.075;
 alarmvar_ghost_frame_default = 0.1;
 mve_spd_recoil_recv = mve_spd_default * 3;

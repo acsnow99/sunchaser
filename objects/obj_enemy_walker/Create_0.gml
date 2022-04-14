@@ -30,11 +30,11 @@ alarmvar_mve = alarmvar_mve_default;
 alarmvar_opt = 0;
 alarmvar_inv = 0;
 alarmvar_ghost_frame = 0;
-alarmvar_ghost_frame_default = 0.5;
+alarmvar_ghost_frame_default = 0.1;
 recoil_time_default = 0.075;
 pause_time_default = 1;
-//default invincibility frames
-alarmvar_inv_default = 0.5
+//default invincibility frames(in seconds)
+alarmvar_inv_default = 0.3;
 
 
 
@@ -141,12 +141,6 @@ movement_normal = function() {
 		alarmvar_mve = 0;
 	
 	}
-
-	if (alarmvar_inv <= 0) {
-	
-		invincible = false;
-
-	}
 	
 	
 	
@@ -175,12 +169,6 @@ movement_recoil = function() {
 	if (alarmvar_mve <= 0) {
 		
 		stop_recoil();
-		
-	}
-	
-	if (alarmvar_inv <= 0) {
-		
-		invincible = false;
 		
 	}
 	
@@ -224,6 +212,12 @@ stop_recoil = function() {
 
 
 check_dmg = function() {
+	
+	if (alarmvar_inv <= 0) {
+		
+		invincible = false;
+		
+	}
 
 	if (instance_exists(obj_hb_player_atk_parent)) {
 	
