@@ -10,4 +10,4 @@ image_index = global.sunlight_current * animation_length_current + (colors_count
 alarmvar_ghost_frame = ghost_frame_check(alarmvar_inv, alarmvar_ghost_frame, alarmvar_ghost_frame_default);
 
 
-draw_sprite_ext(spr_current, image_index, x, y, image_xscale, image_yscale, 0, c_white, image_alpha)
+draw_sprite_ext(spr_current, image_index, x, y, image_xscale, image_yscale, 0, c_white, image_alpha);

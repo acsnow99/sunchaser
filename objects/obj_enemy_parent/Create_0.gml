@@ -1,3 +1,4 @@
+/*
 /// @description enemy attributes. Health, speed, etc.
 
 health_max = 30;
@@ -294,3 +295,4 @@ die = function(drop) {
 	
 }
 
+*/

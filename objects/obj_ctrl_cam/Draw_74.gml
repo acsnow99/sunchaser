@@ -10,6 +10,7 @@ if (in_level) {
 		
 		//combo meter(for use with the sword only)
 		draw_sprite_ext(spr_lightboost_meter, global.combo, 40, height_healthbar, 1, 1, 0, c_white, 1);
+		draw_rectangle_color(48, height_healthbar + height_meter, 40 + (width_meter - 8) * (obj_ctrl_progress.alarmvar_combo_end/obj_ctrl_progress.alarmvar_combo_end_default), height_healthbar + height_meter + 16, c_yellow, c_yellow, c_yellow, c_yellow, false);
 		
 	}
 	

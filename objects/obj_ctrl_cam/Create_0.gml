@@ -18,6 +18,7 @@ depth = -1;
 
 height_healthbar = sprite_get_height(spr_healthbar);
 width_meter = sprite_get_width(spr_lightboost_meter);
+height_meter = sprite_get_height(spr_lightboost_meter);
 height_lightcrystal = sprite_get_width(spr_lightcrystal);
 
 

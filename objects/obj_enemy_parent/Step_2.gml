@@ -1,3 +1,4 @@
+/*
 /// @description check if dead; if atk hitbox hits this object, it takes the atk damage
 // end step so that the player can be made to recoil on hit
 
@@ -25,3 +26,5 @@ switch(mve_state) {
 		break;
 
 }
+*/
+

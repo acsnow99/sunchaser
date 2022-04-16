@@ -15,6 +15,9 @@ global.currency = 0;
 global.combo = 0;
 
 
+alarmvar_combo_end = 0;
+alarmvar_combo_end_default = 1;
+
 
 
 combo_update = function() {
@@ -28,6 +31,7 @@ combo_update = function() {
 			if (global.combo < 3) {
 				
 				global.combo += 1;
+				alarmvar_combo_end = alarmvar_combo_end_default;
 				
 			}
 		
@@ -50,6 +54,17 @@ combo_update = function() {
 		}
 	
 	}
+	
+	
+	
+	if (alarmvar_combo_end <= 0) {
+		
+		global.combo = 0;
+		alarmvar_combo_end = alarmvar_combo_end_default;
+		
+	}
+	
+	alarmvar_combo_end -= global.dt_steady;
 	
 }
 

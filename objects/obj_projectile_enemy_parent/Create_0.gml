@@ -27,6 +27,12 @@ squeed = -1;
 
 movement_charge = function() {
 	
+	if (place_meeting(x, y, obj_player)) {
+	
+		die();
+	
+	}
+	
 	if (alarmvar_shoot <= 0) {
 	
 		start_movement_shoot();
@@ -48,7 +54,7 @@ movement_charge = function() {
 movement_shoot = function() {
 	
 	
-	if (place_meeting(x, y, obj_obstacle_parent)) {
+	if (place_meeting(x, y, obj_player) || place_meeting(x, y, obj_obstacle_parent)) {
 	
 		die();
 	
