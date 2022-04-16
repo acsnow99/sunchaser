@@ -63,8 +63,11 @@ combo_update = function() {
 		alarmvar_combo_end = alarmvar_combo_end_default;
 		
 	}
-	
-	alarmvar_combo_end -= global.dt_steady;
+	if (global.combo > 0) {
+		
+		alarmvar_combo_end -= global.dt_steady;
+		
+	}
 	
 }
 

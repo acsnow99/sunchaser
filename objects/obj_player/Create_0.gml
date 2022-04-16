@@ -154,13 +154,17 @@ movement_input_normal = function (dir, xinput, yinput) {
 		
 		}
 		
-		var o = instance_nearest(x, y, obj_projectile_enemy_parent);
-		if (place_meeting(x, y, o)) {
+		if (instance_exists(obj_projectile_enemy_parent)) {
 		
-			start_recoil_receiving(true);
-			instance_destroy(o);
-			exit;
+			var o = instance_nearest(x, y, obj_projectile_enemy_parent);
+			if (place_meeting(x, y, o)) {
 		
+				start_recoil_receiving(true);
+				instance_destroy(o);
+				exit;
+		
+			}
+			
 		}
 		
 	}
