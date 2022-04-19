@@ -13,7 +13,6 @@ window_set_fullscreen(true);
 camera_set_view_size(view_camera[0], global.view_width, global.view_height);
 
 
-
 depth = -1;
 
 height_healthbar = sprite_get_height(spr_healthbar);

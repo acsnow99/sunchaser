@@ -11,6 +11,15 @@ global.item_equipped = 1;
 global.keys = 0;
 global.currency = 0;
 
+global.atk_types_count = 3;
+global.atk_types[0] = obj_hb_player_atk_basic;
+global.atk_types[1] = obj_hb_player_atk_lantern;
+global.atk_types[2] = obj_hb_player_atk_sp;
+
+global.fx_destroy[0] = obj_fx_destroy_basic;
+global.fx_destroy[1] = obj_fx_destroy_fire;
+global.fx_destroy[2] = obj_fx_destroy_sun;
+
 //keeps track of how many hits the player has landed(0-2) 
 global.combo = 0;
 
