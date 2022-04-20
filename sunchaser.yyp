@@ -72,6 +72,7 @@
     {"id":{"name":"obj_ctrl_skip_rm","path":"objects/obj_ctrl_skip_rm/obj_ctrl_skip_rm.yy",},"order":8,},
     {"id":{"name":"obj_tp_a_1","path":"objects/obj_tp_a_1/obj_tp_a_1.yy",},"order":29,},
     {"id":{"name":"note_use_steadydt","path":"notes/note_use_steadydt/note_use_steadydt.yy",},"order":0,},
+    {"id":{"name":"spr_fx_destroy_basic","path":"sprites/spr_fx_destroy_basic/spr_fx_destroy_basic.yy",},"order":66,},
     {"id":{"name":"obj_tp_a_0","path":"objects/obj_tp_a_0/obj_tp_a_0.yy",},"order":28,},
     {"id":{"name":"spr_icon_sun_lantern","path":"sprites/spr_icon_sun_lantern/spr_icon_sun_lantern.yy",},"order":55,},
     {"id":{"name":"spr_projectile_squeed","path":"sprites/spr_projectile_squeed/spr_projectile_squeed.yy",},"order":48,},
