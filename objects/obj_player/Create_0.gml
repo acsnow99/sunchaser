@@ -159,6 +159,7 @@ movement_input_normal = function (dir, xinput, yinput) {
 			var o = instance_nearest(x, y, obj_projectile_enemy_parent);
 			if (place_meeting(x, y, o)) {
 		
+				o.alarmvar_destroy = 50000;
 				start_recoil_receiving(true);
 				instance_destroy(o);
 				exit;
