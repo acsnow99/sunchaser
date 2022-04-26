@@ -36,6 +36,8 @@ pause_time_default = 1;
 //default invincibility frames(in seconds)
 alarmvar_inv_default = 0.3;
 
+draw_color = c_white; 
+
 
 
 
@@ -193,6 +195,8 @@ start_recoil = function(inv) {
 	
 		alarmvar_inv = alarmvar_inv_default;
 		invincible = true;
+		
+		draw_color = c_yellow;
 	
 	}
 	
@@ -216,6 +220,8 @@ check_dmg = function() {
 	if (alarmvar_inv <= 0) {
 		
 		invincible = false;
+		
+		draw_color = c_white;
 		
 	}
 

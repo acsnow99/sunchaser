@@ -42,6 +42,8 @@ recoil_time_default = 0.075;
 //default invincibility frames
 alarmvar_inv_default = 0.3;
 
+draw_color = c_white;
+
 
 
 
@@ -190,12 +192,6 @@ movement_atk = function() {
 		
 	}
 	
-	if (alarmvar_inv <= 0) {
-		
-		invincible = false;
-		
-	}
-	
 	
 	alarmvar_mve -= global.dt_steady;
 	alarmvar_inv -= global.dt_steady;
@@ -219,6 +215,8 @@ start_recoil = function(inv) {
 	
 		alarmvar_inv = alarmvar_inv_default;
 		invincible = true;
+		
+		draw_color = c_yellow;
 	
 	}
 	
@@ -266,6 +264,14 @@ stop_atk = function() {
 
 
 check_dmg = function() {
+	
+	if (alarmvar_inv <= 0) {
+		
+		invincible = false;
+		
+		draw_color = c_white;
+		
+	}
 
 	if (instance_exists(obj_hb_player_atk_parent)) {
 	
