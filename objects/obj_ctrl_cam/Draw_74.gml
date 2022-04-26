@@ -6,6 +6,21 @@ if (in_level) {
 
 	draw_sprite_ext(spr_healthbar, _h, 0, 0, 1, 1, 0, c_white, 1);
 	
+	var _s = 0;
+	if (global.sunlight_current == global.sunlight_max) {
+		
+		_s = 4;
+		
+	}
+	else {
+		
+		var _f = obj_ctrl_daylight.alarmvar_sunset < obj_ctrl_daylight.sunset_spd/2;
+		_s = _f + (global.sunlight_current * 2);
+		
+	}
+	
+	draw_sprite_ext(spr_sunmeter, _s, global.view_width, 0, 1, 1, 0, c_white, 1);
+	
 	if (global.item_equipped == 1) {
 		
 		//combo meter(for use with the sword only)

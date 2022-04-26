@@ -78,6 +78,7 @@
     {"id":{"name":"spr_projectile_squeed","path":"sprites/spr_projectile_squeed/spr_projectile_squeed.yy",},"order":48,},
     {"id":{"name":"spr_tree","path":"sprites/spr_tree/spr_tree.yy",},"order":33,},
     {"id":{"name":"obj_key","path":"objects/obj_key/obj_key.yy",},"order":38,},
+    {"id":{"name":"spr_sunmeter","path":"sprites/spr_sunmeter/spr_sunmeter.yy",},"order":68,},
     {"id":{"name":"obj_ctrl_cam","path":"objects/obj_ctrl_cam/obj_ctrl_cam.yy",},"order":1,},
     {"id":{"name":"spr_background_2","path":"sprites/spr_background_2/spr_background_2.yy",},"order":28,},
     {"id":{"name":"spr_placeholder","path":"sprites/spr_placeholder/spr_placeholder.yy",},"order":58,},
