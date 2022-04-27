@@ -595,6 +595,8 @@ make_vincible = function() {
 	invincible = false;
 	draw_color = c_white;
 	
+	alarmvar_inv = 0;
+	
 }
 
 
@@ -620,7 +622,7 @@ dir_sprite = function(mve_state, _xscale) {
 //updates enem_closest values by detecting the closest object in the enemy parent/child tree
 attacker_id = function(_x, _y) {
 	
-	enem_closest = instance_nearest(_x, _y, obj_enemy_parent);
+	enem_closest = instance_nearest(_x, _y, obj_damager_parent);
 	enem_closest_x = enem_closest.x;
 	enem_closest_y = enem_closest.y + 32;
 	
@@ -632,6 +634,9 @@ reset_all = function() {
 	
 	make_vincible();
 	dir_last = 3;
+	
+	alarmvar_mve = 0;
+	alarmvar_atk = 0;
 	
 }
 
