@@ -8,6 +8,8 @@ global.sunlight_current = 0;
 global.sunbox_current = 0;
 //how many sunlight levels there are
 global.sunbox_count = 0;
+//width of the sunboxes in pixels(updates in sunbox_init function)
+global.sunbox_width = 0;
 //at what value of sunlight_current nighttime hits
 global.nighttime_trigger = 2;
 
@@ -15,7 +17,7 @@ global.nighttime_trigger = 2;
 sunlight_min = 0;
 global.sunlight_max = 2;
 //how far the player can go from the "lit" box to still have the highest light level
-sunlight_reach = 0;
+sunlight_reach = 1;
 
 sunset_spd_default = 8;
 sunset_spd = sunset_spd_default;
@@ -51,6 +53,9 @@ sunbox_init = function() {
 	
 	
 	}
+	
+	global.sunbox_width = sprite_get_width(spr_sunbox) * obj_sunbox.image_xscale;
+	
 	
 	sunbox_initiated = true;
 

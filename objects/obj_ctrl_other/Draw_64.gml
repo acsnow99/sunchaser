@@ -8,7 +8,7 @@ if (global.pause) {
 	draw_sprite(spr_map_grid_160x160, 0, global.view_width/2, global.view_height/2);
 	
 	
-	var inc = grid_square_width * 2;
+	var inc = grid_square_width * sunbox_ratio;
 	//middle of the room, to the left edge of the map, offset by the sprite size
 	var left = (global.view_width / 2) - (sprite_get_width(map_spr) / 2);
 	var top = (global.view_height / 2) - (sprite_get_height(map_spr) / 2);
@@ -20,9 +20,10 @@ if (global.pause) {
 		var _y = top;
 		var _y2 = _y + sprite_get_height(map_spr) - 1;
 		var light = global.sunbox[i, 2];
+		var alph = light/global.sunlight_max - map_darkness_offset;
 		
 		draw_set_color(c_black);
-		draw_set_alpha(light/global.sunlight_max - map_darkness_offset);
+		draw_set_alpha(alph);
 		draw_rectangle(_x, _y, _x2, _y2, false);
 		draw_set_color(c_white);
 		draw_set_alpha(1);
