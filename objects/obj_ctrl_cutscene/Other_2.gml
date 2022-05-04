@@ -1,0 +1,2 @@
+
+cutscene_init();
