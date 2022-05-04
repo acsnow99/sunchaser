@@ -3,10 +3,13 @@
 switch(mve_state) {
 	
 	case 0:
-		exit;
+		break;
 	case 1:
 		movement();
-		exit;
+		break;
+	case 2:
+		movement_path();
+		break;
 	
 }
 

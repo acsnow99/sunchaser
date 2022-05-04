@@ -103,6 +103,11 @@ hb_atk_lantern_xscale = 1;
 hb_atk_lantern_yscale = 1;
 
 
+actor = obj_actor_player;
+
+
+
+
 #region movement input functions, movement, and step checks(called in step event or from each other)
 
 movement_input_normal = function (dir, xinput, yinput) {

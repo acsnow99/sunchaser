@@ -1,13 +1,25 @@
 
-mve_spd = 200;
+path_current = -1;
+mve_spd = 0;
 mve_dir = 0;
 
-start_movement = function(spd, dir, time) {
+xtarg = 0;
+ytarg = 0;
+
+
+start_movement = function(path) {
 	
-	mve_spd = spd;
-	mve_dir = dir;
+	path_current = path;
 	
-	alarmvar_mve = time;
+	mve_spd = path_get_speed(path, 0);
+	
+	
+	var trigg = instance_nearest(x, y, obj_cutscene_trigg_parent);
+	xtarg = trigg.x;
+	ytarg = trigg.y;
+	
+	mve_dir = point_direction(x, y, xtarg, ytarg);
+	
 	
 	mve_state = 1;
 	
@@ -15,16 +27,29 @@ start_movement = function(spd, dir, time) {
 
 movement = function() {
 	
-	if (alarmvar_mve <= 0) {
+	var spd = mve_spd * global.dt_steady;
+	
+	mve_simple(spd, mve_dir);
+	
+	if (x >= xtarg - 10 && x <= xtarg + 10 && y >= ytarg - 10 && y <= ytarg + 10) {
 		
-		end_movement();
+		movement_path_start();
 		
 	}
 	
+}
+
+movement_path_start = function() {
 	
-	mve_simple(mve_spd, mve_dir);
+	path_start(path, mve_spd, end_movement(), false);
 	
-	alarmvar_mve -= global.dt_steady;
+	mve_state = 2;
+	
+}
+
+movement_path = function() {
+	
+	path_speed = mve_spd * global.dt_steady;
 	
 }
 

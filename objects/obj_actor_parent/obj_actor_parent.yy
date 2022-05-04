@@ -1,5 +1,8 @@
 {
-  "spriteId": null,
+  "spriteId": {
+    "name": "spr_player_complete",
+    "path": "sprites/spr_player_complete/spr_player_complete.yy",
+  },
   "solid": false,
   "visible": true,
   "spriteMaskId": null,
