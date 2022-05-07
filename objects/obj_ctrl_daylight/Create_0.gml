@@ -1,7 +1,7 @@
 ///@description initialize variables
 
 //where the highest light level is on the map(which sunbox is "lit")
-global.sunlight_level = 2;
+global.sunlight_level = 5;
 //the sunlight of where the player is
 global.sunlight_current = 0;
 //where the player is on the map(based on x axis, not y)

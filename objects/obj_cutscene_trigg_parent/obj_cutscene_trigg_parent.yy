@@ -1,5 +1,8 @@
 {
-  "spriteId": null,
+  "spriteId": {
+    "name": "spr_cutscene_trigger",
+    "path": "sprites/spr_cutscene_trigger/spr_cutscene_trigger.yy",
+  },
   "solid": false,
   "visible": true,
   "spriteMaskId": {
@@ -31,7 +34,7 @@
     "path": "folders/Objects.yy",
   },
   "resourceVersion": "1.0",
-  "name": "obj_trigger_cutscene_parent",
+  "name": "obj_cutscene_trigg_parent",
   "tags": [],
   "resourceType": "GMObject",
 }

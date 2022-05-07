@@ -1,7 +1,16 @@
 
+spr = spr_player_complete;
+draw_color = c_white;
+image_speed = 0;
+image_index = 0;
+image_alpha = 1;
+
+
 path_current = -1;
 mve_spd = 0;
 mve_dir = 0;
+
+mve_state = 0;
 
 xtarg = 0;
 ytarg = 0;
