@@ -1,7 +1,7 @@
 
 if (acting) {
 	
-	cutscene();
+	cutscene(global.cutscene_scene, global.cutscene_act);
 	
 }
 

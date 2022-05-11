@@ -40,6 +40,7 @@
     {"id":{"name":"obj_ctrl_other","path":"objects/obj_ctrl_other/obj_ctrl_other.yy",},"order":11,},
     {"id":{"name":"obj_enemy_parent","path":"objects/obj_enemy_parent/obj_enemy_parent.yy",},"order":4,},
     {"id":{"name":"spr_stairs_floor","path":"sprites/spr_stairs_floor/spr_stairs_floor.yy",},"order":54,},
+    {"id":{"name":"scr_cutscene_0","path":"scripts/scr_cutscene_0/scr_cutscene_0.yy",},"order":7,},
     {"id":{"name":"obj_level_frame","path":"objects/obj_level_frame/obj_level_frame.yy",},"order":17,},
     {"id":{"name":"obj_ctrl_levels","path":"objects/obj_ctrl_levels/obj_ctrl_levels.yy",},"order":35,},
     {"id":{"name":"note_colors","path":"notes/note_colors/note_colors.yy",},"order":2,},

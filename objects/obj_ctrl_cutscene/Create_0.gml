@@ -1,6 +1,6 @@
 
-global.cutscene_moment = -1;
-global.cutscene_current = -1;
+global.cutscene_scene = -1;
+global.cutscene_act = -1;
 
 //exclusive, eg 2 = 3 cutscenes
 global.cutscene_count = 2;
@@ -12,7 +12,7 @@ cutscene_init = function() {
 	
 	for (var i = 0; i <= global.cutscene_count; i++) {
 		
-		global.cutscene_acts[i, 0] = obj_actor_parent.start_movement;
+		global.cutscene_acts[i, 0] = cutscene(0, 0);
 		global.cutscene_acts[i, 1] = -1;
 		
 		global.cutscene_obj[i, 0] = obj_actor_player;
@@ -22,16 +22,14 @@ cutscene_init = function() {
 		global.cutscene_vars[i, 1] = -1;
 	
 	}
-	
-	instance_destroy(obj_actor_parent);
 
 }
 
 
 cutscene_start = function(scene, act) {
 	
-	global.cutscene_current = scene;
-	global.cutscene_moment = act;
+	global.cutscene_scene = scene;
+	global.cutscene_act = act;
 	
 	
 	for (var i = 0; global.cutscene_obj[scene, i] != -1; i++) {
@@ -60,24 +58,20 @@ cutscene_start = function(scene, act) {
 }
 
 
-cutscene = function() {
+cutscene_end = function() {
 	
-	var act = global.cutscene_acts[global.cutscene_current, global.cutscene_moment];
-	var vars = global.cutscene_vars[global.cutscene_current, global.cutscene_moment];
+	for (var i = 0; global.cutscene_obj[global.cutscene_scene, i] != -1; i++) {
 	
-	if (act == -1) {
+		var obj = global.cutscene_obj[global.cutscene_scene, i];
 		
-		cutscene_end();
-		exit;
+		if (instance_exists(obj)) {
+		
+			instance_destroy(obj);
+			
+		}
 		
 	}
 	
-	act(vars);
-	
-}
-
-
-cutscene_end = function() {
 	
 	instance_activate_all();
 	acting = false;
