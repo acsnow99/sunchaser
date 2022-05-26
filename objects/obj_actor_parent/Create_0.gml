@@ -57,7 +57,7 @@ movement = function() {
 
 movement_path_start = function() {
 	
-	path_start(path_current, mve_spd, path_action_stop, false);
+	path_start(path_current, mve_spd, path_action_stop, true);
 	
 	mve_state = 2;
 	
@@ -67,7 +67,7 @@ movement_path = function() {
 	
 	path_speed = mve_spd * global.dt_steady;
 	
-	if (path_position == 1) {
+	if (path_position >= 0.9) {
 		
 		end_movement();
 		
@@ -76,6 +76,8 @@ movement_path = function() {
 }
 
 end_movement = function() {
+	
+	path_end();
 	
 	mve_state = 0;
 	global.cutscene_act += 1;

@@ -21,16 +21,6 @@ atk_special_mve_spd_default = 2000;
 atk_special_mve_spd = atk_special_mve_spd_default;
 dir_last = 0;
 
-mve_inputs[0] = ord("D");
-mve_inputs[1] = ord("W");
-mve_inputs[2] = ord("A");
-mve_inputs[3] = ord("S");
-
-//button to activate special attack
-atk_input_sp = 	ord("E");
-//button to activate normal attack
-atk_input_basic = vk_space;
-
 directions[0] = 0;
 directions[1] = 90;
 directions[2] = 180;
@@ -112,7 +102,7 @@ actor = obj_actor_player;
 
 movement_input_normal = function (dir, xinput, yinput) {
 	
-	if (keyboard_check_pressed(atk_input_basic)) {
+	if (keyboard_check_pressed(global.atk_input_basic)) {
 	
 		if (global.item_equipped == 1) {
 			
@@ -130,21 +120,21 @@ movement_input_normal = function (dir, xinput, yinput) {
 	
 	}
 	//if they let go of the button, let them attack again
-	else if (keyboard_check_released(atk_input_basic)) {
+	else if (keyboard_check_released(global.atk_input_basic)) {
 		
 		pressed[0] = false;
 		
 	}
 	
 	
-	if (keyboard_check(atk_input_sp)) {
+	if (keyboard_check(global.atk_input_sp)) {
 		
 		start_atk_sp();
 		exit;
 		
 	}
 	//if they let go of the button, let them attack again
-	else if (keyboard_check_released(atk_input_sp)) {
+	else if (keyboard_check_released(global.atk_input_sp)) {
 		
 		pressed[1] = false;
 		
@@ -187,7 +177,7 @@ movement_input_normal = function (dir, xinput, yinput) {
 	
 	for (var i = 0; i < 4; i++;) {
 	
-		if (keyboard_check(mve_inputs[i])) {
+		if (keyboard_check(global.mve_inputs[i])) {
 		
 			dir = directions[i];
 			xinput += lengthdir_x(1, dir);
@@ -289,7 +279,7 @@ movement_input_atk_basic = function() {
 	}
 	
 	//if they let go of the button, let them attack again
-	if (keyboard_check_released(atk_input_basic)) {
+	if (keyboard_check_released(global.atk_input_basic)) {
 		
 		pressed[0] = false;
 		
@@ -389,7 +379,7 @@ movement_input_atk_sp = function() {
 		//set direction of coming special atk based on input(can be changed up till the release of the atk
 		for (var i = 0; i < 4; i++;) {
 	
-			if (keyboard_check(mve_inputs[i])) {
+			if (keyboard_check(global.mve_inputs[i])) {
 		
 				dir_last = i;
 		
@@ -403,7 +393,7 @@ movement_input_atk_sp = function() {
 	
 	
 	//if they let go of the button, let them attack again
-	if (keyboard_check_released(atk_input_sp)) {
+	if (keyboard_check_released(global.atk_input_sp)) {
 		
 		pressed[1] = false;
 		
