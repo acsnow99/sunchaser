@@ -15,6 +15,10 @@ camera_set_view_size(view_camera[0], global.view_width, global.view_height);
 
 depth = -1;
 
+_x = 0;
+_y = 0;
+
+
 height_healthbar = sprite_get_height(spr_healthbar);
 width_meter = sprite_get_width(spr_lightboost_meter);
 height_meter = sprite_get_height(spr_lightboost_meter);
@@ -28,4 +32,42 @@ item_sprites[2] = spr_icon_sun_lantern;
 
 sprite_fx[2] = spr_glow;
 
+
+
+player_position_update = function() {
+	
+	var _s = 0;
+	var box_left = global.sunbox_current - 1;
+	if (box_left < 0) {
+		box_left = global.sunbox_count;
+	}
+	var box_right = global.sunbox_current + 1;
+	if (box_right > global.sunbox_count) {
+		box_right = 0;
+	}
+	if (global.sunlight_current >= global.sunlight_max) {
+		
+		_s = 4;
+		
+	}
+	else if (global.sunlight_current <= 0 && global.sunbox[box_right, 2] <= 0)  {
+		
+		_s = 0;
+		
+	}
+	else if (global.sunlight_current == 1 && global.sunbox[box_right, 2] <= 0)  {
+		
+		_s = 0;
+		
+	}
+	else {
+		
+		var _f = obj_ctrl_daylight.alarmvar_sunset < obj_ctrl_daylight.sunset_spd/2;
+		_s = _f + (global.sunlight_current * 2);
+		
+	}
+	
+	return _s;
+	
+}
 

@@ -93,14 +93,11 @@ hb_atk_lantern_xscale = 1;
 hb_atk_lantern_yscale = 1;
 
 
-actor = obj_actor_player;
-
-
 
 
 #region movement input functions, movement, and step checks(called in step event or from each other)
 
-movement_input_normal = function (dir, xinput, yinput) {
+movement_input_keyboard = function (dir, xinput, yinput) {
 	
 	if (keyboard_check_pressed(global.atk_input_basic)) {
 	
@@ -215,6 +212,121 @@ movement_input_normal = function (dir, xinput, yinput) {
 }
 
 
+movement_input_gp = function (dir, xinput, yinput) {
+	
+	if (gamepad_button_check(global.gamepad, global.atk_input_basic)) {
+	
+		if (global.item_equipped == 1) {
+			
+			start_atk_basic();
+			exit;
+			
+		}
+		
+		if (global.item_equipped == 2) {
+			
+			start_atk_lantern();
+			exit;
+			
+		}
+	
+	}
+	//if they let go of the button, let them attack again
+	else if (gamepad_button_check_released(global.gamepad, global.atk_input_basic)) {
+		
+		pressed[0] = false;
+		
+	}
+	
+	
+	if (gamepad_button_check(global.gamepad, global.atk_input_sp)) {
+		
+		start_atk_sp();
+		exit;
+		
+	}
+	//if they let go of the button, let them attack again
+	else if (gamepad_button_check_released(global.gamepad, global.atk_input_sp)) {
+		
+		pressed[1] = false;
+		
+	}
+	
+	if (!invincible) {
+
+		if (place_meeting(x, y, obj_enemy_parent)) {
+		
+			start_recoil_receiving(true);
+			exit;
+		
+		}
+		
+		if (instance_exists(obj_projectile_enemy_parent)) {
+		
+			var o = instance_nearest(x, y, obj_projectile_enemy_parent);
+			if (place_meeting(x, y, o)) {
+		
+				o.alarmvar_destroy = 50000;
+				start_recoil_receiving(true);
+				instance_destroy(o);
+				exit;
+		
+			}
+			
+		}
+		
+	}
+	else {
+		
+		if (alarmvar_inv <= 0) {
+		
+			make_vincible();
+		
+		}
+		
+	}
+	
+	
+	for (var i = 0; i < 4; i++;) {
+	
+		if (gamepad_button_check(global.gamepad, global.mve_inputs[i])) {
+		
+			dir = directions[i];
+			xinput += lengthdir_x(1, dir);
+			yinput += lengthdir_y(1, dir);
+		
+		}
+	
+	
+	
+	}
+
+	moving = (point_distance(0, 0, xinput, yinput) > 0);
+
+	if moving {
+	
+		var spd_exct = mve_spd * global.dt_steady;
+		//TEMPORARY CLAUSE
+		if (global.debug) { spd_exct = spd_exct * 4 }
+		var dir_exct = point_direction(0, 0, xinput, yinput);
+		//value of variable 'moving' may change in the process of this script
+		//if the player can't move in the desired direction, moving will change to false
+		mve_simple(spd_exct, dir_exct);
+		
+		dir_sprite(mve_state, image_xscale);
+	
+		//true/1 for running, false/0 for idle
+		mve_state = 1;
+	
+	}
+	
+	
+	
+	alarmvar_inv -= global.dt_steady;
+	
+}
+
+
 movement_input_atk_basic = function() {
 	//no input available, moves player slightly forward
 	
@@ -284,6 +396,7 @@ movement_input_atk_basic = function() {
 		pressed[0] = false;
 		
 	}
+	
 	
 	
 }
@@ -376,6 +489,7 @@ movement_input_atk_sp = function() {
 	}
 	else {
 		
+		
 		//set direction of coming special atk based on input(can be changed up till the release of the atk
 		for (var i = 0; i < 4; i++;) {
 	
@@ -386,6 +500,7 @@ movement_input_atk_sp = function() {
 			}
 	
 		}
+		
 		
 		
 	}

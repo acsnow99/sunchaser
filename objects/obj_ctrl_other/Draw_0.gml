@@ -10,6 +10,7 @@ if (global.debug) {
 		
 	}
 	
+	
 	/*
 	if (instance_exists(obj_enemy_parent)) {
 		

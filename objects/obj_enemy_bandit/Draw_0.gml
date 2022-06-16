@@ -3,7 +3,7 @@
 depth = -y;
 
 // set the index to the current sunlight level(for color), offset by the length of the animation
-image_index = global.sunlight_current * animation_length_current + animation_pos;
+image_index = /*global.sunlight_current * animation_length_current +*/ animation_pos;
 
 
 if (alarmvar_inv > 0) {

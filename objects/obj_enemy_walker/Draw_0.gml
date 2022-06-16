@@ -4,7 +4,7 @@ depth = -y;
 
 var sprite = dir_last;
 // set the index to the current sunlight level(for color), offset by the length of the animation
-image_index = global.sunlight_current * animation_length_current + (colors_count * sprite) + animation_pos;
+image_index = /*global.sunlight_current * animation_length_current + (colors_count * sprite) +*/ animation_pos;
 
 
 alarmvar_ghost_frame = ghost_frame_check(alarmvar_inv, alarmvar_ghost_frame, alarmvar_ghost_frame_default);

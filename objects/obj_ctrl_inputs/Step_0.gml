@@ -8,6 +8,17 @@ if (_r) {
 		global.pause = !global.pause;
 
 	}
+	
+	if (keyboard_check_pressed(ord("T"))) {
+		
+		if (!global.debug) {
+			global.debug = true;
+		}
+		else {
+			global.debug = false;
+		}
+		
+	}
 }
 
 /*

@@ -8,7 +8,16 @@ switch (mve_state) {
 
 	case 0:
 	case 1:
-		movement_input_normal(0, 0, 0);
+		if (global.gp_active) {
+		
+			movement_input_gp(0, 0, 0);
+			
+		}
+		else {
+			
+			movement_input_keyboard(0, 0, 0);
+			
+		}
 		break;
 		
 	case 2:
