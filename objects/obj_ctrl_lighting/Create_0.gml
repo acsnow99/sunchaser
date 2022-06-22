@@ -29,24 +29,24 @@ light_update = function() {
 	
 			//draw a circle of light around every light
 			draw_set_color(c_white);
-			gpu_set_blendmode(bm_subtract);
 	
 			for (var i = 0; i < instance_number(obj_light_parent); i += 1) {
 				
 				var light_obj = instance_find(obj_light_parent, i);
 				
 				if (light_obj.lit) {
+					
+					gpu_set_blendmode(bm_subtract);
 			
 					//draw_circle(light_obj.x - _x, light_obj.y - _y, light_obj.light_distance, false);
-					draw_sprite_ext(light_obj.light_shape_sprite, light_obj.image_index, light_obj.x - camera_get_view_x(view), light_obj.y - camera_get_view_y(view), light_obj.xscale, light_obj.yscale, light_obj.rotation, c_white, 1);
+					draw_sprite_ext(light_obj.light_shape_sprite, light_obj.image_index, light_obj.x - camera_get_view_x(view), light_obj.y - camera_get_view_y(view), light_obj.xscale, light_obj.yscale, light_obj.rotation, c_white, light_obj.light_intensity);
 				
 				
 				
 				
 					gpu_set_blendmode(bm_normal);
 				
-					var alph = clamp(global.ambient_darkness - light_obj.light_intensity, light_obj.light_min, light_obj.light_max);
-					draw_sprite_ext(light_obj.light_shape_sprite, light_obj.image_index, light_obj.x - camera_get_view_x(view), light_obj.y - camera_get_view_y(view), light_obj.xscale, light_obj.yscale, light_obj.rotation, light_obj.color, alph);
+					draw_sprite_ext(light_obj.light_shape_sprite, light_obj.image_index, light_obj.x - camera_get_view_x(view), light_obj.y - camera_get_view_y(view), light_obj.xscale, light_obj.yscale, light_obj.rotation, light_obj.color, light_obj.light_color_alpha);
 				
 				}
 				

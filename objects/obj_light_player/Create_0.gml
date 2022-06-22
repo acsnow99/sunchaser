@@ -6,10 +6,7 @@ lit = false;
 //how strong the light is(uses alpha value, so 0-1, representing 0%-100% lit)
 light_intensity = 0;
 light_intensity_default = 0.25;
-//light is relative based on global.ambient_darkness. light_min and light_max are to control the limits on
-// how well lit the lit area can be. Based on Alpha values as well.
-light_min = 0.025;
-light_max = 0.55;
+light_color_alpha = 0.1;
 
 //whether the light lights up the player/protects him from damage in darkness
 lit = false;

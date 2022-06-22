@@ -5,11 +5,12 @@
 lit = true;
 
 //how strong the light is(uses alpha value, so 0-1, representing 0%-100% lit)
+// subtracted from global.ambient_darkness in obj_ctrl_lighting to create a lit spot on the screen
 light_intensity = 0.5;
-//light is relative based on global.ambient_darkness. light_min and light_max are to control the limits on
-// how well lit the lit area can be. Based on Alpha values as well.
-light_min = 0.1;
-light_max = 0.55;
+light_intensity_default = 0.5;
+//obj_ctrl_lighting draws a circle of light with the correct color after subtracting
+// the alpha of light_intensity from the global.ambient_darkness
+light_color_alpha = 0.1;
 
 //how strong the light is(for the player's "light_level" var, so 0-4)
 light_level = 2;
