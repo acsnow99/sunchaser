@@ -37,7 +37,7 @@ alarmvar_atk = 0;
 alarmvar_mve = 0;
 alarmvar_inv = 0;
 alarmvar_ghost_frame = 0;
-alarmvar_ghost_frame_default = 0.1;
+alarmvar_ghost_frame_default = 0.05;
 recoil_time_default = 0.075;
 //default invincibility frames
 alarmvar_inv_default = 0.3;

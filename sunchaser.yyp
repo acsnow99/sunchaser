@@ -20,6 +20,7 @@
     {"id":{"name":"sq_player_atk_sp_lr","path":"sequences/sq_player_atk_sp_lr/sq_player_atk_sp_lr.yy",},"order":5,},
     {"id":{"name":"obj_npc","path":"objects/obj_npc/obj_npc.yy",},"order":47,},
     {"id":{"name":"spr_obstacle_torch","path":"sprites/spr_obstacle_torch/spr_obstacle_torch.yy",},"order":60,},
+    {"id":{"name":"scr_anim_update_draw","path":"scripts/scr_anim_update_draw/scr_anim_update_draw.yy",},"order":8,},
     {"id":{"name":"spr_colors","path":"sprites/spr_colors/spr_colors.yy",},"order":25,},
     {"id":{"name":"obj_collectable_lightcrystal","path":"objects/obj_collectable_lightcrystal/obj_collectable_lightcrystal.yy",},"order":45,},
     {"id":{"name":"obj_bckgrnd_cobblestone","path":"objects/obj_bckgrnd_cobblestone/obj_bckgrnd_cobblestone.yy",},"order":24,},

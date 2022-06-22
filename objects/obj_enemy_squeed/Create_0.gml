@@ -13,6 +13,9 @@ spr_current = spr_squeed;
 animation_pos = 0;
 animation_length_current = 2;
 
+colors_count = 3;
+draw_color = c_white;
+
 image_xscale_default = image_xscale;
 
 moving = false;
@@ -34,7 +37,7 @@ alarmvar_speed_inc = alarmvar_speed_inc_default;
 alarmvar_opt = 0;
 alarmvar_inv = 0;
 alarmvar_ghost_frame = 0;
-alarmvar_ghost_frame_default = 0.1;
+alarmvar_ghost_frame_default = 0.05;
 alarmvar_projectile_default = 4;
 alarmvar_projectile = 0;
 recoil_time_default = 0.15;

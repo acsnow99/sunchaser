@@ -52,7 +52,7 @@ alarmvar_ghost_frame = 0;
 //default invincibility frames
 alarmvar_inv_default = 0.5;
 alarmvar_recoil_recv_default = 0.075;
-alarmvar_ghost_frame_default = 0.1;
+alarmvar_ghost_frame_default = 0.05;
 mve_spd_recoil_recv = mve_spd_default * 3;
 atk_length_basic = 0.2;
 atk_length_lantern = 0.3;

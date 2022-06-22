@@ -27,6 +27,15 @@ if (in_level) {
 	draw_sprite_ext(item_sprites[global.item_equipped], 0, global.view_width - 96, global.view_height - 96, 1, 1, 0, c_white, 1);
 	
 	
+	//change background based on the sunlight
+	/*
+	var lay_id = layer_get_id("Background");
+	var back_id = layer_background_get_id(lay_id);
+	layer_background_sprite(back_id, colors[global.sunlight_current]);
+	*/
+	
+	
+	
 	if (global.debug) {
 		draw_text(20, 40, obj_ctrl_daylight.alarmvar_sunset);
 		draw_text(20, 60, global.sunbox_current);

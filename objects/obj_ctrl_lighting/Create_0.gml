@@ -36,14 +36,14 @@ light_update = function() {
 				
 				if (light_obj.lit) {
 					
+					//subtract the shape of the light from global.ambient_darkness
 					gpu_set_blendmode(bm_subtract);
 			
-					//draw_circle(light_obj.x - _x, light_obj.y - _y, light_obj.light_distance, false);
 					draw_sprite_ext(light_obj.light_shape_sprite, light_obj.image_index, light_obj.x - camera_get_view_x(view), light_obj.y - camera_get_view_y(view), light_obj.xscale, light_obj.yscale, light_obj.rotation, c_white, light_obj.light_intensity);
 				
 				
-				
-				
+					//draw the shape of the light with the correct 
+					// color to add a tint to the area of the light
 					gpu_set_blendmode(bm_normal);
 				
 					draw_sprite_ext(light_obj.light_shape_sprite, light_obj.image_index, light_obj.x - camera_get_view_x(view), light_obj.y - camera_get_view_y(view), light_obj.xscale, light_obj.yscale, light_obj.rotation, light_obj.color, light_obj.light_color_alpha);

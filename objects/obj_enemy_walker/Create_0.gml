@@ -27,12 +27,16 @@ dir_last = 0;
 //how long until randomly assigning new movement pattern
 alarmvar_mve_default = 0.75;
 alarmvar_mve = alarmvar_mve_default;
-alarmvar_opt = 0;
-alarmvar_inv = 0;
-alarmvar_ghost_frame = 0;
-alarmvar_ghost_frame_default = 0.1;
-recoil_time_default = 0.075;
+//how long to pause between movements
 pause_time_default = 1;
+alarmvar_opt = 0;
+
+alarmvar_inv = 0;
+
+alarmvar_ghost_frame = 0;
+alarmvar_ghost_frame_default = 0.05;
+recoil_time_default = 0.075;
+
 //default invincibility frames(in seconds)
 alarmvar_inv_default = 0.3;
 
