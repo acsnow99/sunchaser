@@ -1,4 +1,35 @@
 
+if (room == rm_title) {
+	
+	var sprite = menus[0, 0];
+	
+	var _x1 = menus[0,1];
+	var _y1 = menus[0,2];
+	var _x2 = _x1 + sprite_get_width(sprite);
+	var _y2 = _y1 + sprite_get_height(sprite);
+	
+	draw_sprite(sprite, 0, _x1, _y1);
+	
+	
+	var _xm = device_mouse_x_to_gui(0);
+	var _ym = device_mouse_y_to_gui(0);
+	
+	draw_sprite(spr_cursor_menu, 0, _xm, _ym); 
+	
+	
+	if (point_in_rectangle(_xm, _ym, _x1, _y1, _x2, _y2)) {
+		
+		if (mouse_check_button_pressed(mb_left)) {
+			
+			script_execute(menus[0, 3]);
+			
+		}
+		
+	}
+	
+}
+
+
 
 if (global.pause) {
 	
