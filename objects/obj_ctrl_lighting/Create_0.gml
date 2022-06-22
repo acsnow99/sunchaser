@@ -3,6 +3,8 @@
 
 light_surface = -1;
 
+light_player = -1;
+
 
 //level of darkness when there is no light(0-1)
 global.default_darkness[0] = 0.05;
@@ -23,16 +25,31 @@ light_update = function() {
 
 
 		if (object_exists(obj_light_parent)) {
+	
+	
+			//draw a circle of light around every light
 			draw_set_color(c_white);
 			gpu_set_blendmode(bm_subtract);
 	
-			//draw a circle of light around every light
-	
 			for (var i = 0; i < instance_number(obj_light_parent); i += 1) {
+				
 				var light_obj = instance_find(obj_light_parent, i);
-		
-				//draw_circle(light_obj.x - _x, light_obj.y - _y, light_obj.light_distance, false);
-				draw_sprite_ext(light_obj.light_shape_sprite, light_obj.image_index, light_obj.x - camera_get_view_x(view), light_obj.y - camera_get_view_y(view), light_obj.xscale, light_obj.yscale, light_obj.rotation, light_obj.color, light_obj.light_intensity);
+				
+				if (light_obj.lit) {
+			
+					//draw_circle(light_obj.x - _x, light_obj.y - _y, light_obj.light_distance, false);
+					draw_sprite_ext(light_obj.light_shape_sprite, light_obj.image_index, light_obj.x - camera_get_view_x(view), light_obj.y - camera_get_view_y(view), light_obj.xscale, light_obj.yscale, light_obj.rotation, c_white, 1);
+				
+				
+				
+				
+					gpu_set_blendmode(bm_normal);
+				
+					var alph = clamp(global.ambient_darkness - light_obj.light_intensity, light_obj.light_min, light_obj.light_max);
+					draw_sprite_ext(light_obj.light_shape_sprite, light_obj.image_index, light_obj.x - camera_get_view_x(view), light_obj.y - camera_get_view_y(view), light_obj.xscale, light_obj.yscale, light_obj.rotation, light_obj.color, alph);
+				
+				}
+				
 			}
 		}
 	
@@ -48,6 +65,32 @@ light_update = function() {
 	
 		light_surface = surface_create(global.view_width*global.window_scale, global.view_height*global.window_scale);
 
+	}
+	
+}
+
+
+item_check = function() {
+	
+	if (global.item_equipped == 2) {
+	
+		with (obj_light_player) {
+		
+			light_intensity = light_intensity_default;
+			lit = true;
+		
+		}
+	
+	}
+	else {
+	
+		with (obj_light_player) {
+		
+			light_intensity = 0;
+			lit = false;
+		
+		}
+	
 	}
 	
 }

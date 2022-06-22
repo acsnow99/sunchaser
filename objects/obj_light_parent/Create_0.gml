@@ -1,10 +1,19 @@
 
 /// @description Variables
 
+
+lit = true;
+
 //how strong the light is(uses alpha value, so 0-1, representing 0%-100% lit)
 light_intensity = 0.5;
+//light is relative based on global.ambient_darkness. light_min and light_max are to control the limits on
+// how well lit the lit area can be. Based on Alpha values as well.
+light_min = 0.1;
+light_max = 0.55;
+
 //how strong the light is(for the player's "light_level" var, so 0-4)
 light_level = 2;
+
 //sprite to use for the light area
 light_shape_sprite = spr_light_circle;
 image_speed = 0;

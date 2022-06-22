@@ -1,13 +1,21 @@
 
 /// @description Variables
 
+lit = false;
+
 //how strong the light is(uses alpha value, so 0-1, representing 0%-100% lit)
 light_intensity = 0;
 light_intensity_default = 0.25;
+//light is relative based on global.ambient_darkness. light_min and light_max are to control the limits on
+// how well lit the lit area can be. Based on Alpha values as well.
+light_min = 0.025;
+light_max = 0.55;
+
 //whether the light lights up the player/protects him from damage in darkness
 lit = false;
+
 //sprite to use for the light area
-light_shape_sprite = spr_light_circle;
+light_shape_sprite = spr_glow;
 image_speed = 0;
 lastframe = 4;
 //shape of the light hitbox. What is the shape of the area that counts as lit?
@@ -18,7 +26,7 @@ yscale = 1;
 //rotate the light area(angle)
 rotation = 0;
 //color of the light
-color = c_orange;
+color = c_white;
 
 //coordinates of the corners of a virtual bounding box
 //used by obj_monster to check if it is in light or not

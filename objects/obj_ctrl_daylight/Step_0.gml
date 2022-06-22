@@ -115,10 +115,11 @@ if (global.sunlight_current >= global.nighttime_trigger) {
 
 
 
-
+/*
 var lay_id = layer_get_id("Background");
 var back_id = layer_background_get_id(lay_id);
 layer_background_sprite(back_id, colors[global.sunlight_current]);
+*/
 
 
 alarmvar_sunset -= global.dt_steady;
