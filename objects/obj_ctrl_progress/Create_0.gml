@@ -20,12 +20,49 @@ global.fx_destroy[0] = obj_fx_destroy_basic;
 global.fx_destroy[1] = obj_fx_destroy_fire;
 global.fx_destroy[2] = obj_fx_destroy_sun;
 
+
 //keeps track of how many hits the player has landed(0-2) 
 global.combo = 0;
 
 
+global.health_max = 50;
+health = global.health_max;
+
+global.level = 0;
+
+global.debug = false;
+
+global.alarmvar_runtime = 0;
+
+
+start_x = 0;
+start_y = 0;
+
+
 alarmvar_combo_end = 0;
 alarmvar_combo_end_default = 1;
+
+
+
+restart_level = function() {
+	
+	obj_player.x = start_x;
+	obj_player.y = start_y;
+	
+	global.combo = 0;
+	
+	global.sunlight_level = 2;
+	obj_ctrl_daylight.sunbox_assign(global.sunlight_level);
+	
+	health = 50;
+	
+	with (obj_player) {
+		
+		reset_all();
+		
+	}
+	
+}
 
 
 

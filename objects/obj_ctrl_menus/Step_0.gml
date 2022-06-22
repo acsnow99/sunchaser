@@ -1,5 +1,4 @@
 
-
 if (global.pause) {
 	
 	if (!deactivated) {
@@ -17,23 +16,3 @@ else {
 	deactivated = false;
 	
 }
-
-
-if (room == rm_level) {
-	
-	global.alarmvar_runtime += global.dt_steady;
-	
-}
-else {
-	
-	global.alarmvar_runtime = 0;
-	
-}
-
-if (health <= 0) {
-	
-	restart_level();
-	
-}
-
-
