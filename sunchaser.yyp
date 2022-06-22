@@ -51,6 +51,7 @@
     {"id":{"name":"obj_ctrl_daylight","path":"objects/obj_ctrl_daylight/obj_ctrl_daylight.yy",},"order":15,},
     {"id":{"name":"rm_setup","path":"rooms/rm_setup/rm_setup.yy",},"order":1,},
     {"id":{"name":"obj_steadydt","path":"objects/obj_steadydt/obj_steadydt.yy",},"order":7,},
+    {"id":{"name":"snd_test","path":"sounds/snd_test/snd_test.yy",},"order":0,},
     {"id":{"name":"sq_player_atk_basic_up","path":"sequences/sq_player_atk_basic_up/sq_player_atk_basic_up.yy",},"order":3,},
     {"id":{"name":"scr_determine_sprite","path":"scripts/scr_determine_sprite/scr_determine_sprite.yy",},"order":1,},
     {"id":{"name":"spr_button_menu_main","path":"sprites/spr_button_menu_main/spr_button_menu_main.yy",},"order":71,},

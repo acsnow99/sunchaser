@@ -42,6 +42,8 @@ recoil_time_default = 0.075;
 //default invincibility frames
 alarmvar_inv_default = 0.3;
 
+colors_count = 3;
+
 draw_color = c_white;
 
 

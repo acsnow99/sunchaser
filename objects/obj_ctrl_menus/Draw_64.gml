@@ -21,7 +21,9 @@ if (room == rm_title) {
 		
 		if (mouse_check_button_pressed(mb_left)) {
 			
-			script_execute(menus[0, 3]);
+			audio_stop_sound(snd_test);
+			audio_play_sound(snd_test, 1, false);
+			event_perform(ev_other, menus[0,3]);
 			
 		}
 		
