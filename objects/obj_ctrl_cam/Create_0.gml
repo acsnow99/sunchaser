@@ -30,8 +30,6 @@ item_sprites[1] = spr_icon_sword;
 item_sprites[2] = spr_icon_sun_lantern;
 
 
-sprite_fx[2] = spr_glow;
-
 
 
 player_position_update = function() {

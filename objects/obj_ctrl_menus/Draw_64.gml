@@ -1,33 +1,54 @@
 
-if (room == rm_title) {
-	
-	var sprite = menus[0, 0];
-	
-	var _x1 = menus[0,1];
-	var _y1 = menus[0,2];
-	var _x2 = _x1 + sprite_get_width(sprite);
-	var _y2 = _y1 + sprite_get_height(sprite);
-	
-	draw_sprite(sprite, 0, _x1, _y1);
+if (title) {
 	
 	
-	var _xm = device_mouse_x_to_gui(0);
-	var _ym = device_mouse_y_to_gui(0);
-	
-	draw_sprite(spr_cursor_menu, 0, _xm, _ym); 
+	draw_sprite(spr_title_background, 0, 0, 0); 
 	
 	
-	if (point_in_rectangle(_xm, _ym, _x1, _y1, _x2, _y2)) {
+	
+	var mse_hover = false;
+	
+	for (var i = 0; i < button_count[menu]; i++) {
+	
+		var sprite = buttons[i,0];
+	
+		var _x1 = buttons[i,1];
+		var _y1 = buttons[i,2];
+		var _x2 = _x1 + sprite_get_width(sprite);
+		var _y2 = _y1 + sprite_get_height(sprite);
 		
-		if (mouse_check_button_pressed(mb_left)) {
+		var b_subimg = 0;
+	
+	
+		var _xm = device_mouse_x_to_gui(0);
+		var _ym = device_mouse_y_to_gui(0);
+	
+	
+		if (point_in_rectangle(_xm, _ym, _x1, _y1, _x2, _y2)) {
 			
-			audio_stop_sound(snd_test);
-			audio_play_sound(snd_test, 1, false);
-			event_perform(ev_other, menus[0,3]);
+			mse_hover = true;
 			
+			//when cursor is over button, change both their images to the second frame of the sprite
+			b_subimg = 1;
+		
+		
+			if (mouse_check_button_pressed(mb_left)) {
+			
+				event_perform(ev_other, buttons[i,3]);
+				exit;
+			
+			}
+		
 		}
 		
+		
+		draw_sprite(sprite, b_subimg, _x1, _y1);
+		
+		
 	}
+	
+	
+	draw_sprite(spr_cursor_menu, mse_hover, _xm, _ym); 
 	
 }
 
