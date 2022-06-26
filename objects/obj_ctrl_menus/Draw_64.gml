@@ -5,6 +5,7 @@ if (title) {
 	draw_sprite(spr_title_background, 0, 0, 0); 
 	
 	
+#region draw buttons
 	
 	var mse_hover = false;
 	
@@ -44,8 +45,22 @@ if (title) {
 		
 		draw_sprite(sprite, b_subimg, _x1, _y1);
 		
+	}
+		
+#endregion
+		
+		
+#region draw text
+		
+	for (var i = 0; i < text_count[menu]; i++) {
+	
+
+		draw_text(text[i, 1], text[i, 2], text[i, 0]);
+		
 		
 	}
+	
+#endregion
 	
 	
 	draw_sprite(spr_cursor_menu, mse_hover, _xm, _ym); 

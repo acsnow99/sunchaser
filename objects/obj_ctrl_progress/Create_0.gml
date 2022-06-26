@@ -5,6 +5,13 @@ global.items[0] = false;
 global.items[1] = true;
 global.items[2] = true;
 
+
+//general progress checkpoints
+// -1=file not started
+// 0=beginning
+global.progress = -1;
+
+
 //0 = no item; 1 = sword; 2 = lantern
 global.item_equipped = 1;
 

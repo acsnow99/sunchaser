@@ -8,7 +8,7 @@ for (var i = 0; i < instance_number(obj_autosavepoint); i++) {
 	
 		if (place_meeting(x, y, obj_player)) {
 	
-			scr_save_value(global.save_file, );
+			scr_save_all(global.save_file);
 	
 		}
 		
