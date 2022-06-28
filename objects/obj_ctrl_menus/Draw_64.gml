@@ -4,10 +4,15 @@ if (title) {
 	
 	draw_sprite(spr_title_background, 0, 0, 0); 
 	
-	
-#region draw buttons
+
 	
 	var mse_hover = false;
+	
+	var _xm = device_mouse_x_to_gui(0);
+	var _ym = device_mouse_y_to_gui(0);
+	
+	
+#region draw buttons
 	
 	for (var i = 0; i < button_count[menu]; i++) {
 	
@@ -19,10 +24,6 @@ if (title) {
 		var _y2 = _y1 + sprite_get_height(sprite);
 		
 		var b_subimg = 0;
-	
-	
-		var _xm = device_mouse_x_to_gui(0);
-		var _ym = device_mouse_y_to_gui(0);
 	
 	
 		if (point_in_rectangle(_xm, _ym, _x1, _y1, _x2, _y2)) {
@@ -52,11 +53,11 @@ if (title) {
 		
 #region draw text
 		
-	for (var i = 0; i < text_count[menu]; i++) {
+	for (var o = 0; o < text_count[menu]; o++) {
 	
 
-		draw_text(text[i, 1], text[i, 2], text[i, 0]);
-		
+		draw_text(text[o, 1], text[o, 2], text[o, 0]);
+		//event_perform(ev_other, text[i,3]);
 		
 	}
 	

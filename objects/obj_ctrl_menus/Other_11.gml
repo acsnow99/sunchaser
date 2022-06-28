@@ -1,2 +1,2 @@
 
-buttons_init_loadscreen();
+gui_init_loadscreen();

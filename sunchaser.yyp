@@ -124,6 +124,7 @@
     {"id":{"name":"spr_squeed","path":"sprites/spr_squeed/spr_squeed.yy",},"order":46,},
     {"id":{"name":"obj_lantern_purchase","path":"objects/obj_lantern_purchase/obj_lantern_purchase.yy",},"order":48,},
     {"id":{"name":"obj_fx_destroy_basic","path":"objects/obj_fx_destroy_basic/obj_fx_destroy_basic.yy",},"order":51,},
+    {"id":{"name":"scr_load_string","path":"scripts/scr_load_string/scr_load_string.yy",},"order":12,},
     {"id":{"name":"obj_fx_destroy_fire","path":"objects/obj_fx_destroy_fire/obj_fx_destroy_fire.yy",},"order":52,},
     {"id":{"name":"obj_stairs_floor","path":"objects/obj_stairs_floor/obj_stairs_floor.yy",},"order":41,},
     {"id":{"name":"p_cutscene_0_0","path":"paths/p_cutscene_0_0/p_cutscene_0_0.yy",},"order":0,},

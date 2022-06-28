@@ -1,16 +1,14 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-//@arg0 file
-function scr_save_value(file, name, val){
-
+function scr_load_string(file, variable, def){
+	
 	ini_open(global.save_file_path);
-		
-	ini_write_real(file, name, val);
+	
+	
+	return ini_read_string(file, variable, def);
+
 	
 	ini_close();
 
-
-
-	return true;
 
 }

@@ -1,4 +1,7 @@
 
+if (!instance_exists(obj_player)) { exit; }
+
+
 //savepoint code
 for (var i = 0; i < instance_number(obj_autosavepoint); i++) {
 	

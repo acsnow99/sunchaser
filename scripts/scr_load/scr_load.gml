@@ -9,7 +9,7 @@ function scr_load(file){
 	ini_open("savedata");
 	
 	
-	var rm = ini_read_real(file, global.save_vars[0], rm_level);
+	var rm = ini_read_real(file, global.save_vars[3], rm_level);
 	var savepnt = ini_read_real(file, global.save_vars[1], global.savepoints[0]);
 
 	global.start_x = savepnt.x;
@@ -18,6 +18,8 @@ function scr_load(file){
 	room_goto(rm);
 	
 	global.progress = ini_read_real(file, global.save_vars[2], -1);
+	
+	global.save_file_name = ini_read_string(file, global.save_vars[0], "New Game");
 
 	
 	ini_close();

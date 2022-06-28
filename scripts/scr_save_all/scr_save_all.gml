@@ -2,11 +2,12 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_save_all(file){
 	
-	ini_open("savedata");
+	ini_open(global.save_file_path);
 	
-	ini_write_real(file, global.save_vars[0], room);
-	ini_write_real(file, global.save_vars[1], instance_nearest(obj_player.x, obj_player.y, obj_autosavepoint));
+	ini_write_string(file, global.save_vars[0], global.save_file_name);
+	ini_write_real(file, global.save_vars[1], global.savepoints[0]);
 	ini_write_real(file, global.save_vars[2], -1);
+	ini_write_real(file, global.save_vars[3], rm_level);
 	
 	ini_close();
 	
