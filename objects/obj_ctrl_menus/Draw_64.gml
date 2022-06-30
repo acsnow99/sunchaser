@@ -12,7 +12,7 @@ if (title) {
 	var _ym = device_mouse_y_to_gui(0);
 	
 	
-#region draw buttons
+#region draw buttons and check if they're pressed in order to perform their action
 	
 	for (var i = 0; i < button_count[menu]; i++) {
 	
@@ -51,15 +51,28 @@ if (title) {
 #endregion
 		
 		
-#region draw text
+#region draw text and refresh keyboard input
 		
 	for (var o = 0; o < text_count[menu]; o++) {
-	
+		
+		if (text[o, 3]) { 
+			
+			text_typing_refresh(o); 
+			
+			if (keyboard_check_pressed(vk_enter)) {
+		
+				scr_save_string(global.save_file, global.save_vars[0], keyboard_string);
+				scr_load(global.save_file);
+				exit;
+		
+			}
+			
+		}
 
 		draw_text(text[o, 1], text[o, 2], text[o, 0]);
-		//event_perform(ev_other, text[i,3]);
 		
 	}
+	
 	
 #endregion
 	

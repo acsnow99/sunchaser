@@ -18,6 +18,7 @@
     {"id":{"name":"spr_sunbox","path":"sprites/spr_sunbox/spr_sunbox.yy",},"order":40,},
     {"id":{"name":"rm_underground","path":"rooms/rm_underground/rm_underground.yy",},"order":3,},
     {"id":{"name":"scr_ghost_frame_check","path":"scripts/scr_ghost_frame_check/scr_ghost_frame_check.yy",},"order":5,},
+    {"id":{"name":"scr_save_string","path":"scripts/scr_save_string/scr_save_string.yy",},"order":13,},
     {"id":{"name":"sq_player_atk_sp_lr","path":"sequences/sq_player_atk_sp_lr/sq_player_atk_sp_lr.yy",},"order":5,},
     {"id":{"name":"obj_npc","path":"objects/obj_npc/obj_npc.yy",},"order":47,},
     {"id":{"name":"spr_obstacle_torch","path":"sprites/spr_obstacle_torch/spr_obstacle_torch.yy",},"order":60,},

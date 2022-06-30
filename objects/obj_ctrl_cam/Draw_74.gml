@@ -46,6 +46,7 @@ if (in_level) {
 		draw_text(20, 160, obj_player.y);
 		draw_text(20, 180, global.gp_num);
 		draw_text(20, 200, global.gamepad);
+		draw_text(20, 220, global.save_file_name);
 	}
 	
 }

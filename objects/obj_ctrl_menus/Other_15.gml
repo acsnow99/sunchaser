@@ -1,4 +1,0 @@
-
-//refresh text for typing
-
-
