@@ -1,15 +1,24 @@
 
 if (title) {
 	
-	
-	draw_sprite(spr_title_background, 0, 0, 0); 
-	
 
 	
 	var mse_hover = false;
 	
 	var _xm = device_mouse_x_to_gui(0);
 	var _ym = device_mouse_y_to_gui(0);
+	
+	
+#region draw background visual elements
+		
+		for (var u = 0; u < vis_elements_count[menu]; u++) {
+
+			draw_sprite(vis_elements[u, 0], 0, vis_elements[u, 1], vis_elements[u, 2]);
+		
+		}
+	
+	
+#endregion
 	
 	
 #region draw buttons and check if they're pressed in order to perform their action
@@ -77,6 +86,7 @@ if (title) {
 #endregion
 	
 	
+	//draw cursor
 	draw_sprite(spr_cursor_menu, mse_hover, _xm, _ym); 
 	
 }

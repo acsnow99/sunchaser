@@ -44,12 +44,22 @@ buttons[1, 3] = ev_user1;
 
 text_count[0] = 1;
 text_count[1] = 3;
-text_count[2] = 1;
+text_count[2] = 2;
 
 text[0, 0] = "Start Game"
 text[0, 1] = buttons[0, 1] + sprite_get_width(buttons[0, 0])/2;
 text[0, 2] = buttons[0, 2] + sprite_get_height(buttons[0, 0])/2;
 text[0, 3] = false;
+
+
+vis_elements_count[0] = 1;
+vis_elements_count[1] = 1;
+vis_elements_count[2] = 2;
+
+//draws the background and other non-interactive visual elements
+vis_elements[0, 0] = spr_title_background;
+vis_elements[0, 1] = 0;
+vis_elements[0, 2] = 0;
 
 
 gui_init_loadscreen = function() {
@@ -99,12 +109,26 @@ gui_init_typename = function() {
 	
 	menu = 2;
 	
+	
+	var h_buffer = 8
+	var v_buffer = sprite_get_height(buttons[0, 0])/4;
+	
 	keyboard_string = "";
 	var txt = keyboard_string;
 	text[0, 0] = txt;
-	text[0, 1] = global.view_height/2;
-	text[0, 2] = global.view_width/2 - string_width(txt)/2;
+	text[0, 1] = buttons[0, 1] + h_buffer;
+	text[0, 2] = buttons[0, 2] + v_buffer;
 	text[0, 3] = true;
+	
+	text[1, 0] = "Your Name:";
+	text[1, 1] = buttons[0, 1] + h_buffer;
+	text[1, 2] = buttons[0, 2] - v_buffer*2;
+	text[1, 3] = false;
+	
+	
+	vis_elements[1, 0] = spr_button_menu_load_empty;
+	vis_elements[1, 1] = buttons[0, 1];
+	vis_elements[1, 2] = buttons[0, 2];
 	
 }
 
