@@ -1,0 +1,2 @@
+
+respawn_player();

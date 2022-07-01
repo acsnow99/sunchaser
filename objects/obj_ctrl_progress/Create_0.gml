@@ -53,8 +53,7 @@ alarmvar_combo_end_default = 1;
 
 restart_level = function() {
 	
-	obj_player.x = global.start_x;
-	obj_player.y = global.start_y;
+	respawn_player();
 	
 	global.combo = 0;
 	
@@ -144,4 +143,23 @@ combo_end = function() {
 	global.combo = 0;
 	
 }
+
+
+respawn_player = function() {
+	
+	if (room != rm_setup && room != rm_title) {
+	
+		if (instance_exists(obj_player)) {
+		
+			obj_player.x = global.start_x;
+			obj_player.y = global.start_y;
+		
+			return true;
+		
+		}
+	
+	}
+	
+}
+
 
