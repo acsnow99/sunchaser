@@ -34,6 +34,12 @@ if (in_level) {
 	layer_background_sprite(back_id, colors[global.sunlight_current]);
 	*/
 	
+	if (obj_ctrl_saveload.autosaved) {
+		
+		draw_text(32, global.view_height - 32, "Game Saved");
+		
+	}
+	
 	
 	
 	if (global.debug) {

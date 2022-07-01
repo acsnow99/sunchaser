@@ -14,6 +14,8 @@ global.save_file = -1;
 
 save_file_count =  3;
 
+autosaved = false;
+
 
 //saves the ID of the starting spawn point
 global.savepoints[0] = inst_4256ECAA;
