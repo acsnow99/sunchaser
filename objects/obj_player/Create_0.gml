@@ -192,7 +192,7 @@ movement_input_keyboard = function (dir, xinput, yinput) {
 	
 		var spd_exct = mve_spd * global.dt_steady;
 		//TEMPORARY CLAUSE
-		if (global.debug) { spd_exct = spd_exct * 4 }
+		//if (global.debug) { spd_exct = spd_exct * 4 }
 		var dir_exct = point_direction(0, 0, xinput, yinput);
 		//value of variable 'moving' may change in the process of this script
 		//if the player can't move in the desired direction, moving will change to false
