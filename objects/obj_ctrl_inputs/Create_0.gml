@@ -74,3 +74,24 @@ assign_inputs = function() {
 }
 
 
+
+//checks enter input every step when obj_ctrl_menus is on a menu that waits for the player to hit enter
+check_enter = function(o) {
+	
+	with (obj_ctrl_menus) {
+
+		if (text[o, 3]) {
+		
+			if (keyboard_check_pressed(vk_enter)) {
+		
+				scr_save_string(global.save_file, global.save_vars[0], keyboard_string);
+				scr_load(global.save_file);
+		
+			}
+		
+		}
+	}
+	
+}
+
+

@@ -20,6 +20,8 @@ function scr_load(file){
 	global.progress = ini_read_real(file, global.save_vars[2], -1);
 	
 	global.save_file_name = ini_read_string(file, global.save_vars[0], "New Game");
+	
+	global.sunlight_level = ini_read_real(file, global.save_vars[4], 5);
 
 	
 	ini_close();

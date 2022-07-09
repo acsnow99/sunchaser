@@ -68,13 +68,7 @@ if (title) {
 			
 			text_typing_refresh(o); 
 			
-			if (keyboard_check_pressed(vk_enter)) {
-		
-				scr_save_string(global.save_file, global.save_vars[0], keyboard_string);
-				scr_load(global.save_file);
-				exit;
-		
-			}
+			with (obj_ctrl_inputs) { check_enter(o); }
 			
 		}
 
