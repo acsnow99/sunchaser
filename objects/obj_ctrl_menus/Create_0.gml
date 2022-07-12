@@ -1,6 +1,9 @@
 
 global.pause = false;
+global.menu_ingame = false;
 deactivated = false;
+
+loaded = false;
 
 map_spr = spr_map_grid_160x160;
 grid_square_width = 64;
@@ -31,6 +34,7 @@ text_max_width = (textbox_width) - (_xbuffer * 2);
 button_count[0] = 2;
 button_count[1] = 3;
 button_count[2] = 0;
+button_count[3] = 2;
 
 buttons[0, 0] = spr_button_menu_main;
 buttons[0, 1] = (global.view_width*global.window_scale)/2 - (sprite_get_width(spr_button_menu_main)/2) - 200;
@@ -45,6 +49,7 @@ buttons[1, 3] = ev_user1;
 text_count[0] = 1;
 text_count[1] = 3;
 text_count[2] = 2;
+text_count[3] = 2;
 
 text[0, 0] = "Start Game"
 text[0, 1] = buttons[0, 1] + sprite_get_width(buttons[0, 0])/2;
@@ -55,6 +60,7 @@ text[0, 3] = false;
 vis_elements_count[0] = 1;
 vis_elements_count[1] = 1;
 vis_elements_count[2] = 2;
+vis_elements_count[3] = 0;
 
 //draws the background and other non-interactive visual elements
 vis_elements[0, 0] = spr_title_background;
@@ -100,6 +106,36 @@ gui_init_loadscreen = function() {
 	text[2, 1] = buttons[2, 1] + sprite_get_width(buttons[2, 0])/2;
 	text[2, 2] = buttons[2, 2] + sprite_get_height(buttons[2, 0])/2;
 	text[2, 3] = false;
+	
+}
+
+
+
+gui_init_pause_menu = function() {
+	
+	menu = 3;
+	
+	
+	buttons[0, 0] = spr_button_menu_main;
+	buttons[0, 1] = (global.view_width*global.window_scale)/2 - (sprite_get_width(buttons[0,0])/2);
+	buttons[0, 2] = 100;
+	buttons[0, 3] = ev_user5;
+	
+	text[0, 0] = "Resume";
+	text[0, 1] = buttons[0, 1] + sprite_get_width(buttons[0, 0])/2;
+	text[0, 2] = buttons[0, 2] + sprite_get_height(buttons[0, 0])/2;
+	text[0, 3] = false;
+	
+	
+	buttons[1, 0] = spr_button_menu_main1;
+	buttons[1, 1] = (global.view_width*global.window_scale)/2 - (sprite_get_width(buttons[1,0])/2);
+	buttons[1, 2] = 300;
+	buttons[1, 3] = ev_user6;
+	
+	text[1, 0] = "Exit Game";
+	text[1, 1] = buttons[1, 1] + sprite_get_width(buttons[1, 0])/2;
+	text[1, 2] = buttons[1, 2] + sprite_get_height(buttons[1, 0])/2;
+	text[1, 3] = false;
 	
 }
 

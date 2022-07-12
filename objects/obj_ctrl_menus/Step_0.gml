@@ -1,5 +1,5 @@
 
-if (global.pause) {
+if (global.pause || global.menu_ingame) {
 	
 	if (!deactivated) {
 		
@@ -14,5 +14,16 @@ else {
 	
 	instance_activate_all();
 	deactivated = false;
+	
+}
+
+
+if (global.menu_ingame) {
+	
+	if (menu != 3)	{
+	
+		gui_init_pause_menu();
+		
+	}
 	
 }

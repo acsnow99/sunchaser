@@ -1,5 +1,5 @@
 
-if (title) {
+if (title || global.menu_ingame) {
 	
 
 	

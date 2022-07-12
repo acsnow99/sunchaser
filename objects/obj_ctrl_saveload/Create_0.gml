@@ -18,9 +18,9 @@ save_file_count =  3;
 autosaved = false;
 
 //Whether the game starts with a new blank save file or keeps the existing one
-overwrite = true;
+overwrite = false;
 
 
 //saves the ID of the starting spawn point
-global.savepoints[0] = inst_4256ECAA;
+global.savepoints[0] = inst_savepoint_start;
 

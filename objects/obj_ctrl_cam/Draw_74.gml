@@ -34,9 +34,11 @@ if (in_level) {
 	layer_background_sprite(back_id, colors[global.sunlight_current]);
 	*/
 	
+	
+	//doesn't show up for some reason, but did before. Something is drawing over it?
 	if (obj_ctrl_saveload.autosaved) {
 		
-		draw_text(32, global.view_height - 32, "Game Saved");
+		draw_text(400, global.view_height - 300, "Game Saved");
 		
 	}
 	

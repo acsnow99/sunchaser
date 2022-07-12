@@ -12,4 +12,4 @@ if (newgame) {
 	
 }
 
-scr_load(0);
+loaded = scr_load(0);

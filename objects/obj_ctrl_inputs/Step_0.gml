@@ -37,7 +37,7 @@ if (keyboard_check_pressed(ord("T"))) {
 
 if (keyboard_check_pressed(vk_escape)) {
 	
-	game_end();
+	global.menu_ingame = !global.menu_ingame;
 
 }
 

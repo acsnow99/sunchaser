@@ -11,11 +11,21 @@ function scr_load(file){
 	
 	var rm = ini_read_real(file, global.save_vars[3], rm_level);
 	var savepnt = ini_read_real(file, global.save_vars[1], global.savepoints[0]);
-	
-	global.start_x = savepnt.x;
-	global.start_y = savepnt.y;
 
 	room_goto(rm);
+	
+	
+	if (instance_exists(savepnt)) {
+		
+		global.start_x = savepnt.x;
+		global.start_y = savepnt.y;
+		
+	}
+	else {
+		
+		return false;
+		
+	}
 	
 	global.progress = ini_read_real(file, global.save_vars[2], -1);
 	
@@ -25,6 +35,8 @@ function scr_load(file){
 
 	
 	ini_close();
+	
+	return true;
 
 
 }
