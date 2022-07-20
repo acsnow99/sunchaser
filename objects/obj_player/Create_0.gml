@@ -51,23 +51,41 @@ anim_frame_start[3, 1] = 30;
 anim_frame_start[3, 2] = 10;
 
 anim_frame_end[0, 0] = 0;
-anim_frame_end[0, 1] = 18;
-anim_frame_end[0, 2] = 6;
+anim_frame_end[0, 1] = 17;
+anim_frame_end[0, 2] = 5;
 anim_frame_end[1, 0] = 1;
-anim_frame_end[1, 1] = 24;
-anim_frame_end[1, 2] = 8;
+anim_frame_end[1, 1] = 23;
+anim_frame_end[1, 2] = 7;
 anim_frame_end[2, 0] = 2;
-anim_frame_end[2, 1] = 30;
-anim_frame_end[2, 2] = 10;
+anim_frame_end[2, 1] = 29;
+anim_frame_end[2, 2] = 9;
 anim_frame_end[3, 0] = 3;
 anim_frame_end[3, 1] = 35;
-anim_frame_end[3, 2] = 12;
+anim_frame_end[3, 2] = 11;
+
+//speed in FPS of each animation type(see index values above)
+anim_speed[0] = 7;
+anim_speed[1] = 7;
+anim_speed[2] = 4;
+
+//whether the animation stops on finish
+anim_stop[0] = false;
+anim_stop[1] = false;
+anim_stop[2] = true;
 
 animation_current = 0;
 animation_pos = 0;
 
-alarmvar_anim_update_default = 0.12;
+//speed of the current animation in FPS
+anim_speed_current = anim_speed[0];
+alarmvar_anim_update_default = 1/anim_speed_current;
 alarmvar_anim_update = alarmvar_anim_update_default;
+//how long it takes for the animation to transfer to the next animation once the animation is finished
+alarmvar_anim_end_default[0] = 0;
+alarmvar_anim_end_default[1] = 0;
+alarmvar_anim_end_default[2] = 0.15;
+alarmvar_anim_end = alarmvar_anim_end_default;
+
 
 //number of colors in the sprite pallete(including 0 as a number)
 colors_count = 3;
@@ -224,7 +242,7 @@ movement_input_keyboard = function (dir, xinput, yinput) {
 	
 	}
 
-	moving = (point_distance(x, y, xinput, yinput) > 0);
+	moving = (point_distance(0, 0, xinput, yinput) > 0);
 
 	if moving {
 	
@@ -241,12 +259,27 @@ movement_input_keyboard = function (dir, xinput, yinput) {
 		//true/1 for running, false/0 for idle
 		mve_state = 1;
 		
-		animation_current = 1;
+		
+		if (animation_current != 1) {
+			
+			if (alarmvar_anim_end <= 0) {
+			
+				anim_start(1);
+				
+			}
+			alarmvar_anim_end -= global.dt_steady;
+			
+		}
 	
 	}
 	else {
 		
-		animation_current = 0;
+		if (animation_current != 2 || alarmvar_anim_end <= 0) {
+			
+			anim_start(0);
+			
+		}
+		alarmvar_anim_end -= global.dt_steady;
 		
 	}
 	
@@ -603,8 +636,8 @@ start_atk_basic = function () {
 		
 		mve_state = 2;
 		pressed[0] = true;
-	
-		animation_current = 2;
+		
+		anim_start(2);
 	
 		mve_spd = mve_spd_atk_basic_default;
 	
@@ -646,7 +679,7 @@ start_atk_lantern = function() {
 		mve_state = 2;
 		pressed[0] = true;
 	
-		animation_current = 2;
+		anim_start(2);
 	
 		mve_spd = 0;
 	
@@ -763,6 +796,20 @@ make_vincible = function() {
 	
 	alarmvar_inv = 0;
 	
+}
+
+
+anim_start = function(animation) {
+
+	animation_current = animation;
+	
+	animation_pos = 0;
+	alarmvar_anim_update = alarmvar_anim_update_default;
+	
+	anim_speed_current = anim_speed[animation];
+	alarmvar_anim_update_default = 1/anim_speed_current;
+	alarmvar_anim_end = alarmvar_anim_end_default[animation];
+
 }
 
 

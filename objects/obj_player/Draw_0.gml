@@ -8,11 +8,11 @@ var sprite = anim_frame_start[dir_last, animation_current] + animation_pos;
 if (alarmvar_anim_update <= 0) {
 	
 	if (sprite < (anim_frame_end[dir_last, animation_current])) {
-	
+		
 		animation_pos++;
 		
 	}
-	else {
+	else if (!anim_stop[animation_current]) {
 	
 		animation_pos = 0;
 		
@@ -22,11 +22,12 @@ if (alarmvar_anim_update <= 0) {
 	alarmvar_anim_update = alarmvar_anim_update_default;
 	
 }
-
 alarmvar_anim_update -= global.dt_steady;
 
 
 
+//set index with updated animation_pos value
+sprite = anim_frame_start[dir_last, animation_current] + animation_pos;
 image_index = sprite;
 
 
