@@ -19,14 +19,14 @@ _x = 0;
 _y = 0;
 
 
-height_healthbar = sprite_get_height(spr_healthbar);
-width_meter = sprite_get_width(spr_lightboost_meter);
-height_meter = sprite_get_height(spr_lightboost_meter);
+height_healthbar = sprite_get_height(spr_hud_healthbar);
+width_meter = sprite_get_width(spr_hud_lightboost_meter);
+height_meter = sprite_get_height(spr_hud_lightboost_meter);
 height_lightcrystal = sprite_get_width(spr_lightcrystal);
 
 
 item_sprites[0] = spr_placeholder;
-item_sprites[1] = spr_icon_sword;
+item_sprites[1] = spr_hud_icon_sword;
 item_sprites[2] = spr_icon_sun_lantern;
 
 
