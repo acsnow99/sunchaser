@@ -1,7 +1,7 @@
 {
   "spriteId": {
-    "name": "spr_cutscene_trigger",
-    "path": "sprites/spr_cutscene_trigger/spr_cutscene_trigger.yy",
+    "name": "spr_cursor_menu",
+    "path": "sprites/spr_cursor_menu/spr_cursor_menu.yy",
   },
   "solid": false,
   "visible": true,

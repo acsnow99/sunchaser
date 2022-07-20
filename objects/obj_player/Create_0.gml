@@ -27,9 +27,47 @@ directions[2] = 180;
 directions[3] = 270;
 
 
-//animation length
-animation_length_current = 1;
+//anim_frame_start stores the index of the first frame of each animation
+//index for animation directions:
+// 0 - right
+// 1 - up
+// 2 - left
+// 3 - down
+//index for animation types:
+// 0 - idle
+// 1 - run
+// 2 - basic sword swing
+anim_frame_start[0, 0] = 0;
+anim_frame_start[0, 1] = 12;
+anim_frame_start[0, 2] = 4;
+anim_frame_start[1, 0] = 1;
+anim_frame_start[1, 1] = 18;
+anim_frame_start[1, 2] = 6;
+anim_frame_start[2, 0] = 2;
+anim_frame_start[2, 1] = 24;
+anim_frame_start[2, 2] = 8;
+anim_frame_start[3, 0] = 3;
+anim_frame_start[3, 1] = 30;
+anim_frame_start[3, 2] = 10;
+
+anim_frame_end[0, 0] = 0;
+anim_frame_end[0, 1] = 18;
+anim_frame_end[0, 2] = 6;
+anim_frame_end[1, 0] = 1;
+anim_frame_end[1, 1] = 24;
+anim_frame_end[1, 2] = 8;
+anim_frame_end[2, 0] = 2;
+anim_frame_end[2, 1] = 30;
+anim_frame_end[2, 2] = 10;
+anim_frame_end[3, 0] = 3;
+anim_frame_end[3, 1] = 35;
+anim_frame_end[3, 2] = 12;
+
+animation_current = 0;
 animation_pos = 0;
+
+alarmvar_anim_update_default = 0.12;
+alarmvar_anim_update = alarmvar_anim_update_default;
 
 //number of colors in the sprite pallete(including 0 as a number)
 colors_count = 3;
@@ -186,7 +224,7 @@ movement_input_keyboard = function (dir, xinput, yinput) {
 	
 	}
 
-	moving = (point_distance(0, 0, xinput, yinput) > 0);
+	moving = (point_distance(x, y, xinput, yinput) > 0);
 
 	if moving {
 	
@@ -202,7 +240,14 @@ movement_input_keyboard = function (dir, xinput, yinput) {
 	
 		//true/1 for running, false/0 for idle
 		mve_state = 1;
+		
+		animation_current = 1;
 	
+	}
+	else {
+		
+		animation_current = 0;
+		
 	}
 	
 	
@@ -317,7 +362,14 @@ movement_input_gp = function (dir, xinput, yinput) {
 	
 		//true/1 for running, false/0 for idle
 		mve_state = 1;
+		
+		animation_current = 1;
 	
+	}
+	else {
+		
+		animation_current = 0;
+		
 	}
 	
 	
@@ -552,7 +604,7 @@ start_atk_basic = function () {
 		mve_state = 2;
 		pressed[0] = true;
 	
-		image_index = 0;
+		animation_current = 2;
 	
 		mve_spd = mve_spd_atk_basic_default;
 	
@@ -594,7 +646,7 @@ start_atk_lantern = function() {
 		mve_state = 2;
 		pressed[0] = true;
 	
-		image_index = 0;
+		animation_current = 2;
 	
 		mve_spd = 0;
 	
@@ -625,6 +677,8 @@ start_atk_sp = function () {
 		
 		mve_state = 3;
 		pressed[1] = true;
+		
+		animation_current = 2;
 	
 		mve_spd = atk_special_mve_spd;
 	
@@ -640,6 +694,8 @@ start_atk_sp = function () {
 start_recoil_receiving = function(dmg) {
 	
 	mve_state = 5;
+	
+	animation_current = 0;
 		
 	alarmvar_recoil_recv = alarmvar_recoil_recv_default;
 		
